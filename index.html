@@ -8649,6 +8649,123 @@ html.light-mode.high-contrast{
 body.role-can-switch .mode-switch { display: -webkit-box; display: -webkit-flex; display: flex; }
 </style>
 
+<style id="tatame-plus-clean-ui-v2">
+:root{
+ --accent:#FE5301!important;--primary:#FE5301!important;--adm-accent:#FE5301!important;
+ --tatame-ink:#18212B!important;--tatame-text:#475467!important;--tatame-muted:#6B7280!important;
+ --tatame-bg:#FFFFFF!important;--tatame-soft:#F7F8FA!important;--tatame-border:#E7E9ED!important;
+ --tatame-shadow:0 12px 34px rgba(24,33,43,.06)!important;
+ --tatame-shadow-sm:0 5px 18px rgba(24,33,43,.045)!important;
+}
+html,body{background:#fff!important;color:var(--tatame-ink)!important;color-scheme:light!important}
+body{font-family:'Poppins','Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif!important;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before,body::after{display:none!important}
+.app,.main{background:#fff!important;color:var(--tatame-ink)!important}
+.hdr{background:rgba(255,255,255,.97)!important;color:var(--tatame-ink)!important;border-bottom:1px solid var(--tatame-border)!important;box-shadow:0 2px 16px rgba(24,33,43,.04)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.hdr,.hdr .hdr-title,.hdr .hdr-sub,.hdr-brand{color:var(--tatame-ink)!important}
+.hdr .hdr-title{background:none!important;-webkit-text-fill-color:var(--tatame-ink)!important;letter-spacing:1.2px!important}
+.hdr .hdr-sub{color:var(--tatame-muted)!important}
+.hdr-a11y-btn,.mode-switch,.mode-switch-opt,.hdr-user{background:#fff!important;color:var(--tatame-ink)!important;border-color:var(--tatame-border)!important;box-shadow:none!important}
+.mode-switch-opt.active{background:var(--accent)!important;color:#fff!important;border-color:var(--accent)!important}
+.hdr-avatar{background:#FFF1E9!important;color:var(--accent)!important;border-color:#FFD8C6!important}
+.card,.card-glass,.form-card,.modal-content,.panel,.section-card,.stat-card,.kpi-card,.info-card,.list-card,.adm-card{background:#fff!important;color:var(--tatame-ink)!important;border:1px solid var(--tatame-border)!important;box-shadow:var(--tatame-shadow-sm)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.card,.card-glass,.form-card,.modal-content{border-radius:18px!important}
+h1,h2,h3,h4,h5,h6,.card-title,.section-title,.page-title,.form-card-title{color:var(--tatame-ink)!important}
+p,.card-subtitle,.section-subtitle,.text-muted,.muted,.small{color:var(--tatame-text)}
+.form-label{color:var(--tatame-ink)!important;font-weight:650!important;text-transform:none!important;letter-spacing:0!important;font-size:12px!important}
+input,select,textarea{background:#fff!important;color:var(--tatame-ink)!important;border:1px solid #DDE1E7!important;border-radius:12px!important;box-shadow:none!important}
+input::placeholder,textarea::placeholder{color:#68707A!important;opacity:1!important}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px rgba(254,83,1,.10)!important;outline:none!important}
+.btn-primary,.btn-main,.primary-btn,button.primary{background:var(--accent)!important;color:#fff!important;border:1px solid var(--accent)!important;box-shadow:0 7px 18px rgba(254,83,1,.16)!important;border-radius:11px!important}
+.btn-primary:hover,.btn-main:hover,.primary-btn:hover,button.primary:hover{background:#E94B00!important;border-color:#E94B00!important}
+.btn-outline{background:#fff!important;color:var(--accent)!important;border:1px solid #FFC3AB!important;border-radius:11px!important}
+a{color:#C93F00}   /* Fundo efetivo com a foto atras e #F9F9F9, nao branco puro: #D14400 caia para 4,4:1. */
+.sidebar,.admin-sidebar,.side-nav,.nav-sidebar{background:#fff!important;border-right:1px solid var(--tatame-border)!important;box-shadow:none!important}
+.sidebar a,.admin-sidebar a,.side-nav a,.nav-sidebar a{color:#667085!important;border-radius:10px!important}
+.sidebar a.active,.sidebar a:hover,.admin-sidebar a.active,.admin-sidebar a:hover,.side-nav a.active,.side-nav a:hover,.nav-sidebar a.active,.nav-sidebar a:hover{background:#FFF3EC!important;color:var(--accent)!important}
+.subtab-btn,.perfil-tab-btn,.evo-subtab-btn{color:#667085!important}
+.subtab-btn.active,.perfil-tab-btn.active,.evo-subtab-btn.active{color:var(--accent)!important;border-color:var(--accent)!important}
+th{background:#F8F9FB!important;color:#475467!important;border-bottom:1px solid var(--tatame-border)!important;font-weight:650!important}
+td{color:#344054!important;border-bottom:1px solid #EEF0F3!important}
+tr:hover td{background:#FFF9F6!important}
+.modal-backdrop{background:rgba(17,25,33,.18)!important;backdrop-filter:blur(3px)}
+.bnav{background:#fff!important;border-top:1px solid var(--tatame-border)!important;box-shadow:0 -4px 16px rgba(24,33,43,.04)!important}
+.bnav-btn{color:#667085!important}.bnav-btn.active{color:var(--accent)!important}
+/* LOGIN */
+#loginScreen{position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:100%!important;box-sizing:border-box!important;padding:44px 24px 28px!important;background:#fff!important;color:var(--tatame-ink)!important;text-align:center!important;overflow:auto!important}
+/* FOTO DE FUNDO DO LOGIN
+   [2026-08-26] Com o conteudo CENTRALIZADO, a foto so na direita brigaria com
+   o alinhamento - o card ficaria por cima do atleta. Solucao: a imagem cobre a
+   tela inteira, bem esmaecida, e um veu branco por cima garante que o texto
+   continue legivel. O resultado e textura de fundo, nao ilustracao lateral.
+   WebP de 39 KB; se a pasta assets/ nao subir, sobra o branco e nada quebra. */
+#loginScreen::before{
+  content:''!important;display:block!important;
+  position:absolute!important;inset:0!important;
+  background-image:image-set(url('assets/login-bg.webp') type('image/webp'),
+                             url('assets/login-bg.jpg')  type('image/jpeg'))!important;
+  background-image:-webkit-image-set(url('assets/login-bg.webp') type('image/webp'),
+                                     url('assets/login-bg.jpg')  type('image/jpeg'))!important;
+  background-size:cover!important;
+  background-position:center right!important;
+  background-repeat:no-repeat!important;
+  opacity:.16!important;              /* textura, nao protagonista */
+  pointer-events:none!important;z-index:0!important
+}
+/* Veu que garante o contraste do texto sobre a foto. Mais denso no centro,
+   onde ficam a marca e o card. */
+#loginScreen::after{
+  content:''!important;display:block!important;
+  position:absolute!important;inset:0!important;
+  background:radial-gradient(ellipse at 50% 45%,
+             rgba(255,255,255,.94) 0%,
+             rgba(255,255,255,.86) 45%,
+             rgba(255,255,255,.72) 100%)!important;
+  pointer-events:none!important;z-index:0!important
+}
+/* Celular: a versao de 13 KB e ainda mais discreta - tela menor, menos espaco
+   sobrando ao redor do card. */
+@media (max-width:899px){
+  #loginScreen::before{
+    background-image:url('assets/login-bg-sm.webp')!important;
+    background-position:top center!important;
+    opacity:.10!important
+  }
+  #loginScreen::after{
+    background:linear-gradient(180deg,
+               rgba(255,255,255,.80) 0%,
+               rgba(255,255,255,.92) 40%,
+               rgba(255,255,255,.97) 100%)!important
+  }
+}
+#loginScreen>*{position:relative!important;z-index:1!important}
+#loginScreen .login-hero{width:100%!important;max-width:520px!important;margin:0 auto!important;padding:0!important;text-align:center!important}
+#loginScreen .login-title{font-family:'Poppins','Montserrat',sans-serif!important;font-size:clamp(42px,7vw,58px)!important;font-weight:800!important;line-height:1!important;letter-spacing:-1.8px!important;color:var(--tatame-ink)!important;-webkit-text-fill-color:var(--tatame-ink)!important;background:none!important;margin:0!important}
+#loginScreen .login-title-plus{color:var(--accent)!important;-webkit-text-fill-color:var(--accent)!important;margin-left:2px!important}
+#loginScreen .login-rule{width:52px!important;height:4px!important;margin:18px auto 14px!important;border-radius:999px!important;background:var(--accent)!important}
+#loginScreen .login-sub{margin:0!important;color:#475467!important;font-size:clamp(15px,2.5vw,18px)!important;font-weight:500!important;line-height:1.5!important}
+#loginScreen .login-verso{width:100%!important;max-width:460px!important;min-height:76px!important;margin:20px auto 10px!important;padding:0!important;border:0!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+#loginScreen .login-verso-txt{margin:0 0 6px!important;color:#667085!important;font-size:14px!important;line-height:1.55!important;font-style:italic!important}
+#loginScreen .login-verso-ref{color:var(--accent)!important;font-size:12px!important;font-weight:700!important}
+#loginScreen .login-box{width:100%!important;max-width:460px!important;margin:0 auto!important;padding:0!important;box-sizing:border-box!important}
+#loginScreen .form-card{width:100%!important;margin:0!important;padding:30px!important;background:#fff!important;border:1px solid #E8EAEE!important;border-radius:20px!important;box-shadow:0 14px 42px rgba(17,25,33,.07)!important;text-align:left!important}
+#loginScreen .form-card-title{display:none!important}
+#loginScreen .form-group{margin-bottom:17px!important}
+#loginScreen input{width:100%!important;min-height:52px!important;box-sizing:border-box!important;padding:0 15px!important;font-size:14px!important}
+#loginScreen .password-wrapper input{padding-right:48px!important}
+#loginScreen .password-toggle{color:#667085!important}
+#loginScreen .login-box .btn-primary{width:100%!important;min-height:52px!important;margin-top:5px!important;border-radius:12px!important;font-weight:750!important;letter-spacing:.2px!important}
+#loginScreen .login-credit{margin:22px auto 0!important;color:#98A0AD!important;font-size:12px!important;justify-content:center!important}
+#loginScreen .login-credit a{color:#344054!important;font-weight:700!important}
+/* CONSISTÊNCIA DAS TELAS */
+.form-row,.grid,.cards-grid,.stats-grid{gap:16px!important}
+.page-header,.section-header,.admin-header{margin-bottom:20px}
+.card:hover,.section-card:hover,.stat-card:hover,.kpi-card:hover,.info-card:hover{border-color:#E0E3E8!important;box-shadow:0 10px 28px rgba(17,25,33,.06)!important}
+@media(max-width:899px){#loginScreen{justify-content:flex-start!important;padding:34px 18px 24px!important}#loginScreen .login-title{font-size:42px!important}#loginScreen .login-sub{font-size:15px!important}#loginScreen .login-verso{min-height:70px!important;margin-top:18px!important}#loginScreen .form-card{padding:24px 20px!important;border-radius:18px!important}}
+@media(max-width:600px){.hdr{padding-left:15px!important;padding-right:15px!important}.card,.card-glass,.form-card{border-radius:15px!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+
 <body>
 
     <script>
