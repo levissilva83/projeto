@@ -6047,9 +6047,7 @@ button .ctm-svg-icon,a .ctm-svg-icon{vertical-align:-0.2em}
             font-size: 11px;
             font-weight: 600;
         }
-        .guide-benefit-tag.totalpass { background: rgba(255,87,34,0.12); color: #ff5722; border: 1px solid rgba(255,87,34,0.2); }
         .guide-benefit-tag.gympass { background: rgba(244,67,54,0.12); color: #F87171; border: 1px solid rgba(244,67,54,0.2); }
-        .guide-benefit-tag.wellhub { background: rgba(156,39,176,0.12); color: #ce93d8; border: 1px solid rgba(156,39,176,0.2); }
         .guide-benefit-tag.gogood { background: rgba(76,175,80,0.12); color: #66bb6a; border: 1px solid rgba(76,175,80,0.2); }
         .guide-benefit-tag.classpass { background: rgba(33,150,243,0.12); color: #42a5f5; border: 1px solid rgba(33,150,243,0.2); }
         .guide-benefit-tag.totalfit { background: rgba(255,152,0,0.12); color: #FBBF24; border: 1px solid rgba(255,152,0,0.2); }
@@ -9460,7 +9458,7 @@ tr:hover td{background:#FFF9F6!important}
                         <!-- ══ SUB-ABAS DA EVOLUÇÃO ══ -->
                         <div style="display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:4px 0 12px;-webkit-overflow-scrolling:touch;" id="evoSubTabsNav">
  <button class="evo-subtab-btn active" data-evosub="graduacao" onclick="switchEvoSubTab('graduacao')"> Sistema de Graduação</button>
- <button class="evo-subtab-btn" data-evosub="certificados" onclick="switchEvoSubTab('certificados')"> Meus Certificados</button>
+ 
  <button class="evo-subtab-btn" data-evosub="regras" onclick="switchEvoSubTab('regras')"> Regras</button>
                         </div>
 
@@ -9543,18 +9541,7 @@ tr:hover td{background:#FFF9F6!important}
                         </div><!-- fim evo-subtab-pane#evoSubGraduacao -->
 
                         <!-- SUB-ABA: MEUS CERTIFICADOS -->
-                        <div class="evo-subtab-pane" id="evoSubCertificados">
-                            <div id="perfilSecCertificado" style="padding-top:4px;">
-                                <div style="font-size:11px;color:var(--text-3);margin-bottom:14px;line-height:1.6;">
-                                    Baixe o certificado da sua graduação atual ou de graduações anteriores, assinado pelo seu professor.
-                                </div>
-                                <div id="certPendenteMsg" style="display:none;font-size:11px;color:#FE5301;background:rgba(238, 90, 27,0.1);border:1px solid rgba(238, 90, 27,0.3);border-radius:9px;padding:10px 12px;margin-bottom:10px;line-height:1.5;">⏳ Seu certificado ficará disponível assim que o professor aprovar a sua graduação.</div>
- <button id="btnGerarCertAtual" onclick="gerarCertificado('', '', null, activeModality)" style="width:100%;padding:13px;background:var(--nexti-grad);color:#000;border:none;border-radius:10px;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:.3px;"> Gerar certificado da faixa atual</button>
- <button onclick="gerarCarteirinha('')" style="width:100%;padding:13px;background:rgba(238, 90, 27,0.12);color:#FE5301;border:1px solid rgba(238, 90, 27,0.3);border-radius:10px;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:.3px;margin-top:8px;"> Minha carteirinha</button>
- <button onclick="abrirMeuQR()" style="width:100%;padding:13px;background:rgba(238, 90, 27,0.12);color:#FE5301;border:1px solid rgba(238, 90, 27,0.3);border-radius:10px;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:.3px;margin-top:8px;"> Meu QR de presença</button>
-                                <div id="meusCertsRetroLista" style="margin-top:14px;"></div>
-                            </div>
-                        </div><!-- fim evo-subtab-pane#evoSubCertificados -->
+                        <!-- fim evo-subtab-pane#evoSubCertificados -->
 
                         <!-- SUB-ABA: REGRAS DA MODALIDADE -->
                         <div class="evo-subtab-pane" id="evoSubRegras">
@@ -9875,7 +9862,7 @@ tr:hover td{background:#FFF9F6!important}
                                 <div class="perfil-field">
                                     <label>CPF</label>
                                     <input type="tel" id="perfilCPF" placeholder="000.000.000-00" maxlength="14" inputmode="numeric" oninput="formatCPF(this)">
-                                    <div id="perfilCPFAviso" style="font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4;">Necessário para gerar PIX e emitir seu contrato.</div>
+                                    <div id="perfilCPFAviso" style="font-size:10px;color:var(--text-3);margin-top:4px;line-height:1.4;">Necessário para identificação do participante.</div>
                                 </div>
                                 <div class="perfil-row">
                                     <div class="perfil-field">
@@ -9897,25 +9884,7 @@ tr:hover td{background:#FFF9F6!important}
                                     <label>Bairro / Cidade</label>
                                     <input type="text" id="perfilBairro" placeholder="Ex: Tijuca - Rio de Janeiro">
                                 </div>
-                                <div class="perfil-field">
-                                    <label>Rede de Benefício (TotalPass, Wellhub/Gympass...)</label>
-                                    <!-- [FIX 2026-08-17] "Não utilizo nenhuma" ganhou VALOR.
-                                         Antes era value="" e o percentual do perfil conta campo
-                                         com valor não vazio — então quem respondia "não utilizo"
-                                         ficava indistinguível de quem não respondeu, e o perfil
-                                         nunca chegava a 100%.
-
-                                         Responder que não usa É uma resposta. O valor 'nenhuma'
-                                         registra isso; a opção vazia continua existindo como
-                                         placeholder para quem ainda não escolheu. -->
-                                    <select id="perfilRedeBeneficio">
-                                        <option value="">— Selecione —</option>
-                                        <option value="nenhuma">Não utilizo nenhuma</option>
-                                        <option value="totalpass">TotalPass</option>
-                                        <option value="wellhub">Wellhub (Gympass)</option>
-                                        <option value="outra">Outra</option>
-                                    </select>
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -10673,7 +10642,7 @@ tr:hover td{background:#FFF9F6!important}
 
                             <div style="display:flex;gap:8px;">
  <button class="perfil-save-btn" style="flex:1" onclick="salvarCertConfig()"> Salvar</button>
- <button class="perfil-save-btn" style="flex:1;background:rgba(255, 255, 255, 0.059);color:var(--text-1);border:1px solid var(--border);" onclick="previewCertificado()"> Pré-visualizar</button>
+ 
                             </div>
                             <div id="certConfigMsg" style="font-size:11px;margin-top:6px;"></div>
                         </div>
@@ -10763,82 +10732,7 @@ tr:hover td{background:#FFF9F6!important}
                         </div>
 
                         <!-- ── Tab 5: Exame de Faixa (rubrica / modelos) ── -->
-                        <div id="gradPainelTab5" style="display:none;padding:12px;">
-                            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;">
- <div class="admin-section-title" style="margin:0;"> Exames</div>
-                                
-                            </div>
-                            <div style="font-size:11px;color:var(--adm-text-3);margin-bottom:10px;">Crie fichas de avaliação por modalidade/faixa e avalie o aluno item a item — o sistema calcula a nota e aprova/reprova. Para Jiu-Jitsu, use o modelo pré-definido e ajuste a quantidade de posições por faixa.</div>
-                            <div id="modelosExameList"><div style="text-align:center;padding:20px 0;color:var(--adm-text-3);font-size:12px;">Carregando modelos...</div></div>
-
-                            <!-- ██ SOLICITAÇÕES DE EXAME ██ -->
-                            <div style="margin-top:18px;border-top:1px solid var(--adm-border);padding-top:14px;">
-                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
- <div class="admin-section-title" style="margin:0;"> Solicitações de exame</div>
-                                    <span id="adminExamReqBadge" style="display:none;font-size:10px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(248,113,113,0.15);color:#F87171;"></span>
-                                </div>
-                                <div style="font-size:11px;color:var(--adm-text-3);margin-bottom:10px;">Pedidos enviados pelos alunos ao escolher data e horário.</div>
-                                <div id="admExamRequestsList"><div class="admin-empty">Carregando...</div></div>
-                            </div>
-
-                            <!-- ██ VALORES DO EXAME — em ABAS ██ -->
-                            <!-- [2026-08-02] Separado em duas abas: "Taxa do exame"
-                                 (o padrão, que a maioria configura e nunca mais mexe) e
-                                 "Valores por graduação" (ajuste fino por faixa, opcional).
-                                 Antes eram empilhados, deixando a tela muito alta. -->
-                            <div style="margin-top:18px;border-top:1px solid var(--adm-border);padding-top:14px;">
- <div class="admin-section-title" style="margin:0 0 4px;"> Valores do exame</div>
-                                <div style="font-size:11px;color:var(--adm-text-3);margin-bottom:10px;">O valor é definido pela faixa que o aluno vai <strong>receber</strong>.</div>
-
-                                <!-- Barra de abas -->
-                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--adm-border);margin-bottom:12px;">
-                                    <button id="tvTabBtn1" onclick="_tvSwitch(1)"
-                                        style="padding:9px 6px;border:none;border-bottom:2px solid var(--adm-primary);background:rgba(238, 90, 27,0.08);color:var(--adm-primary);font-size:11px;font-weight:800;cursor:pointer;">
-                                        Taxa do exame
-                                    </button>
-                                    <button id="tvTabBtn2" onclick="_tvSwitch(2)"
-                                        style="padding:9px 6px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--adm-text-3);font-size:11px;font-weight:700;cursor:pointer;">
-                                        Valores por graduação
-                                    </button>
-                                </div>
-
-                                <!-- ── Aba 1: Taxa do exame (valor padrão) ── -->
-                                <div id="tvPane1">
-                                    <div style="font-size:11px;color:var(--adm-text-3);margin-bottom:8px;">Vale para todas as faixas de todas as modalidades.</div>
-                                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
-                                        <div style="flex:1;min-width:130px;">
-                                            <div style="font-size:10.5px;color:var(--adm-text-3);margin-bottom:3px;">1ª tentativa (R$)</div>
-                                            <input type="number" id="taxaExamePrimeira" min="0" step="0.01" placeholder="150" style="width:100%;box-sizing:border-box;padding:9px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:8px;font-size:12px;">
-                                        </div>
-                                        <div style="flex:1;min-width:130px;">
-                                            <div style="font-size:10.5px;color:var(--adm-text-3);margin-bottom:3px;">Reincidência (R$)</div>
-                                            <input type="number" id="taxaExameReincidencia" min="0" step="0.01" placeholder="100" style="width:100%;box-sizing:border-box;padding:9px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:8px;font-size:12px;">
-                                        </div>
-                                    </div>
- 
-                                    <div id="taxaExameMsg" style="margin-top:6px;font-size:11.5px;min-height:15px;text-align:center;"></div>
-                                </div>
-
-                                <!-- ── Aba 2: Valores por graduação (exceções) ── -->
-                                <div id="tvPane2" style="display:none;">
-                                    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;">
-                                        <div style="font-size:11px;color:var(--adm-text-3);flex:1;">Opcional. Preencha só as faixas que custam diferente da taxa padrão.</div>
- <button onclick="salvarTaxasGraduacao()" style="padding:7px 12px;background:#2f6bff;color:#fff;border:none;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap;"> Salvar</button>
-                                    </div>
-                                    <div id="taxasGradList"><div class="admin-empty">Carregando...</div></div>
-                                    <div id="taxasGradMsg" style="margin-top:6px;font-size:11.5px;min-height:15px;text-align:center;"></div>
-                                </div>
-                            </div>
-
-
-                            <!-- [REMOVIDO 2026-08-06] "Tecnicas por faixa".
-                                 O bloco chamava loadAdminExamTecnicas() e
-                                 salvarExamTecnicas(), que dependiam de actions
-                                 sem handler no backend - o textarea ficava em
-                                 "Carregando..." para sempre e o salvar nao
-                                 gravava. Nunca funcionou; removido inteiro em
-                                 vez de manter tela morta. -->
-                        </div>
+                        
 
                     </div>
                     <!-- ══ FIM PAINEL TABBED Graduações ═══════════════════════ -->
@@ -11327,7 +11221,7 @@ tr:hover td{background:#FFF9F6!important}
  <div style="font-size:13px;font-weight:800;color:#F87171;"> Inadimplentes — CTs Licenciados</div>
                             <div style="font-size:10px;color:var(--adm-text-3);margin-top:2px;">Clientes com pagamento reprovado, Trial vencido ou PIX pendente</div>
                         </div>
-                        <button onclick="loadInadimplentes()" style="padding:7px 12px;background:rgba(248,113,113,0.1);color:#F87171;border:1.5px solid rgba(248,113,113,0.3);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;">↻ Atualizar</button>
+                        
                     </div>
 
                     <!-- Template de mensagem editável -->
@@ -11457,7 +11351,7 @@ tr:hover td{background:#FFF9F6!important}
                                  indice 6, livre desde a remocao da aba "Foto". -->
                             <button class="adm-painel-tab-btn" id="admPainelTabBtn8" onclick="switchAdmPainelTab(8)"
                                 style="padding:8px 4px 6px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--adm-text-3);font-size:9px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;">
- <span style="font-size:15px;"></span><span>Congelados <span class="admin-badge" id="adminCongelBadge" style="display:none;">0</span></span>
+ <span style="font-size:15px;"></span>
                             </button>
                             <button class="adm-painel-tab-btn" id="admPainelTabBtn7" onclick="switchAdmPainelTab(7);loadFrequenciaMensal();"
                                 style="padding:8px 4px 6px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--adm-text-3);font-size:9px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;">
@@ -11516,15 +11410,7 @@ tr:hover td{background:#FFF9F6!important}
                              clicar no card KPI "CONGELAM." - que passou a sumir quando
                              zerado, tornando a tela inacessivel. Reutiliza a mesma
                              lista (congelamentosAdminList) do painel antigo. -->
-                        <div id="admPainelTab8" class="adm-painel-tab-panel" style="display:none;padding:12px;">
-                            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-                                <div style="font-size:11px;color:var(--adm-text-3);line-height:1.4;">Alunos com matrícula congelada e solicitações pendentes</div>
-                                <button onclick="loadCongelamentosPendentes(true)" style="padding:4px 10px;border-radius:6px;background:var(--adm-bg-elevated);border:1px solid var(--adm-border);color:var(--adm-text-2);font-size:11px;cursor:pointer;white-space:nowrap;">↻ Atualizar</button>
-                            </div>
-                            <div id="congelamentosTabList">
-                                <div style="font-size:12px;color:var(--adm-text-3);padding:10px;">Carregando...</div>
-                            </div>
-                        </div>
+                        
 
                         <!-- ── Tab 4: Alunos Inativos ─────────────────────── -->
                         <div id="admPainelTab4" class="adm-painel-tab-panel" style="display:none;padding:12px;">
@@ -11583,50 +11469,7 @@ tr:hover td{background:#FFF9F6!important}
                         </div>
 
                         <!-- ── Tab 5: Check-ins Recentes ─────────────────── -->
-                        <div id="admPainelTab5" class="adm-painel-tab-panel" style="display:none;padding:12px;">
-
-                            <!-- [NOVO 2026-08-06] Alunos por rede de beneficio.
-                                 SOB DEMANDA: le a aba Presenca inteira cruzando com
-                                 Alunos - a consulta mais cara do Painel. E um numero
-                                 de fechamento de mes, nao de acompanhamento diario,
-                                 entao so roda quando o admin clica em Gerar. -->
-                            <div class="admin-section" style="margin-bottom:12px;padding:12px;background:var(--adm-bg-card);border-radius:10px;">
-                                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
- <span style="font-size:15px;"></span>
-                                    <div style="flex:1;font-size:13px;font-weight:800;color:var(--adm-text-1);min-width:150px;">Alunos por rede de benefício</div>
-                                </div>
-                                <div style="font-size:11px;color:var(--adm-text-3);margin-bottom:10px;line-height:1.5;">
-                                    Quantos alunos com rede cadastrada no perfil treinaram no mês. Conta alunos distintos, não treinos.
-                                </div>
-                                <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-                                    <select id="redeMes" style="padding:8px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:8px;font-size:12px;">
-                                        <option value="1">Janeiro</option><option value="2">Fevereiro</option>
-                                        <option value="3">Março</option><option value="4">Abril</option>
-                                        <option value="5">Maio</option><option value="6">Junho</option>
-                                        <option value="7">Julho</option><option value="8">Agosto</option>
-                                        <option value="9">Setembro</option><option value="10">Outubro</option>
-                                        <option value="11">Novembro</option><option value="12">Dezembro</option>
-                                    </select>
-                                    <input id="redeAno" type="number" min="2020" max="2100" style="width:82px;padding:8px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:8px;font-size:12px;">
- <button id="redeGerarBtn" onclick="gerarCheckinsPorRede()" style="padding:8px 16px;border-radius:8px;background:linear-gradient(135deg,#FE5301,#FE5301);color:#000;border:none;font-size:12px;font-weight:800;cursor:pointer;"> Gerar</button>
-                                </div>
-                                <div id="redeResultado" style="margin-top:10px;"></div>
-                            </div>
-
-                            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-                                <div style="font-size:11px;color:var(--adm-text-3);">Últimos check-ins aprovados no sistema</div>
-                                <div style="display:flex;gap:6px;">
-                                    <select id="wellnessFilterRede" onchange="loadWellnessCheckins()" style="padding:5px 8px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:6px;font-size:11px;">
-                                        <option value="">Todas as redes</option>
-                                        <option value="wellhub">Wellhub</option>
-                                        <option value="totalpass">TotalPass</option>
-                                    </select>
-                                    <button onclick="loadWellnessCheckins(true)" style="padding:5px 10px;border-radius:6px;background:transparent;border:1px solid var(--adm-border);color:var(--adm-text-3);font-size:10px;cursor:pointer;">↻</button>
-                                </div>
-                            </div>
-                            <div id="wellnessKPIs" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;"></div>
-                            <div id="wellnessCheckinsList"><div class="admin-empty">Carregando...</div></div>
-                        </div>
+                        
 
                         <!-- ── Tab 6: Checkin por Foto ─────────────────── -->
                         <!-- ── Tab 6: Checkin por Foto ─────────────────── -->
@@ -12272,7 +12115,7 @@ tr:hover td{background:#FFF9F6!important}
                     </div>
                     </div><!-- /sysSubQR -->
 
-                    <!-- REDES DE BENEFÍCIO: Wellhub & TotalPass -->
+                    
                     
 
                     <!-- card Pagamentos removido — acesso via aba Financeiro na navbar -->
@@ -13072,7 +12915,7 @@ tr:hover td{background:#FFF9F6!important}
  <div class="admin-section-title"> Pagamentos</div>
                                 <div style="display:flex;gap:6px;align-items:center;">
                                     <button class="admin-refresh-btn" onclick="initPagamentosAdmin(true)" title="Atualizar">↻ Atualizar</button>
- <button onclick="cobrarMensalidadeAgora()" title="Rodar cobrança recorrente agora" style="padding:5px 10px;border-radius:7px;background:rgba(238, 90, 27,0.12);border:1px solid rgba(238, 90, 27,0.3);color:var(--adm-primary);font-size:10px;font-weight:700;cursor:pointer;"> Cobrar agora</button>
+ 
                                 </div>
                             </div>
 
@@ -13286,7 +13129,7 @@ tr:hover td{background:#FFF9F6!important}
                                     <select id="cobCTFiltro" onchange="loadPagamentosAdmin()" style="padding:6px 10px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:7px;font-size:11px;"></select>
                                 </div>
                                 <div style="position:relative;margin-bottom:10px;">
- <input id="cobNomeFiltro" type="text" placeholder=" Buscar por nome..." oninput="filtrarCobrancasPorNome()"
+ <input id="cobNomeFiltro" type="text" placeholder=" Buscar por nome..." data-removido="1"
                                         style="width:100%;padding:8px 32px 8px 10px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:8px;font-size:12px;box-sizing:border-box;outline:none;">
  <span id="cobNomeFiltroLimpar" onclick="limparFiltroCobNome()" style="display:none;position:absolute;right:8px;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--adm-text-3);font-size:14px;"></span>
                                 </div>
@@ -13299,15 +13142,15 @@ tr:hover td{background:#FFF9F6!important}
 
                                 <!-- Filtros de status -->
                                 <div style="display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap;">
-                                    <button class="cob-filter-btn active" onclick="filtrarCobrancas('',this)">Todos</button>
- <button class="cob-filter-btn" onclick="filtrarCobrancas('PAGO',this)"> Pago</button>
-                                    <button class="cob-filter-btn" onclick="filtrarCobrancas('PENDENTE',this)">⏳ Pendente</button>
- <button class="cob-filter-btn" onclick="filtrarCobrancas('ATRASADO',this)"> Atrasado</button>
- <button class="cob-filter-btn" onclick="filtrarCobrancas('VENCENDO',this)"> Vencendo</button>
- <button class="cob-filter-btn" onclick="filtrarCobrancas('VENCE_AMANHA',this)"> Vence amanhã</button>
- <button class="cob-filter-btn" onclick="filtrarCobrancas('SEM_PLANO',this)"> Sem plano</button>
- <button class="cob-filter-btn" onclick="filtrarCobrancas('NUNCA_PAGOU',this)"> Nunca pagou</button>
-                                    <button class="cob-filter-btn" onclick="filtrarCobrancas('PIX_EXPIRADO',this)">⌛ PIX expirado</button>
+                                    
+ 
+                                    
+ 
+ 
+ 
+ 
+ 
+                                    
                                 </div>
 
                                 <div id="mpPagamentosAdmin"><div class="admin-empty" style="font-size:11px;">Carregando...</div></div>
@@ -13935,15 +13778,7 @@ tr:hover td{background:#FFF9F6!important}
                                 <label>Endereço Completo</label>
                                 <input type="text" id="stuEnderecoCompleto" placeholder="Rua, nº, bairro, cidade">
                             </div>
-                            <div class="stu-field">
-                                <label>Rede de Benefício</label>
-                                <select id="stuRedeBeneficio">
-                                    <option value="">Nenhuma</option>
-                                    <option value="totalpass">TotalPass</option>
-                                    <option value="wellhub">Wellhub (Gympass)</option>
-                                    <option value="outra">Outra</option>
-                                </select>
-                            </div>
+                            
                         </div>
                         <div class="stu-field">
  <label> Observações Internas <span style="font-size:9px;color:var(--adm-text-3);font-weight:400;">(só admin vê)</span></label>
@@ -19264,7 +19099,7 @@ tr:hover td{background:#FFF9F6!important}
 
                             var _perfilKeysObrigatorios = [
                                 'nascimento','cpf','genero','profissao','bairro',
-                                'redeBeneficio','telefone','instagram','emergencia',
+                                'telefone','instagram','emergencia',
                                 'origem','objetivo','horario','experiencia','saude','avatar'
                             ];
                             var _perfilBootCompleto = _perfilKeysObrigatorios.every(function(k) {
@@ -25521,7 +25356,6 @@ tr:hover td{background:#FFF9F6!important}
             { id: 'perfilGenero', key: 'genero' },
             { id: 'perfilProfissao', key: 'profissao' },
             { id: 'perfilBairro', key: 'bairro' },
-            { id: 'perfilRedeBeneficio', key: 'redeBeneficio' },
             { id: 'perfilTelefone', key: 'telefone' },
             { id: 'perfilInstagram', key: 'instagram' },
             { id: 'perfilEmergencia', key: 'emergencia' },
@@ -25547,42 +25381,6 @@ tr:hover td{background:#FFF9F6!important}
         // ── Helper: bloco de cadastro/remoção de cartão ──────────────────────
         // Usado tanto quando módulo está configurado quanto quando não está.
         // data pode ser {} quando chamado sem resposta do backend.
-        function _renderCartaoSection(data) {
-            var temGateway  = data && !!data.temGateway;
-            var cartao      = data && data.cartao;   // { bandeira, ultimos4 } se tiver cartão salvo
-            var temCartao   = data && !!data.temCartaoSalvo;
-
-            var h = '<div style="background:var(--bg-card);border-radius:14px;border:1px solid var(--border);padding:14px;">';
-            h += '<div style="font-size:11px;font-weight:700;color:var(--text-3);letter-spacing:.6px;margin-bottom:12px;">FORMA DE PAGAMENTO</div>';
-
-            if (temCartao && cartao) {
-                // Cartão já cadastrado
-                h += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">';
- h += '<span style="font-size:28px;"></span>';
-                h += '<div style="flex:1;">';
-                h += '<div style="font-size:13px;font-weight:700;color:var(--text-1);">' + escapeHtml(cartao.bandeira || 'Cartão') + ' •••• ' + escapeHtml(cartao.ultimos4 || '') + '</div>';
-                h += '<div style="font-size:11px;color:var(--text-3);">Válido até ' + escapeHtml(cartao.validade || '') + '</div>';
-                h += '</div>';
-                h += '<span style="font-size:10px;font-weight:700;padding:3px 8px;background:rgba(74,222,128,0.12);color:#4ADE80;border-radius:6px;">Ativo</span>';
-                h += '</div>';
- h += '<button onclick="removerCartao()" style="width:100%;padding:10px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.25);color:#F87171;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;"> Remover cartão</button>';
-            } else if (temGateway) {
-                // Gateway configurado — pode adicionar cartão
-                h += '<div style="font-size:12px;color:var(--text-3);margin-bottom:12px;line-height:1.5;">Ative a mensalidade automática para não precisar pagar todo mês manualmente.</div>';
- h += '<button onclick="abrirModalCartao()" style="width:100%;padding:13px;background:linear-gradient(135deg,#009ee3,#0075bd);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:.3px;"> Cadastrar cartão</button>';
-                // Mensalidade automática por PIX (gateways que suportam assinatura PIX, ex: Asaas)
- h += '<button onclick="ativarMensalidadeAutomatica(this)" style="width:100%;margin-top:8px;padding:13px;background:rgba(34,197,94,0.1);border:1.5px solid rgba(34,197,94,0.3);color:#4ADE80;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;"> Ativar mensalidade automática</button>';
-            } else {
-                // Sem gateway — orienta sobre Pix
-                h += '<div style="font-size:12px;color:var(--text-3);line-height:1.5;text-align:center;padding:8px 0;">';
- h += '<div style="font-size:28px;margin-bottom:8px;"></div>';
-                h += 'O CT utiliza <strong style="color:var(--text-1);">PIX</strong> como forma de pagamento.<br>';
-                h += '<span style="font-size:11px;">Combine com seu professor para registrar.</span>';
-                h += '</div>';
-            }
-            h += '</div>';
-            return h;
-        }
         // ─────────────────────────────────────────────────────────────────────
 
         async function loadPagamentosTab() {            // Bloqueia se plano básico não tem acesso a pagamentos
@@ -26140,35 +25938,6 @@ tr:hover td{background:#FFF9F6!important}
         // Sincroniza o vencimento da mensalidade no currentUser com o valor AO VIVO
         // (vindo do getPagamentoStatus), pra o banner da home não mostrar data antiga
         // do login. Recalcula dias restantes e os flags e atualiza a sessão.
-        function _syncMensalidadeVenc(proxVenc, status) {
-            try {
-                if (!currentUser || !proxVenc) return;
-                var d = _parseVencDate(proxVenc);
-                if (!d) return;
-                var hoje = new Date(); hoje.setHours(0,0,0,0); d.setHours(0,0,0,0);
-                var dias = Math.round((d - hoje) / 86400000);
-                var dataBR = ('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear();
-                var st = (status || (currentUser.mensalidadeVenc && currentUser.mensalidadeVenc.status) || 'PENDENTE');
-                currentUser.mensalidadeVenc = {
-                    data:          dataBR,
-                    diasRestantes: dias,
-                    status:        st,
-                    atrasado:      dias < 0,
-                    venceHoje:     dias === 0,
-                    venceEmBreve:  dias > 0 && dias <= 5
-                };
-                try { localStorage.setItem('bjjUser', JSON.stringify(currentUser)); } catch(e){}
-                // Re-renderiza o banner da home APENAS se ela estiver visível no momento
-                // (evita redirecionar o usuário para fora de outras telas como perfil)
-                try {
-                    var _homeEl = document.getElementById('modalidadeHome');
-                    if (typeof renderModalidadeHome === 'function' && _homeEl && _homeEl.style.display !== 'none') {
-                        renderModalidadeHome();
-                    }
-                } catch(e){}
-            } catch(e) {}
-        }
-
         // [JUROS Fase 4] valor a exibir (total c/ juros se vencido) + breakdown
         function _valorAExibir(data) {
             var j = data && data.jurosInfo;
@@ -26807,22 +26576,6 @@ tr:hover td{background:#FFF9F6!important}
         // 1. Tem cartão → cobra no cartão imediatamente (cobrarAgoraAluno)
         // 2. Sem cartão → gera PIX para o aluno pagar
         // ── Diagnóstico do cartão MP ──────────────────────────────
-        async function diagnosticarCartao() {
-            var btn = document.getElementById('diagCartaoBtn');
- if (btn) { btn.disabled = true; btn.textContent = ' Diagnosticando...'; }
-            try {
-                var res = await secureFetch('diagnosticoCartao', { email: currentUser.email });
-                var passos = (res && res.passos) || [];
-                var linhas = passos.map(function(p) {
- return (p.ok? '': '') + '' + p.passo + '\n ' + (p.detalhe || '');
-                }).join('\n\n');
- alert(' DIAGNÓSTICO CARTÃO\n\n' + linhas + '\n\n' + (res.message || ''));
-            } catch(e) {
-                alert('Erro no diagnóstico: ' + e.message);
-            }
- if (btn) { btn.disabled = false; btn.textContent = ' Diagnóstico'; }
-        }
-
         // ── Modal CVV para cobrança com cartão salvo ─────────────────
         // ── Checkout InfinitePay ──────────────────────────────────────
         function abrirCheckoutInfinitePay(url, orderNsu, handle, valor, plano) {
@@ -27196,62 +26949,6 @@ tr:hover td{background:#FFF9F6!important}
  if (btn) { btn.disabled = false; btn.textContent = ' Pagar Agora'; }
             }
         }
-
-                async function gerarPixMensalidade() {
-            var btn = document.getElementById('pagarAgoraBtn');
-            // pixDinamicoContainer é o elemento renderizado pelo loadPagamentos
-            var container = document.getElementById('pixDinamicoContainer') || document.getElementById('pixContainer');
-            if (btn) { btn.disabled = true; btn.textContent = '⏳ Gerando PIX...'; }
-            try {
-                var data = await secureFetch('gerarPixMensalidade', { email: currentUser.email });
-                if (data.success) {
-                    container.style.display = 'block';
-
-                    // ── Modo PIX Manual (sem gateway) ──────────────
-                    if (data.pixManual) {
-                        window._pixCodeAtual = data.chavePix || '';
-                        container.innerHTML =
-                            '<div style="background:rgba(34,197,94,0.06);border:1.5px solid rgba(34,197,94,0.25);border-radius:14px;padding:16px;text-align:center;">' +
- '<div style="font-size:32px;margin-bottom:8px;"></div>' +
-                            '<div style="font-size:13px;font-weight:800;color:var(--text-1);margin-bottom:4px;">Pague via PIX</div>' +
-                            '<div style="font-size:11px;color:var(--text-3);margin-bottom:14px;">' + escapeHtml(data.instrucoes || '') + '</div>' +
-                            '<div style="font-size:11px;color:var(--text-3);font-weight:600;margin-bottom:4px;">VALOR A PAGAR</div>' +
-                            '<div style="font-size:26px;font-weight:900;color:#4ADE80;margin-bottom:14px;">R$ ' + parseFloat(data.valor||0).toFixed(2) + '</div>' +
-                            '<div style="font-size:10px;font-weight:700;color:var(--text-3);letter-spacing:.5px;margin-bottom:6px;">CHAVE PIX</div>' +
-                            '<div onclick="copiarChavePix(this)" data-chave="' + escapeHtml(data.chavePix||'') + '" style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:10px;padding:12px;font-size:14px;font-weight:800;color:var(--text-1);cursor:pointer;letter-spacing:.5px;margin-bottom:6px;">' +
-                            escapeHtml(data.chavePix||'—') + '</div>' +
- '<div id="pixCopiadoMsg" style="font-size:11px;color:#4ADE80;opacity:0;transition:opacity.3s;margin-bottom:10px;"> Chave copiada!</div>' +
-                            '<div style="font-size:10px;color:var(--text-3);line-height:1.5;">Após pagar, envie o comprovante ao seu professor.<br>O pagamento será confirmado manualmente.</div>' +
-                            '</div>';
- if (btn) { btn.disabled = false; btn.textContent = ' Pagar agora'; }
-                        return;
-                    }
-
-                    // ── Gateway automático (MP, Asaas, etc.) ────────
-                    window._pixCodeAtual = data.pixCode || '';
-                    container.innerHTML =
-                        '<div class="pag-qr-box">' +
-                        '<img src="data:image/png;base64,' + data.qrBase64 + '" width="180" height="180" style="border-radius:8px;" alt="QR PIX">' +
-                        '<div style="font-size:11px;color:#555;font-weight:600;">Escaneie com seu banco</div>' +
-                        '</div>' +
-                        '<div class="pag-pix-code" onclick="copiarPixCode()" title="Toque para copiar">' +
- ' Toque para copiar o código PIX Copia e Cola<br>' +
-                        '<span style="opacity:0.6;">' + escapeHtml((data.pixCode||'').substring(0, 60)) + '...</span>' +
-                        '</div>' +
-                        '<div style="font-size:10px;color:var(--text-3);text-align:center;margin-top:6px;">⏱ Expira em 30 minutos · Confirmação automática</div>' +
-                        '<div id="pixStatusMsg" style="text-align:center;font-size:11px;margin-top:8px;"></div>';
- if (btn) { btn.disabled = false; btn.textContent = ' Gerar novo PIX'; }
-                    iniciarPollingPix(data.pagamentoId);
-                } else {
- if (btn) { btn.disabled = false; btn.textContent = ' Gerar PIX'; }
-                    alert(data.message || 'Erro ao gerar PIX');
-                }
-            } catch(e) {
- if (btn) { btn.disabled = false; btn.textContent = ' Gerar PIX'; }
-                alert('Erro de conexão. Tente novamente.');
-            }
-        }
-
         function copiarPixCode() {
             var code = window._pixCodeAtual || ''; if (!code) return;
             navigator.clipboard.writeText(code).then(function() {
@@ -27391,101 +27088,8 @@ tr:hover td{background:#FFF9F6!important}
         }
 
         // ── EXIBE ERRO DE CARTÃO COM MENSAGEM REAL ───────────────────────
-        function exibirErroCartao(responseData, containerEl) {
-            if (!containerEl) return;
-            var mensagem = responseData.mensagemErro
-                || _traduzirErroMPfe(responseData.statusDetail)
-                || (responseData.message && !responseData.success ? responseData.message : '')
-                || 'Pagamento recusado. Tente outro cartão ou pague via PIX.';
-            containerEl.innerHTML =
-                '<div style="background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3);' +
-                'border-radius:10px;padding:12px 14px;margin-top:10px;">' +
- '<div style="font-size:13px;font-weight:700;color:#F87171;margin-bottom:4px;"> Pagamento recusado</div>' +
-                '<div style="font-size:12px;color:var(--text-2);">' + (mensagem).replace(/</g,'&lt;') + '</div>' +
- '<div style="font-size:11px;color:var(--text-3);margin-top:8px;"> Pagamentos via PIX têm aprovação imediata e sem taxas.</div>' +
-                '</div>';
-        }
-
         // ── CARTÃO ───────────────────────────────────────────────
-        function abrirModalCartao() {
-            var overlay = document.getElementById('cartaoModal');
-            if (overlay) { overlay.style.display = 'flex'; return; }
-            overlay = document.createElement('div');
-            overlay.id = 'cartaoModal';
-            overlay.style.cssText = 'position:fixed;inset:0;background:rgba(255, 255, 255, 0.70);z-index:9999;display:flex;align-items:flex-end;justify-content:center;';
-            overlay.innerHTML =
-                '<div style="width:100%;max-width:480px;background:var(--bg-elevated);border-radius:20px 20px 0 0;padding:20px;border-top:2px solid var(--border);box-shadow:0 -8px 40px rgba(255, 255, 255, 0.70);">' +
-                '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">' +
- '<div style="font-size:15px;font-weight:800;color:var(--text-1);"> Cadastrar Cartão</div>' +
- '<button onclick="document.getElementById(\'cartaoModal\').style.display=\'none\'" style="width:28px;height:28px;border-radius:50%;background:rgba(255, 255, 255, 0.088);border:none;color:var(--text-3);font-size:14px;cursor:pointer;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
-                '</div>' +
- '<div style="font-size:11px;color:var(--text-3);margin-bottom:14px;padding:8px 10px;background:rgba(255, 255, 255, 0.033);border-radius:8px;"> Seus dados são tokenizados pelo gateway de pagamento. Não armazenamos o número completo.</div>' +
-                '<div style="margin-bottom:10px;"><label style="font-size:10px;color:var(--text-3);font-weight:600;display:block;margin-bottom:4px;">Número do cartão</label>' +
-                '<input type="tel" id="cartaoNum" placeholder="0000 0000 0000 0000" maxlength="19" oninput="formatCartaoNum(this)" style="width:100%;box-sizing:border-box;padding:12px;background:var(--bg-deep);color:var(--text-1);border:1px solid var(--border);border-radius:10px;font-size:16px;letter-spacing:2px;"></div>' +
-                '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">' +
-                '<div><label style="font-size:10px;color:var(--text-3);font-weight:600;display:block;margin-bottom:4px;">Validade</label>' +
-                '<input type="tel" id="cartaoVal" placeholder="MM/AA" maxlength="5" oninput="formatCartaoVal(this)" style="width:100%;box-sizing:border-box;padding:12px;background:var(--bg-deep);color:var(--text-1);border:1px solid var(--border);border-radius:10px;font-size:15px;"></div>' +
-                '<div><label style="font-size:10px;color:var(--text-3);font-weight:600;display:block;margin-bottom:4px;">CVV</label>' +
-                '<input type="tel" id="cartaoCVV" placeholder="123" maxlength="4" style="width:100%;box-sizing:border-box;padding:12px;background:var(--bg-deep);color:var(--text-1);border:1px solid var(--border);border-radius:10px;font-size:15px;"></div>' +
-                '</div>' +
-                '<div style="margin-bottom:10px;"><label style="font-size:10px;color:var(--text-3);font-weight:600;display:block;margin-bottom:4px;">Nome no cartão</label>' +
-                '<input type="text" id="cartaoNome" placeholder="NOME SOBRENOME" style="width:100%;box-sizing:border-box;padding:12px;background:var(--bg-deep);color:var(--text-1);border:1px solid var(--border);border-radius:10px;font-size:14px;text-transform:uppercase;"></div>' +
-                '<div style="margin-bottom:14px;"><label style="font-size:10px;color:var(--text-3);font-weight:600;display:block;margin-bottom:4px;">CPF do titular</label>' +
-                '<input type="tel" id="cartaoCPF" placeholder="000.000.000-00" maxlength="14" oninput="formatCPF(this)" style="width:100%;box-sizing:border-box;padding:12px;background:var(--bg-deep);color:var(--text-1);border:1px solid var(--border);border-radius:10px;font-size:15px;"></div>' +
-                '<div id="cartaoMsg" style="font-size:11px;margin-bottom:8px;text-align:center;min-height:16px;"></div>' +
- '<button id="diagCartaoBtn" onclick="diagnosticarCartao()" style="width:100%;padding:10px;background:rgba(255, 255, 255, 0.040);border:1px dashed rgba(255, 255, 255, 0.160);border-radius:10px;color:var(--text-3);font-size:11px;cursor:pointer;margin-bottom:8px;"> Testar configuração do cartão antes de salvar</button>' +
- '<button onclick="salvarCartao()" style="width:100%;padding:14px;background:linear-gradient(135deg,#009ee3,#0075bd);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;"> Cadastrar e pagar agora</button>' +
-                '</div>';
-            overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.style.display = 'none'; });
-            document.body.appendChild(overlay);
-        }
-
-        function formatCartaoNum(el) { var v = el.value.replace(/\D/g,'').substring(0,16); el.value = v.replace(/(.{4})/g,'$1 ').trim(); }
-        function formatCartaoVal(el) { var v = el.value.replace(/\D/g,'').substring(0,4); if (v.length > 2) v = v.substring(0,2) + '/' + v.substring(2); el.value = v; }
         function formatCPF(el) { var v = el.value.replace(/\D/g,'').substring(0,11); v = v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2'); el.value = v; }
-
-        async function salvarCartao() {
-            var num   = (document.getElementById('cartaoNum').value || '').replace(/\s/g,'');
-            var val   = document.getElementById('cartaoVal').value || '';
-            var cvv   = document.getElementById('cartaoCVV').value || '';
-            var nome  = (document.getElementById('cartaoNome').value || '').trim().toUpperCase();
-            var cpf   = (document.getElementById('cartaoCPF').value || '').replace(/\D/g,'');
-            var msg   = document.getElementById('cartaoMsg');
- if (num.length < 15) { msg.style.color='#F87171'; msg.textContent=' Número do cartão inválido'; return; }
- if (val.length < 5) { msg.style.color='#F87171'; msg.textContent=' Validade inválida'; return; }
- if (cvv.length < 3) { msg.style.color='#F87171'; msg.textContent=' CVV inválido'; return; }
- if (!nome) { msg.style.color='#F87171'; msg.textContent=' Nome obrigatório'; return; }
- if (cpf.length!== 11){ msg.style.color='#F87171'; msg.textContent=' CPF inválido'; return; }
- msg.style.color='var(--text-3)'; msg.textContent=' Tokenizando com segurança...';
-            var valParts = val.split('/');
-            try {
- msg.style.color='var(--text-3)'; msg.textContent=' Cadastrando e realizando primeira cobrança...';
-                var data = await secureFetch('salvarCartao', { email: currentUser.email, cardNumber: num, expiryMonth: valParts[0] || '', expiryYear: '20' + (valParts[1] || ''), cvv: cvv, cardHolder: nome, cpf: cpf });
-                if (data.success) {
-                    var statusCob = data.statusCobranca || 'PAGO';
-                    if (statusCob === 'PAGO') {
-                        msg.style.color='#4ADE80';
- msg.textContent=' Cartão cadastrado e primeira mensalidade cobrada!';
-                    } else {
-                        // Cartão salvo mas cobrança recusada — mostra aviso de PIX
-                        msg.style.color='#fbbf24';
- msg.textContent='' + (data.message || 'Cartão salvo, mas cobrança recusada. Use PIX para regularizar.');
-                    }
-                    setTimeout(function() { var m = document.getElementById('cartaoModal'); if (m) m.style.display='none'; loadPagamentos(); }, 2000);
- } else { msg.style.color='#F87171'; msg.textContent='' + (data.message || 'Erro ao cadastrar'); }
- } catch(e) { msg.style.color='#F87171'; msg.textContent=' Erro de conexão'; }
-        }
-
-        async function removerCartao() {
-            if (!confirm('Remover cartão? O débito automático será desativado.')) return;
-            try {
-                var data = await secureFetch('removerCartaoMP', { email: currentUser.email });
-                if (data.success) loadPagamentos();
-                else alert(data.message || 'Erro');
-            } catch(e) { alert('Erro de conexão' + (e && e.requestId ? '\nCódigo: ' + e.requestId : '')); }
-        }
-
-
         function loadProfile() {
             if (!currentUser) return;
             document.getElementById('perfilAvatarInitial').textContent = (currentUser.name || '?')[0].toUpperCase();
@@ -27669,7 +27273,7 @@ tr:hover td{background:#FFF9F6!important}
                     var _pl = JSON.parse(localStorage.getItem(_perfilCacheKey) || localStorage.getItem('bjjProfile') || 'null');
                     var _perfilKeys = [
                         'nascimento','cpf','genero','profissao','bairro',
-                        'redeBeneficio','telefone','instagram','emergencia',
+                        'telefone','instagram','emergencia',
                         'origem','objetivo','horario','experiencia','saude','avatar'
                     ];
                     var _completo = !!_pl && _perfilKeys.every(function(k) {
@@ -29788,95 +29392,6 @@ tr:hover td{background:#FFF9F6!important}
             try { loadPendingGraduacoes(); } catch (e) {}
             try { loadCongelamentosPendentes().catch(function(){}); } catch (e) {}
         }
-
-        async function loadCongelamentosPendentes(forcar) {
-            // [PERF 2026-08-06] Uma consulta por sessao; recarga pelo botao ↻.
-            if (!forcar && _subAbaJaCarregou('congelados')) return;
-            try {
-                var r = await secureFetch('getCongelamentos', {});
-                _marcarSubAba('congelados');
-                if (!r.success) return;
-                var lista = r.congelamentos || [];
-
-                // Separa pendentes (aguardando aprovação) de congelados ativos/agendados
-                var pend   = lista.filter(function(c){ return (c.congStatus||'').toUpperCase() === 'PENDENTE'; });
-                var ativos = lista.filter(function(c){ return (c.congStatus||'').toUpperCase() === 'APROVADO'; });
-
-                // Badge/stat = pendentes (são os que precisam de ação)
-                var badge = document.getElementById('adminPendingCongelCount');
-                var card  = document.getElementById('admStatCongelCard');
-                if (badge) badge.textContent = pend.length;
-                if (card) { card.className = pend.length > 0 ? 'admin-stat warn' : 'admin-stat ok'; }
-
-                // [2026-08-03] Badge da aba Congelados
-                var _bAba = document.getElementById('adminCongelBadge');
-                if (_bAba) {
-                    _bAba.textContent = pend.length;
-                    _bAba.style.display = pend.length > 0 ? '' : 'none';
-                }
-
-                // Renderiza nos DOIS destinos: o painel antigo (card KPI) e a aba nova.
-                var el = document.getElementById('congelamentosAdminList');
-                var elTab = document.getElementById('congelamentosTabList');
-                if (!el && !elTab) return;
-
-                // [FIX 2026-08-06] Nao decide mais a visibilidade do painel.
-                //
-                // Esta linha exibia o card de Congelamentos sempre que houvesse
-                // algum congelamento - qualquer que fosse a aba aberta. Como a
-                // funcao tambem roda em background (para o badge e na pre-carga),
-                // o painel reaparecia POR CIMA da aba Novos segundos depois de
-                // o admin ter trocado.
-                //
-                // E resquicio de quando congelamentos era um card do Painel,
-                // antes de existir a aba "Congelados". Hoje quem decide o que
-                // aparece e o switchAdmPainelTab.
-
-                if (pend.length + ativos.length === 0) {
- var _vazio = '<div style="font-size:12px;color:var(--text-3);padding:10px;">Nenhum congelamento no momento </div>';
-                    if (el) el.innerHTML = _vazio;
-                    if (elTab) elTab.innerHTML = _vazio;
-                    return;
-                }
-
-                var html = '';
-
-                if (pend.length) {
-                    html += '<div style="font-size:11px;font-weight:800;color:#FBBF24;text-transform:uppercase;letter-spacing:.4px;margin:2px 0 6px;">⏳ Aguardando aprovação (' + pend.length + ')</div>';
-                    html += pend.map(function(c) {
-                        return '<div style="background:var(--bg-card);border:1px solid rgba(251,191,36,0.28);border-radius:10px;padding:12px;margin-bottom:8px;">' +
- '<div style="font-size:13px;font-weight:700;color:var(--text-1);">' + escapeHtml(c.nome) + '</div>' +
-                            '<div style="font-size:11px;color:var(--text-3);margin:4px 0;">' + escapeHtml(c.inicio) + ' → ' + escapeHtml(c.fim) + (c.motivo ? ' · ' + escapeHtml(c.motivo) : '') + '</div>' +
-                            '<div style="display:flex;gap:6px;margin-top:8px;">' +
- '<button onclick="aprovarCongelamentoAdmin(\'' + escapeHtml(c.email) + '\',\'' + escapeHtml(c.inicio) + '\',\'' + escapeHtml(c.fim) + '\')" style="flex:1;padding:7px;background:rgba(99,179,237,0.1);border:1px solid rgba(99,179,237,0.3);border-radius:8px;color:#63b3ed;font-size:11px;font-weight:700;cursor:pointer;"> Aprovar</button>' +
- '<button onclick="rejeitarCongelamentoAdmin(\'' + escapeHtml(c.email) + '\')" style="flex:1;padding:7px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.25);border-radius:8px;color:#F87171;font-size:11px;cursor:pointer;"> Rejeitar</button>' +
-                            '</div>' +
-                        '</div>';
-                    }).join('');
-                }
-
-                if (ativos.length) {
- html += '<div style="font-size:11px;font-weight:800;color:#63b3ed;text-transform:uppercase;letter-spacing:.4px;margin:10px 0 6px;"> Matrículas congeladas (' + ativos.length + ')</div>';
-                    html += ativos.map(function(c) {
-                        var agendado = (c.status||'').toUpperCase() !== 'CONGELADO';
-                        var tag = agendado
-                            ? '<span style="font-size:10px;color:#FBBF24;font-weight:700;">agendado</span>'
-                            : '<span style="font-size:10px;color:#63b3ed;font-weight:700;">ativo</span>';
-                        return '<div style="background:var(--bg-card);border:1px solid rgba(99,179,237,0.25);border-radius:10px;padding:12px;margin-bottom:8px;">' +
-                            '<div style="display:flex;align-items:center;justify-content:space-between;">' +
- '<div style="font-size:13px;font-weight:700;color:var(--text-1);">' + escapeHtml(c.nome) + '</div>' + tag +
-                            '</div>' +
-                            '<div style="font-size:11px;color:var(--text-3);margin:4px 0;">' + escapeHtml(c.inicio) + ' → ' + escapeHtml(c.fim) + (c.motivo ? ' · ' + escapeHtml(c.motivo) : '') + '</div>' +
- '<button onclick="descongelarAlunoAdmin(\'' + escapeHtml(c.email) + '\')" style="width:100%;margin-top:6px;padding:7px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.25);border-radius:8px;color:#F87171;font-size:11px;font-weight:700;cursor:pointer;"> Descongelar agora</button>' +
-                        '</div>';
-                    }).join('');
-                }
-
-                if (el) el.innerHTML = html;
-                if (elTab) elTab.innerHTML = html;   // [2026-08-03] aba Congelados
-            } catch(e) { console.error('loadCongelamentos:', e); }
-        }
-
         // ════════════════════════════════════════════════
         // ADMIN — DEPENDENTES
         // ════════════════════════════════════════════════
@@ -30162,9 +29677,7 @@ tr:hover td{background:#FFF9F6!important}
                 if (ct.beneficios) {
                     var bens = ct.beneficios.split(',');
                     var BENEFIT_MAP = {
- 'totalpass': { label: 'TotalPass', cls: 'totalpass', icon: '' },
  'gympass': { label: 'Gympass', cls: 'gympass', icon: '' },
- 'wellhub': { label: 'WellHub', cls: 'wellhub', icon: '' },
  'gogood': { label: 'GoGood', cls: 'gogood', icon: '' },
  'classpass': { label: 'ClassPass', cls: 'classpass', icon: '' },
  'totalfit': { label: 'TotalFit', cls: 'totalfit', icon: '' }
@@ -30438,20 +29951,6 @@ tr:hover td{background:#FFF9F6!important}
                 return m && arr.indexOf(m) === i; // remove duplicatas
             }).join(',');
         }
-
-        async function loadCertificadosTab() {
-            var host = document.getElementById('certHost');
-            if (!host) return;
-            var cfgSec = document.getElementById('perfilSecCertConfig');
-            // [2026-07] seções 'Minha Assinatura' e 'Líder da Equipe' removidas
-            // move as seções (config + assinatura + líder) pra dentro da aba exclusiva, uma única vez
-            if (cfgSec && cfgSec.parentNode !== host) host.appendChild(cfgSec);
-            // remove o placeholder "Carregando..."
-            Array.prototype.slice.call(host.querySelectorAll('.admin-empty')).forEach(function(e){ e.remove(); });
-            // assinatura: todo professor/admin tem; config de layout: só admin
-            try { await loadCertConfig(); } catch(e){}
-        }
-
         /* [UX/PERF 2026-08-06] Lembra a ultima aba aberta.
            Duas razoes:
            1) o admin que estava em Financeiro recarregava e voltava ao Painel;
@@ -31848,9 +31347,7 @@ var _ADM_TAB_KEY = 'admUltimaTab';
             if (n === 2) loadPendingResets();
             if (n === 3) loadPendingCheckins();
             if (n === 4) loadInactiveStudents();
-            if (n === 5) { loadWellnessCheckins(); try { _redeMesAnoPadrao(); } catch (e) {} }
             if (n === 6) fotoTabAberta();
-            if (n === 8) loadCongelamentosPendentes();   // [2026-08-03] aba Congelados
         }
         // --- ADMIN EXAM SCHEDULE ---
         // [PERF 2026-08-02] Carrega a aba Graduações do admin.
@@ -34082,34 +33579,6 @@ var _ADM_TAB_KEY = 'admUltimaTab';
         }
 
         // ── FINANCEIRO ────────────────────────────────────────────────
-        function _rptRenderFinanceiro(students) {
-            var fstatus = (document.getElementById('rptF-financeiro-status')||{}).value||'';
-            var ct      = (document.getElementById('rptF-financeiro-ct')   ||{}).value||'';
-            var nome    = (document.getElementById('rptF-financeiro-nome') ||{}).value||'';
-            var fil = students.filter(function(s) {
-                if (ct     && s.ct !== ct) return false;
-                if (nome   && s.nome.toLowerCase().indexOf(nome.toLowerCase()) < 0) return false;
-                if (fstatus && s.finStatus.toUpperCase() !== fstatus) return false;
-                return true;
-            });
-            var inadimplentes = fil.filter(function(s){ return s.emAtraso; });
-            var emDia   = fil.filter(function(s){ return s.finStatus==='PAGO'||s.finStatus==='ATIVO'; }).length;
-            var recPrev = fil.reduce(function(ac,s){ return ac+s.planoValor; },0);
-            var kEl = document.getElementById('rptKpi-financeiro');
-            if (kEl) kEl.innerHTML = _rptKpi(fil.length,'Total filtrado') + _rptKpi(inadimplentes.length,'Inadimplentes','#F87171') + _rptKpi(emDia,'Em dia','#4ADE80') + _rptKpi('R$'+Math.round(recPrev),'Receita prevista','var(--adm-primary)');
-            var cols = ['Nome','CT','Plano','Mensalidade','Status','Vencimento','Ficha'];
-            var rows = fil.map(function(s) {
-                var fc = s.emAtraso?'#F87171':(s.finStatus==='PAGO'||s.finStatus==='ATIVO')?'#4ADE80':'#fbbf24';
-                var fLabel = s.finStatus||'—';
-                return {
-                    _raw: [s.nome, s.ct, s.planoNome, s.planoValor, s.finStatus, s.vencimento, 0],
-                    _rowStyle: s.emAtraso ? 'border-left:3px solid #F87171;' : '',
-                    _cells: [escapeHtml(s.nome), escapeHtml(s.ct), escapeHtml(s.planoNome||'—'), s.planoValor>0?'R$'+s.planoValor.toFixed(2):'—', _rptBadge(fLabel, fc), escapeHtml(s.vencimento||'—'), _rptBtn360(s.email, s.nome)]
-                };
-            });
-            _rptTable('rptTable-financeiro', cols, _rptSortRows(rows,'financeiro'), 'financeiro');
-        }
-
         // ── GRADUAÇÃO ─────────────────────────────────────────────────
         function _rptRenderGraduacao(students) {
             var faixa    = (document.getElementById('rptF-graduacao-faixa')   ||{}).value||'';
@@ -38152,7 +37621,6 @@ var _ADM_TAB_KEY = 'admUltimaTab';
             h += '</select>';
             h += '<input type="number" step="0.01" class="_remValMensalidade" placeholder="0" value="'+(cfg.valorMensalidade||'')+'" style="width:70px;padding:7px;background:rgba(255, 255, 255, 0.050);color:var(--text-1,#fff);border:1px solid var(--border,rgba(255, 255, 255, 0.132));border-radius:6px;font-size:11px;">';
             h += '</div>';
-            h += '<label style="font-size:9px;color:var(--text-3,#999);">Por check-in de rede de benefício (TotalPass/Wellhub)</label>';
             h += '<div style="display:flex;gap:6px;">';
             h += '<select class="_remTipoCheckinRede" style="flex:1;padding:7px;background:rgba(255, 255, 255, 0.050);color:var(--text-1,#fff);border:1px solid var(--border,rgba(255, 255, 255, 0.132));border-radius:6px;font-size:11px;">';
             [['','Não recebe por check-in de rede'],['percentual','% do valor lançado'],['fixo','R$ fixo por check-in']].forEach(function(o){ h += '<option value="'+o[0]+'"'+(cfg.tipoCheckinRede===o[0]?' selected':'')+'>'+o[1]+'</option>'; });
@@ -38276,20 +37744,6 @@ var _ADM_TAB_KEY = 'admUltimaTab';
         // [NOVO 2026-07] Lança a remuneração calculada (deste relatório) como
         // despesa real em Contas a Pagar — passa a somar no Fluxo de Caixa.
         // Idempotente: relançar no mesmo mês atualiza o valor, nunca duplica.
-        async function _lancarRemuneracaoDespesa() {
-            if (!_profRelData || !_profRelData.professores || !_profRelData.professores.length) {
-                showToast('Gere o relatório do mês primeiro.'); return;
-            }
-            var configurados = _profRelData.professores.filter(function(p){ return p.configurado && p.valorPagar > 0; });
-            if (!configurados.length) { showToast('Nenhum professor com remuneração configurada e valor a lançar.'); return; }
-            if (!confirm('Lançar a remuneração de ' + configurados.length + ' professor(es) como despesa em Contas a Pagar?\n\nSe já existir um lançamento deste mês, o valor é atualizado (nunca reabre um que já foi marcado pago).')) return;
-            var ct = (document.getElementById('profRelCTFilter')||{}).value || '';
-            try {
-                var r = await secureFetch('lancarRemuneracaoDespesa', { mes: _profRelMesN, ano: _profRelAnoN, ct: ct });
- showToast(r && r.success? ('' + r.message): ('' + (r && r.message || 'Erro ao lançar')));
-            } catch(e) { showToast('Erro de conexão.'); }
-        }
-
         // [NOVO 2026-07] "Lançar aula esquecida" — reaproveita o MESMO handler
         // que já cria aulas no Cronograma (saveCronogramaAula), só que aqui é
         // um atalho rápido: professor + CT + data + modalidade, sem exigir
@@ -39957,7 +39411,6 @@ var _ADM_TAB_KEY = 'admUltimaTab';
  ' Modalidades: ate ' + maxMods,
  maxFiliais > 1? ' Filiais: ate ' + maxFiliais: ' Multiplas filiais (Premium)',
  temCobranca? ' Sistema de cobranca/mensalidades': ' Cobranca (Profissional+)',
- temRedes? ' Redes de Beneficio (Wellhub/TotalPass)': ' Redes de Beneficio (Profissional+)',
  ' QR Code de check-in',
  temFoto? ' Check-in por Foto (IA)': ' Check-in por Foto (Premium)',
                     ].filter(Boolean).join('\n');
@@ -42509,86 +41962,6 @@ var _ADM_TAB_KEY = 'admUltimaTab';
         // ════════════════════════════════════════════════════════
         // PAINEL INADIMPLENTES — CTs / LICENCIADOS
         // ════════════════════════════════════════════════════════
-        async function loadInadimplentes() {
-            var container = document.getElementById('inadListContainer');
-            if (!container) return;
-            container.innerHTML = '<div style="color:var(--adm-text-3);padding:20px;text-align:center;">⏳ Carregando...</div>';
-
-            try {
-                var res = await secureFetch('getInadimplentes', {});
-                if (!res || !res.success) {
- container.innerHTML = '<div style="color:#F87171;padding:16px;text-align:center;"> Erro ao carregar: ' + ((res && res.message) || 'sem resposta') + '</div>';
-                    return;
-                }
-
-                var lista = res.inadimplentes || [];
-                if (!lista.length) {
- container.innerHTML = '<div style="color:#4ADE80;padding:20px;text-align:center;font-weight:700;"> Nenhum inadimplente encontrado!</div>';
-                    return;
-                }
-
-                // KPI bar
-                var nInad  = lista.filter(function(x){ return x.status === 'INADIMPLENTE'; }).length;
-                var nTrial = lista.filter(function(x){ return x.status === 'TRIAL'; }).length;
-                var nPix   = lista.filter(function(x){ return x.status === 'PENDENTE_PIX'; }).length;
-                var nSemTel = lista.filter(function(x){ return !x.telefone; }).length;
-
-                var kpi = '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;">' +
-                    '<div style="background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.25);border-radius:8px;padding:8px;text-align:center;"><div style="font-size:18px;font-weight:800;color:#F87171;">' + nInad + '</div><div style="font-size:9px;color:var(--adm-text-3);">INADIMPLENTE</div></div>' +
-                    '<div style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:8px;padding:8px;text-align:center;"><div style="font-size:18px;font-weight:800;color:#FBBF24;">' + nTrial + '</div><div style="font-size:9px;color:var(--adm-text-3);">TRIAL VENCIDO</div></div>' +
-                    '<div style="background:rgba(96,165,250,0.1);border:1px solid rgba(96,165,250,0.25);border-radius:8px;padding:8px;text-align:center;"><div style="font-size:18px;font-weight:800;color:#60a5fa;">' + nPix + '</div><div style="font-size:9px;color:var(--adm-text-3);">PIX PENDENTE</div></div>' +
-                    '<div style="background:rgba(255, 255, 255, 0.040);border:1px solid var(--adm-border);border-radius:8px;padding:8px;text-align:center;"><div style="font-size:18px;font-weight:800;color:var(--adm-text-2);">' + nSemTel + '</div><div style="font-size:9px;color:var(--adm-text-3);">SEM TELEFONE</div></div>' +
-                    '</div>';
-
-                // Tabela
-                var rows = lista.map(function(c, idx) {
-                    var statusColor = c.status === 'INADIMPLENTE' ? '#F87171'
-                        : c.status === 'RENOVACAO'               ? '#f97316'
-                        : c.status === 'PENDENTE_PIX'            ? '#60a5fa'
-                        : c.status === 'TRIAL'                   ? '#fbbf24'
-                        : '#9ca3af';
-
-                    var diasLabel = c.diasAtraso === null ? '—'
-                        : c.diasAtraso === 0 ? 'Vence hoje'
-                        : c.diasAtraso > 0   ? c.diasAtraso + ' dias em atraso'
-                        : Math.abs(c.diasAtraso) + ' dias p/ vencer';
-
-                    var diasColor = c.diasAtraso === null ? 'var(--adm-text-3)'
-                        : c.diasAtraso >= 15  ? '#F87171'
-                        : c.diasAtraso >= 1   ? '#fbbf24'
-                        : 'var(--adm-text-3)';
-
-                    var telBtn = c.telefone
-? '<button onclick="abrirWAInad(' + idx + ')" style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:#25d366;color:#fff;border:none;border-radius:7px;font-size:10px;font-weight:800;cursor:pointer;white-space:nowrap;"> WhatsApp</button>'
-: '<button onclick="cadastrarTelInad(' + idx + ')" style="padding:5px 8px;background:rgba(255, 255, 255, 0.040);color:var(--adm-text-3);border:1px solid var(--adm-border);border-radius:7px;font-size:10px;cursor:pointer;"> Sem tel.</button>';
-
-                    return '<div style="display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center;padding:10px 12px;border-radius:10px;border:1px solid var(--adm-border);background:var(--adm-bg-elevated);margin-bottom:6px;" data-idx="' + idx + '">' +
-                        '<div>' +
-                            '<div style="font-size:11px;font-weight:700;color:var(--adm-text-1);">' + escapeHtml(c.email) + '</div>' +
-                            '<div style="font-size:10px;color:var(--adm-text-3);margin-top:2px;">' +
-                                escapeHtml(c.plano) + ' &nbsp;|&nbsp; Venc: ' + (c.vencimento || '—') +
- (c.telefone? ' &nbsp;|&nbsp; ' + escapeHtml(c.telefone): '') +
-                            '</div>' +
-                        '</div>' +
-                        '<div style="text-align:right;">' +
-                            '<div style="font-size:10px;font-weight:800;color:' + statusColor + ';">' + c.status + '</div>' +
-                            '<div style="font-size:9px;color:' + diasColor + ';margin-top:2px;">' + diasLabel + '</div>' +
-                        '</div>' +
-                        telBtn +
- '' +
-                    '</div>';
-                }).join('');
-
-                // Guarda dados para uso no WA
-                window._inadLista = lista;
-
-                container.innerHTML = kpi + rows;
-
-            } catch(e) {
-                container.innerHTML = '<div style="color:#F87171;padding:16px;text-align:center;">Erro: ' + e.message + '</div>';
-            }
-        }
-
         function abrirWAInad(idx) {
             var lista = window._inadLista || [];
             var c = lista[idx];
@@ -45830,7 +45203,7 @@ async function initPresencaList() {
                     h += '<div style="margin-top:8px;display:flex;justify-content:flex-end;">';
  h += '<button onclick="openStuModal(\'' + escapeHtml(a.email) + '\')" style="width:36px;height:36px;background:rgba(255, 255, 255, 0.050);color:var(--adm-text-3);border:1px solid var(--adm-border);border-radius:8px;font-size:14px;cursor:pointer;" title="Ver perfil completo"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3.1-5.5 7-5.5s7 2 7 5.5"/></svg></button>';
  h += '<button onclick="aprovarGraduacaoAluno(\'' + escapeHtml(a.email) + '\',\'' + escapeHtml(a.faixa||a.nivel||'') + '\',' + (a.proximoGrau||0) + ',this)" style="width:36px;height:36px;background:rgba(74,222,128,0.08);color:#4ADE80;border:1px solid rgba(74,222,128,0.2);border-radius:8px;font-size:14px;cursor:pointer;" title="Aprovar graduação"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></button>';
- h += '<button onclick="gerarCertificado(\'' + escapeHtml(a.email) + '\')" style="width:36px;height:36px;background:rgba(238, 90, 27,0.1);color:#FE5301;border:1px solid rgba(238, 90, 27,0.3);border-radius:8px;font-size:14px;cursor:pointer;" title="Gerar certificado"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/></svg></button>';
+ h += '';
                     h += '</div>';
                     h += '</div>';
                 });
@@ -46820,28 +46193,6 @@ async function initPresencaList() {
         // ── Chave PIX do Asaas (sem sair do Tatame+) ──
 
         // ── Mensalidade automática (recorrência) — padrão p/ todos os gateways ──
-        async function ativarMensalidadeAutomatica(btn) {
-            if (!confirm('Ativar a mensalidade automática?\n\nO pagamento passa a ser cobrado sozinho todo mês, no vencimento. Você pode cancelar quando quiser.')) return;
-            var _txt = btn ? btn.textContent : '';
-            if (btn) { btn.disabled = true; btn.textContent = '⏳ Ativando...'; }
-            try {
-                var res = await secureFetch('criarAssinaturaAlunoRecorrente', { email: currentUser.email });
-                if (res && res.success) {
- var m = '' + res.message;
-                    if (res.meio)   m += '\n\nForma: ' + res.meio;
-                    if (res.valor)  m += '\nValor: R$ ' + Number(res.valor).toFixed(2).replace('.', ',') + '/mês';
-                    if (res.inicio) m += '\nPrimeira cobrança: ' + res.inicio;
-                    alert(m);
-                    if (typeof carregarMensalidade === 'function') carregarMensalidade();
-                } else {
- alert('' + ((res && res.message) || 'Não foi possível ativar'));
-                }
-            } catch(e) {
-                alert('Erro: ' + e.message);
-            }
- if (btn) { btn.disabled = false; btn.textContent = _txt || ' Ativar mensalidade automática'; }
-        }
-
         async function salvarGatewayToken() {
             var gatewayId = (document.getElementById('gwGatewayId').value || '').trim();
             var gateway = (document.getElementById('gwGateway').value || '').trim();
@@ -48267,14 +47618,6 @@ async function initPresencaList() {
             var modal = document.getElementById('modalHorarioObrig');
             if (modal) { modal.style.opacity='0'; modal.style.transition='opacity 0.3s'; setTimeout(function(){ modal.remove(); }, 300); }
         }
-
-        function filtrarCobrancas(filtro, el) {
-            _cobFiltroAtual = filtro;
-            document.querySelectorAll('.cob-filter-btn').forEach(function(b){ b.classList.remove('active'); });
-            if (el) el.classList.add('active');
-            loadPagamentosAdmin();
-        }
-
         function _toggleReceitaDetalhes(el) {
             var d = el.querySelector('.rec-detalhes');
             if (d) d.style.display = d.style.display === 'none' ? 'block' : 'none';
@@ -48285,16 +47628,6 @@ async function initPresencaList() {
             _cobFiltroAtual = 'NUNCA_PAGOU';
             loadPagamentosAdmin();
         }
-
-        function filtrarCobrancasPorNome() {
-            var inp  = document.getElementById('cobNomeFiltro');
-            var limpar = document.getElementById('cobNomeFiltroLimpar');
-            if (limpar) limpar.style.display = (inp && inp.value) ? 'inline' : 'none';
-            // Debounce: espera 300ms após digitar
-            if (window._cobNomeTimer) clearTimeout(window._cobNomeTimer);
-            window._cobNomeTimer = setTimeout(function() { loadPagamentosAdmin(); }, 300);
-        }
-
         function limparFiltroCobNome() {
             var inp = document.getElementById('cobNomeFiltro');
             var limpar = document.getElementById('cobNomeFiltroLimpar');
@@ -48399,16 +47732,6 @@ async function initPresencaList() {
             if (box) box.style.display = 'block';
             if (inp && _cobWANumero) inp.value = _cobWANumero;
         }
-
-        function salvarConfigCobrancaWA() {
-            var inp = document.getElementById('cobWANumero');
-            if (!inp) return;
-            _cobWANumero = inp.value.replace(/\D/g,'');
-            localStorage.setItem('cobWANumero', _cobWANumero);
-            inp.style.border = '1px solid #4ade80';
-            setTimeout(function(){ inp.style.border = '1px solid rgba(37,211,102,0.3)'; }, 1500);
-        }
-
         // Gera PIX via backend e abre WhatsApp com mensagem + código PIX
         async function cobrarViaWhatsApp(email, nome, vencimento, valor, planoNome) {
             var btn = event && event.target ? event.target : null;
@@ -48526,64 +47849,6 @@ async function initPresencaList() {
  if (btn) { btn.disabled = false; btn.textContent = ' PIX + WhatsApp'; }
             }
         }
-
-        function _showCobrancaModal(d) {
-            var existing = document.getElementById('cobModal');
-            if (existing) existing.remove();
-
-            var modal = document.createElement('div');
-            modal.id = 'cobModal';
-            modal.style.cssText = 'position:fixed;inset:0;background:rgba(255, 255, 255, 0.70);z-index:9995;display:flex;align-items:flex-end;justify-content:center;padding:0;';
-
-            var card = document.createElement('div');
-            card.style.cssText = 'background:var(--adm-bg-card);border:1px solid rgba(37,211,102,0.3);border-radius:20px 20px 0 0;width:100%;max-width:500px;max-height:85vh;overflow-y:auto;padding:20px;';
-
-            card.innerHTML =
-                '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">' +
- '<div><div style="font-size:15px;font-weight:800;color:#25D366;"> Cobrança gerada</div>' +
-                '<div style="font-size:11px;color:var(--adm-text-3);">' + escapeHtml(d.nome) + ' · ' + d.valor + '</div></div>' +
- '<button id="cobModalClose" style="width:28px;height:28px;border-radius:50%;background:rgba(255, 255, 255, 0.059);color:var(--adm-text-3);border:1px solid var(--adm-border);cursor:pointer;font-size:13px;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
-                '</div>' +
-                (d.pixQR ? '<div style="text-align:center;margin-bottom:10px;"><img src="data:image/png;base64,' + d.pixQR + '" style="width:150px;height:150px;border-radius:8px;border:3px solid #25D366;"></div>' : '') +
-                (d.pixCode ? '<div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:10px;margin-bottom:10px;">' +
-                    '<div style="font-size:9px;font-weight:700;color:var(--adm-text-3);margin-bottom:4px;">CHAVE PIX — COPIA E COLA</div>' +
-                    '<div id="cobPixCode" style="font-size:9px;font-family:monospace;color:#4ade80;word-break:break-all;cursor:pointer;">' + escapeHtml(d.pixCode) + '</div>' +
-                '</div>' : '') +
-                '<div style="background:rgba(37,211,102,0.04);border:1px solid rgba(37,211,102,0.15);border-radius:8px;padding:10px;margin-bottom:14px;">' +
-                '<div style="font-size:9px;font-weight:700;color:var(--adm-text-3);margin-bottom:4px;">MENSAGEM PARA ENVIAR</div>' +
-                '<textarea id="cobMsgEdit" rows="7" style="width:100%;box-sizing:border-box;background:transparent;color:var(--adm-text-2);border:none;font-size:10px;line-height:1.6;resize:none;font-family:inherit;">' + escapeHtml(d.msg) + '</textarea>' +
-                '</div>' +
-                '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">' +
- '<button id="cobBtnCopiar" style="padding:11px;background:rgba(255, 255, 255, 0.059);color:var(--adm-text-2);border:1px solid var(--adm-border);border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;"> Copiar mensagem</button>' +
- '<a id="cobBtnWA" href="' + escapeHtml(d.waUrl) + '" target="_blank" style="padding:11px;background:#25D366;color:#fff;border:none;border-radius:10px;font-size:12px;font-weight:800;cursor:pointer;text-decoration:none;text-align:center;display:block;"> Enviar WhatsApp</a>' +
-                '</div>';
-
-            modal.appendChild(card);
-            document.body.appendChild(modal);
-
-            // Wire buttons
-            document.getElementById('cobModalClose').onclick = function(){ modal.remove(); };
-            modal.onclick = function(e){ if (e.target === modal) modal.remove(); };
-            document.getElementById('cobBtnCopiar').onclick = function() {
-                var txt = document.getElementById('cobMsgEdit').value;
-                navigator.clipboard && navigator.clipboard.writeText(txt);
- this.textContent = ' Copiado!';
- setTimeout(function(){ document.getElementById('cobBtnCopiar') && (document.getElementById('cobBtnCopiar').textContent = ' Copiar mensagem'); }, 2000);
-            };
-            var pixEl = document.getElementById('cobPixCode');
-            if (pixEl) pixEl.onclick = function(){
-                navigator.clipboard && navigator.clipboard.writeText(d.pixCode);
-                this.style.color = '#fbbf24';
-                setTimeout(function(){ if (document.getElementById('cobPixCode')) document.getElementById('cobPixCode').style.color = '#4ADE80'; }, 1500);
-            };
-            // Atualiza link WA quando mensagem é editada
-            document.getElementById('cobMsgEdit').oninput = function() {
-                var newMsg = encodeURIComponent(this.value);
-                var waBase = d.waUrl.split('?text=')[0];
-                document.getElementById('cobBtnWA').href = waBase + '?text=' + newMsg;
-            };
-        }
-
         // Cobrar TODOS os inadimplentes em sequência
         async function cobrarTodosAtrasadosWA() {
             var batchEl = document.getElementById('cobBatchBtn');
@@ -48760,7 +48025,7 @@ async function initPresencaList() {
                         '<div class="cob-kpi cob-kpi-red"><span class="cob-kpi-num">' + kAtrasado + '</span><span class="cob-kpi-lbl">Atrasados</span></div>' +
                         '<div class="cob-kpi cob-kpi-yellow"><span class="cob-kpi-num">' + kSemPlano + '</span><span class="cob-kpi-lbl">Sem plano</span></div>' +
                         '<div class="cob-kpi cob-kpi-red" style="cursor:pointer;" onclick="_filtrarNuncaPagou()"><span class="cob-kpi-num">' + kNuncaPagou + '</span><span class="cob-kpi-lbl">Nunca pagou</span></div>' +
- '<div class="cob-kpi" style="cursor:pointer;" onclick="filtrarCobrancas(\'BOLSISTA\',this)"><span class="cob-kpi-num" style="color:#60a5fa;">' + kBolsista + '</span><span class="cob-kpi-lbl"> Bolsistas</span></div>' +
+ '<div class="cob-kpi" style="cursor:pointer;" data-removido="1"><span class="cob-kpi-num" style="color:#60a5fa;">' + kBolsista + '</span><span class="cob-kpi-lbl"> Bolsistas</span></div>' +
                         '<div class="cob-kpi" id="receitaMensalKpi" style="cursor:pointer;" onclick="abrirReceitaMensal()">' +
                             '<span class="cob-kpi-num" style="font-size:11px;">R$' + receitaTotal.toFixed(0) + '</span>' +
                             '<span class="cob-kpi-lbl">Receita ▸</span>' +
@@ -48917,7 +48182,7 @@ async function initPresencaList() {
                     // ── Ações ──
                     h += '<div style="margin-top:12px;display:flex;gap:5px;flex-wrap:wrap;border-top:1px solid rgba(255, 255, 255, 0.088);padding-top:10px;">';
                     if (st === 'BOLSISTA') {
- h += '<button onclick="toggleBolsista(\'' + escapeHtml(p.email) + '\',false,this)" style="padding:4px 10px;border-radius:7px;background:rgba(96,165,250,0.1);color:#60a5fa;border:1px solid rgba(96,165,250,0.3);font-size:9px;font-weight:700;cursor:pointer;"> Remover bolsa</button>';
+ h += '';
  h += '<button onclick="abrirCobrancaAvulsa(\'' + escapeHtml(p.email) + '\',\'' + escapeHtml(p.nome||p.email) + '\')" style="padding:4px 10px;border-radius:7px;background:rgba(168,85,247,0.1);color:#C084FC;border:1px solid rgba(168,85,247,0.25);font-size:9px;font-weight:700;cursor:pointer;" title="Ex: taxa de exame, evento, etc."> Cobrança avulsa</button>';
                     } else {
                         if (st !== 'PAGO') {
@@ -48938,9 +48203,9 @@ async function initPresencaList() {
                         }
  h += '<button onclick="atribuirPlanoModal(\'' + escapeHtml(p.email) + '\')" style="padding:4px 10px;border-radius:7px;background:rgba(238, 90, 27,0.08);color:var(--adm-primary);border:1px solid rgba(238, 90, 27,0.2);font-size:9px;font-weight:700;cursor:pointer;"> Atribuir plano</button>';
  h += '<button onclick="abrirAuditoriaAluno(\'' + escapeHtml(p.email) + '\',\'' + escapeHtml(p.nome||p.email) + '\')" style="padding:4px 10px;border-radius:7px;background:rgba(96,165,250,0.08);color:#60a5fa;border:1px solid rgba(96,165,250,0.2);font-size:9px;font-weight:700;cursor:pointer;" title="Histórico completo de pagamentos e auditoria"> Auditoria</button>';
- h += '<button onclick="definirDiaCobrancaAluno(\'' + escapeHtml(p.email) + '\',' + (p.diaCobranca||0) + ')" style="padding:4px 10px;border-radius:7px;background:rgba(37,99,235,0.08);color:#60a5fa;border:1px solid rgba(37,99,235,0.2);font-size:9px;font-weight:700;cursor:pointer;" title="Definir dia de cobrança individual"> Dia ' + (p.diaCobranca? p.diaCobranca: 'padrão') + '</button>';
+ h += '';
  h += '<button onclick="abrirCobrancaAvulsa(\'' + escapeHtml(p.email) + '\',\'' + escapeHtml(p.nome||p.email) + '\')" style="padding:4px 10px;border-radius:7px;background:rgba(168,85,247,0.1);color:#C084FC;border:1px solid rgba(168,85,247,0.25);font-size:9px;font-weight:700;cursor:pointer;"> Cobrança avulsa</button>';
- h += '<button onclick="toggleBolsista(\'' + escapeHtml(p.email) + '\',true,this)" style="padding:4px 10px;border-radius:7px;background:rgba(96,165,250,0.08);color:#60a5fa;border:1px solid rgba(96,165,250,0.2);font-size:9px;font-weight:700;cursor:pointer;"> Marcar bolsista</button>';
+ h += '';
                     }
                     h += '</div>';
 
@@ -49047,59 +48312,6 @@ async function initPresencaList() {
         }
 
         // ── Calendário de cobrança (bottom sheet, 2 modos) ───────────────────
-        async function toggleBolsista(email, marcar, btn) {
-            var confirmMsg = marcar
-                ? 'Marcar este aluno como BOLSISTA?\n\nEle deixará de aparecer nas cobranças e não receberá nenhuma mensalidade.'
-                : 'Remover o status de bolsista deste aluno?\n\nEle voltará a aparecer normalmente nas cobranças (de acordo com o plano atual).';
-            if (!confirm(confirmMsg)) return;
-            if (btn) { btn.disabled = true; btn.textContent = '⏳ Salvando...'; }
-            try {
-                var r = await secureFetch('setCategoriaFinanceira', {
-                    email: email,
-                    categoria: marcar ? 'bolsista' : 'normal'
-                });
-                if (r.success) {
-                    var t = document.createElement('div');
-                    t.style.cssText = 'position:fixed;top:10px;left:50%;transform:translateX(-50%);'
-                        + 'background:#1e293b;color:#4ade80;padding:10px 18px;border-radius:10px;'
-                        + 'font-size:12px;z-index:99999;max-width:320px;text-align:center;'
-                        + 'border:1px solid #475569;box-shadow:0 4px 12px rgba(255, 255, 255, 0.70);';
- t.textContent = '' + r.message;
-                    document.body.appendChild(t);
-                    setTimeout(function(){ t.remove(); }, 3500);
-                    if (typeof loadPagamentosAdmin === 'function') loadPagamentosAdmin();
-                } else {
- alert('' + (r.message || 'Erro ao salvar'));
- if (btn) { btn.disabled = false; btn.textContent = marcar? ' Marcar bolsista': ' Remover bolsa'; }
-                }
-            } catch(e) {
- alert(' Erro: ' + e.message);
- if (btn) { btn.disabled = false; btn.textContent = marcar? ' Marcar bolsista': ' Remover bolsa'; }
-            }
-        }
-
-        function definirDiaCobrancaAluno(email, diaAtual) {
-            var old = document.getElementById('vencSheet'); if (old) old.remove();
-            var t = new Date(), iso = t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
-            var sh = document.createElement('div'); sh.id = 'vencSheet'; sh._modo = 1;
-            sh.innerHTML = '<div onclick="_fecharVencSheet()" style="position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9998;"></div>'
-              + '<div onclick="event.stopPropagation()" style="position:fixed;bottom:0;left:0;right:0;background:#1a1f2e;border-radius:20px 20px 0 0;padding:24px 20px 40px;z-index:9999;">'
-              + '<div style="width:40px;height:4px;background:rgba(255, 255, 255, 0.088);border-radius:2px;margin:0 auto 20px;"></div>'
-              + '<div style="font-size:15px;font-weight:800;color:#fff;text-align:center;margin-bottom:4px;">Data de cobranca</div>'
-              + '<div style="font-size:11px;color:rgba(255, 255, 255, 0.088);text-align:center;margin-bottom:20px;">' + escapeHtml(email) + '</div>'
-              + '<div style="display:flex;gap:8px;margin-bottom:14px;">'
-              + '<button id="vencModo1" onclick="vencSetModo(1)" style="flex:1;padding:10px 6px;border-radius:10px;border:1.5px solid #FE5301;background:rgba(238, 90, 27,.12);color:#FE5301;font-size:12px;font-weight:700;cursor:pointer;">Proximo pagamento</button>'
-              + '<button id="vencModo2" onclick="vencSetModo(2)" style="flex:1;padding:10px 6px;border-radius:10px;border:1.5px solid rgba(255, 255, 255, 0.132);background:rgba(255, 255, 255, 0.040);color:rgba(255, 255, 255, 0.088);font-size:12px;font-weight:700;cursor:pointer;">Ja pagou nesta data</button>'
-              + '</div>'
-              + '<div id="vencModoDesc" style="font-size:11px;color:rgba(255, 255, 255, 0.088);text-align:center;margin-bottom:12px;min-height:32px;">Define quando sera o <strong style="color:rgba(255, 255, 255, 0.088);">proximo vencimento</strong>.<br>Ideal para acordos futuros.</div>'
-              + '<input type="date" id="vencData" value="' + iso + '" oninput="vencAtualizarPreview()" style="width:100%;padding:14px;background:rgba(255, 255, 255, 0.069);border:1.5px solid rgba(238, 90, 27,.4);border-radius:12px;color:#fff;font-size:18px;font-weight:700;box-sizing:border-box;text-align:center;margin-bottom:6px;">'
-              + '<div id="vencPreview" style="font-size:11px;color:rgba(255, 255, 255, 0.088);text-align:center;min-height:18px;margin-bottom:14px;"></div>'
-              + '<button data-email="' + escapeHtml(email) + '" onclick="vencConfirmar(this.getAttribute(\'data-email\'))" style="width:100%;padding:13px;background:var(--nexti-grad);color:#000;border:none;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;">Confirmar</button>'
-              + '<button onclick="_fecharVencSheet()" style="width:100%;padding:10px;background:transparent;border:none;color:rgba(255, 255, 255, 0.088);font-size:12px;cursor:pointer;margin-top:6px;">Cancelar</button>'
-              + '</div>';
-            document.body.appendChild(sh);
-            vencAtualizarPreview();
-        }
         function _fecharVencSheet() { var s = document.getElementById('vencSheet'); if (s) s.remove(); }
         function vencSetModo(n) {
             var sh = document.getElementById('vencSheet'); if (!sh) return;
@@ -49211,96 +48423,6 @@ async function initPresencaList() {
 
            O padrao e HOJE - "cobrar agora" sem escolher nada significa vencer
            hoje, que e a leitura natural do botao. */
-        function abrirModalCobrarAgora() {
-            var hoje = new Date();
-            var iso = hoje.getFullYear() + '-'
-                    + ('0' + (hoje.getMonth() + 1)).slice(-2) + '-'
-                    + ('0' + hoje.getDate()).slice(-2);
-
-            var old = document.getElementById('modalCobrarAgora');
-            if (old) old.remove();
-
-            var m = document.createElement('div');
-            m.id = 'modalCobrarAgora';
-            m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
-            m.innerHTML =
-                '<div style="background:var(--adm-bg-card,#12121a);border:1px solid var(--adm-border,#2a2a35);border-radius:16px;padding:20px;max-width:380px;width:100%;">'
- + '<div style="font-size:16px;font-weight:800;color:var(--adm-text-1,#eee);margin-bottom:6px;"> Cobrar agora</div>'
-              + '<div style="font-size:12px;color:var(--adm-text-3,#888);line-height:1.5;margin-bottom:14px;">'
-              +   'Processa os alunos com mensalidade vencida ou pendente.<br>'
-              +   'A data abaixo será o vencimento das cobranças geradas.'
-              + '</div>'
-              + '<label style="font-size:10px;font-weight:700;color:var(--adm-text-3,#888);display:block;margin-bottom:4px;">DATA DE VENCIMENTO</label>'
-              + '<input id="cobrarAgoraData" type="date" value="' + iso + '" '
-              +   'style="width:100%;padding:11px;background:var(--adm-bg-elevated,#1a1a24);color:var(--adm-text-1,#eee);border:1px solid var(--adm-border,#2a2a35);border-radius:9px;font-size:14px;margin-bottom:14px;">'
-              + '<div id="cobrarAgoraMsg" style="font-size:11px;margin-bottom:10px;"></div>'
-              + '<button onclick="confirmarCobrarAgora()" id="cobrarAgoraBtn" '
-              +   'style="width:100%;padding:12px;background:linear-gradient(135deg,var(--adm-primary,#FE5301),#FE5301);color:#000;border:none;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;margin-bottom:8px;">'
-              +   'Processar cobranças</button>'
-              + '<button onclick="document.getElementById(\'modalCobrarAgora\').remove()" '
-              +   'style="width:100%;padding:10px;background:transparent;color:var(--adm-text-3,#888);border:none;font-size:12px;cursor:pointer;">Cancelar</button>'
-              + '</div>';
-            document.body.appendChild(m);
-        }
-
-        async function confirmarCobrarAgora() {
-            var inp = document.getElementById('cobrarAgoraData');
-            var msg = document.getElementById('cobrarAgoraMsg');
-            var btn = document.getElementById('cobrarAgoraBtn');
-            var venc = inp ? inp.value : '';
-            if (!venc) {
-                if (msg) { msg.style.color = '#e05252'; msg.textContent = 'Informe a data de vencimento.'; }
-                return;
-            }
-
-            // yyyy-MM-dd (input date) -> dd/MM/yyyy, que e o formato do backend.
-            var p = venc.split('-');
-            var vencBR = p[2] + '/' + p[1] + '/' + p[0];
-
-            if (btn) { btn.disabled = true; btn.style.opacity = '.6'; btn.textContent = 'Processando...'; }
-            if (msg) { msg.style.color = 'var(--adm-text-3,#888)'; msg.textContent = ''; }
-
-            try {
-                var data = await secureFetch('cobrarMensalidadeManual', { vencimento: vencBR });
-                if (data && data.success) {
-                    var el = document.getElementById('modalCobrarAgora');
-                    if (el) el.remove();
- alert('' + (data.message || 'Cobrança processada!'));
-                    loadPagamentosAdmin();
-                } else {
-                    if (msg) { msg.style.color = '#e05252'; msg.textContent = (data && data.message) || 'Erro ao processar.'; }
-                }
-            } catch (e) {
-                console.error('[cobrarAgora]', e);
-                if (msg) { msg.style.color = '#e05252'; msg.textContent = 'Não foi possível processar. Tente novamente.'; }
-            } finally {
-                if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.textContent = 'Processar cobranças'; }
-            }
-        }
-
-        async function cobrarMensalidadeAgora() {
-            // Mantida por compatibilidade: agora so abre o modal.
-            abrirModalCobrarAgora();
-        }
-
-        async function _cobrarMensalidadeAgoraLegado() {
-            if (!confirm('Rodar cobrança recorrente agora?\n\nIsso processa todos os alunos com vencimento em atraso:\n• Cartão: verifica assinatura no gateway\n• PIX: marca como ATRASADO se vencido\n\nContinuar?')) return;
-            var btn = document.querySelector('[onclick="cobrarMensalidadeAgora()"]');
-            if (btn) { btn.disabled = true; btn.textContent = '⏳ Processando...'; }
-            try {
-                var data = await secureFetch('cobrarMensalidadeManual', {});
-                if (data.success) {
- alert('' + (data.message || 'Cobrança processada!'));
-                    loadPagamentosAdmin();
-                } else {
- alert('' + (data.message || 'Erro'));
-                }
-            } catch(e) {
-                alert('Erro de conexão: ' + e.message);
-            } finally {
- if (btn) { btn.disabled = false; btn.textContent = ' Cobrar agora'; }
-            }
-        }
         // ────────────────────────────────────────────────────────────────────
 
         // ── Compatibilidade: funções legacy chamadas de outros pontos da UI ──
@@ -49391,34 +48513,6 @@ async function initPresencaList() {
         // graduação". Os dois painéis ficam no DOM (só um visível), então o
         // Salvar de cada um continua enxergando seus inputs normalmente —
         // mesmo cuidado da sanfona por modalidade.
-        function _tvSwitch(n) {
-            var p1 = document.getElementById('tvPane1');
-            var p2 = document.getElementById('tvPane2');
-            var b1 = document.getElementById('tvTabBtn1');
-            var b2 = document.getElementById('tvTabBtn2');
-            if (!p1 || !p2 || !b1 || !b2) return;
-
-            var ativo   = { borderBottom: '2px solid var(--adm-primary)', background: 'rgba(238, 90, 27,0.08)', color: 'var(--adm-primary)', fontWeight: '800' };
-            var inativo = { borderBottom: '2px solid transparent', background: 'transparent', color: 'var(--adm-text-3)', fontWeight: '700' };
-
-            function aplicar(btn, e) {
-                btn.style.borderBottom = e.borderBottom;
-                btn.style.background   = e.background;
-                btn.style.color        = e.color;
-                btn.style.fontWeight   = e.fontWeight;
-            }
-
-            if (n === 2) {
-                p1.style.display = 'none';
-                p2.style.display = 'block';
-                aplicar(b1, inativo); aplicar(b2, ativo);
-            } else {
-                p1.style.display = 'block';
-                p2.style.display = 'none';
-                aplicar(b1, ativo); aplicar(b2, inativo);
-            }
-        }
-
         function _toggleTaxaGradPane(paneId, arrowId) {
             var pane  = document.getElementById(paneId);
             var arrow = document.getElementById(arrowId);
@@ -52663,7 +51757,6 @@ async function initPresencaList() {
             document.getElementById('stuResponsavelTelefone').value = s.responsavelTelefone || '';
             document.getElementById('stuCPF').value                 = s.cpf                 || '';
             document.getElementById('stuRG').value                  = s.rg                  || '';
-            var _stuRedeEl = document.getElementById('stuRedeBeneficio'); if (_stuRedeEl) _stuRedeEl.value = s.redeBeneficio || '';
             document.getElementById('stuEnderecoCompleto').value    = s.enderecoCompleto    || '';
             document.getElementById('stuObsAdmin').value            = s.obsAdmin            || '';
             // SaudeKids — exibe só se menores (nascimento indica idade < 18)
@@ -53343,7 +52436,6 @@ async function initPresencaList() {
                 responsavelTelefone: document.getElementById('stuResponsavelTelefone').value.trim(),
                 cpf:                 document.getElementById('stuCPF').value.replace(/\D/g,''),
                 rg:                  document.getElementById('stuRG').value.trim(),
-                redeBeneficio:       (document.getElementById('stuRedeBeneficio')||{}).value || '',
                 enderecoCompleto:    document.getElementById('stuEnderecoCompleto').value.trim(),
                 obsAdmin:            document.getElementById('stuObsAdmin').value.trim(),
                 diasTreino: (function() {
@@ -54338,16 +53430,6 @@ async function initPresencaList() {
         // ===== REDES DE BENEFÍCIO: Wellhub & TotalPass =====
 
         var _wellnessConfigs = [];
-
-        function toggleWellnessGuia() {
-            var body  = document.getElementById('wellnessGuiaBody');
-            var arrow = document.getElementById('wellnessGuiaArrow');
-            if (!body) return;
-            var open = body.style.display !== 'none';
-            body.style.display = open ? 'none' : 'block';
-            if (arrow) arrow.textContent = open ? '▶ expandir' : '▼ recolher';
-        }
-
         // ══════════════════════════════════════════════════════════════════
         // LANÇAMENTO DE VALORES RECEBIDOS — REDES DE BENEFÍCIO
         // Registra o valor que a rede (TotalPass/Wellhub) vai pagar por cada
@@ -54358,364 +53440,16 @@ async function initPresencaList() {
         var _lancBenefMesN = null, _lancBenefAnoN = null;
         var _lancBenefPendentesCache = [];
         var _lancBenefSelecionados = {};
-
-        function _lancBeneficioMes(delta) {
-            var hoje = new Date();
-            if (_lancBenefMesN === null) { _lancBenefMesN = hoje.getMonth()+1; _lancBenefAnoN = hoje.getFullYear(); }
-            _lancBenefMesN += delta;
-            if (_lancBenefMesN < 1) { _lancBenefMesN = 12; _lancBenefAnoN--; }
-            if (_lancBenefMesN > 12) { _lancBenefMesN = 1; _lancBenefAnoN++; }
-            carregarLancamentosBeneficio();
-        }
-
-        async function abrirLancamentosBeneficio() {
-            var old = document.getElementById('lancBenefSheet'); if (old) old.remove();
-            var sh = document.createElement('div'); sh.id = 'lancBenefSheet';
-            sh.innerHTML = '<div onclick="document.getElementById(\'lancBenefSheet\').remove()" style="position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100090;"></div>'
-              + '<div onclick="event.stopPropagation()" style="position:fixed;bottom:0;left:0;right:0;background:#1a1f2e;border-radius:20px 20px 0 0;padding:20px 18px 32px;z-index:100091;max-height:88vh;overflow-y:auto;">'
-              + '<div style="width:40px;height:4px;background:rgba(255, 255, 255, 0.088);border-radius:2px;margin:0 auto 16px;"></div>'
- + '<div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;"> Lançamentos de Redes de Benefício</div>'
-              + '<div style="font-size:11px;color:rgba(255, 255, 255, 0.088);margin-bottom:12px;line-height:1.5;">Registre o valor de cada check-in feito via TotalPass/Wellhub — assim você acompanha quanto está pendente de repasse e quanto já caiu na conta.</div>'
-              + '<div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;">'
-              + '<button onclick="_lancBeneficioMes(-1)" style="padding:6px 10px;background:rgba(255, 255, 255, 0.050);border:1px solid rgba(255, 255, 255, 0.132);border-radius:6px;color:#fff;font-size:12px;cursor:pointer;">‹</button>'
-              + '<span id="lancBenefMesLabel" style="font-size:12px;font-weight:700;color:#fff;min-width:80px;text-align:center;">—</span>'
-              + '<button onclick="_lancBeneficioMes(1)" style="padding:6px 10px;background:rgba(255, 255, 255, 0.050);border:1px solid rgba(255, 255, 255, 0.132);border-radius:6px;color:#fff;font-size:12px;cursor:pointer;">›</button>'
-              + '</div>'
-              + '<div id="lancBenefResumo" style="display:flex;gap:8px;margin-bottom:14px;"></div>'
-              + '<div id="lancBenefBody"><div style="text-align:center;padding:20px;color:rgba(255, 255, 255, 0.088);font-size:12px;">Carregando...</div></div>'
-              + '</div>';
-            document.body.appendChild(sh);
-            carregarLancamentosBeneficio();
-        }
-
-        async function carregarLancamentosBeneficio() {
-            var hoje = new Date();
-            if (_lancBenefMesN === null) { _lancBenefMesN = hoje.getMonth()+1; _lancBenefAnoN = hoje.getFullYear(); }
-            var nomesM = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-            var lbl = document.getElementById('lancBenefMesLabel'); if (lbl) lbl.textContent = nomesM[_lancBenefMesN-1] + '/' + _lancBenefAnoN;
-            var body = document.getElementById('lancBenefBody'); if (!body) return;
-            _lancBenefSelecionados = {};
-            try {
-                var respostas = await Promise.all([
-                    secureFetch('getCheckinsBeneficioPendentesValor', { mes: _lancBenefMesN, ano: _lancBenefAnoN }),
-                    secureFetch('getResumoLancamentosBeneficio', { mes: _lancBenefMesN, ano: _lancBenefAnoN })
-                ]);
-                var rPend = respostas[0], rResumo = respostas[1];
-
-                var resumoEl = document.getElementById('lancBenefResumo');
-                if (resumoEl && rResumo && rResumo.success) {
-                    resumoEl.innerHTML = '<div style="flex:1;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.25);border-radius:9px;padding:8px;text-align:center;"><div style="font-size:9px;color:#FBBF24;">⏳ PENDENTE</div><div style="font-size:14px;font-weight:800;color:#FBBF24;">'+_fmtR$(rResumo.totalPendente)+'</div></div>'
- + '<div style="flex:1;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);border-radius:9px;padding:8px;text-align:center;"><div style="font-size:9px;color:#4ADE80;"> RECEBIDO</div><div style="font-size:14px;font-weight:800;color:#4ADE80;">'+_fmtR$(rResumo.totalRecebido)+'</div></div>';
-                }
-
-                var h = '';
-                if (rPend && rPend.success && rPend.pendentes && rPend.pendentes.length) {
-                    _lancBenefPendentesCache = rPend.pendentes;
- h += '<div style="font-size:11px;font-weight:800;color:var(--adm-primary,#FE5301);margin-bottom:6px;"> Check-ins sem valor lançado (' + rPend.pendentes.length + ')</div>';
-                    h += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:8px 10px;background:rgba(255, 255, 255, 0.033);border-radius:8px;">'
-                       + '<span style="font-size:10px;color:rgba(255, 255, 255, 0.088);">Valor p/ selecionados:</span>'
-                       + '<input type="number" step="0.01" id="lancBenefValorLote" placeholder="0,00" style="width:70px;padding:5px;background:rgba(255, 255, 255, 0.050);color:#fff;border:1px solid rgba(255, 255, 255, 0.132);border-radius:5px;font-size:11px;">'
-                       + '<button onclick="_lancarValorLote()" style="margin-left:auto;padding:5px 10px;background:rgba(74,222,128,0.15);color:#4ADE80;border:1px solid rgba(74,222,128,0.3);border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;">Aplicar aos selecionados</button>'
-                       + '</div>';
-                    rPend.pendentes.forEach(function(p, idx) {
-                        h += '<div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255, 255, 255, 0.033);border:1px solid rgba(255, 255, 255, 0.088);border-radius:8px;margin-bottom:6px;">'
-                           + '<label class="ctm-toggle-sm"><input type="checkbox" onchange="_lancBenefToggleSel(' + idx + ',this.checked)"><span class="ctm-toggle-slider"></span></label>'
-                           + '<div style="flex:1;min-width:0;">'
-                           + '<div style="font-size:11px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(p.nome) + ' <span style="font-size:8px;font-weight:800;padding:1px 5px;border-radius:5px;background:rgba(96,165,250,0.15);color:#60a5fa;">' + escapeHtml((p.rede||'').toUpperCase()) + '</span></div>'
-                           + '<div style="font-size:9px;color:rgba(255, 255, 255, 0.088);">' + escapeHtml(p.data) + ' · ' + escapeHtml(p.ct) + '</div>'
-                           + '</div>'
-                           + '<input type="number" step="0.01" placeholder="R$" data-ref="' + escapeHtml(p.externalRef) + '" class="_lancBenefValorInd" style="width:60px;padding:5px;background:rgba(255, 255, 255, 0.050);color:#fff;border:1px solid rgba(255, 255, 255, 0.132);border-radius:5px;font-size:11px;">'
- + '<button onclick="_lancarValorIndividual(\'' + p.externalRef + '\',' + idx + ',this)" style="padding:5px 8px;background:rgba(74,222,128,0.15);color:#4ADE80;border:1px solid rgba(74,222,128,0.3);border-radius:6px;font-size:9px;font-weight:700;cursor:pointer;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></button>'
-                           + '</div>';
-                    });
-                } else {
- h += '<div style="text-align:center;padding:12px;color:rgba(255, 255, 255, 0.088);font-size:11px;"> Todos os check-ins deste mês já têm valor lançado.</div>';
-                }
-
- h += '<div style="font-size:11px;font-weight:800;color:var(--adm-primary,#FE5301);margin:14px 0 6px;"> Lançamentos deste mês</div>';
-                if (rResumo && rResumo.success && rResumo.lista && rResumo.lista.length) {
-                    var pendentesParaMarcar = rResumo.lista.filter(function(x){ return x.status === 'PENDENTE'; }).map(function(x){ return x.id; });
-                    if (pendentesParaMarcar.length) {
- h += '<button onclick="_marcarTodosRecebidos([' + pendentesParaMarcar.map(function(id){return "'"+id+"'";}).join(',') + '])" style="width:100%;padding:8px;margin-bottom:8px;background:rgba(74,222,128,0.1);color:#4ADE80;border:1px solid rgba(74,222,128,0.3);border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;"> Marcar todos os pendentes como recebidos (' + pendentesParaMarcar.length + ')</button>';
-                    }
-                    rResumo.lista.forEach(function(l) {
-                        var recebido = (l.status === 'RECEBIDO');
-                        h += '<div style="display:flex;align-items:center;gap:8px;padding:7px 10px;background:rgba(255, 255, 255, 0.033);border-radius:7px;margin-bottom:5px;">'
-                           + '<div style="flex:1;min-width:0;font-size:10px;color:rgba(255, 255, 255, 0.088);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(l.data) + ' · ' + escapeHtml(l.nome) + ' · ' + escapeHtml((l.rede||'').toUpperCase()) + '</div>'
-                           + '<div style="font-size:11px;font-weight:800;color:' + (recebido?'#4ADE80':'#fbbf24') + ';">' + _fmtR$(l.valor) + '</div>'
-                           + (recebido
-? '<span style="font-size:8px;color:#4ADE80;font-weight:700;"> recebido ' + escapeHtml(l.dataRecebimento) + '</span>'
-                              : '<button onclick="_marcarTodosRecebidos([\'' + l.id + '\'])" style="padding:3px 7px;background:rgba(74,222,128,0.1);color:#4ADE80;border:1px solid rgba(74,222,128,0.3);border-radius:5px;font-size:9px;cursor:pointer;">marcar recebido</button>')
-                           + '</div>';
-                    });
-                } else {
-                    h += '<div style="text-align:center;padding:10px;color:rgba(255, 255, 255, 0.088);font-size:11px;">Nenhum lançamento neste mês ainda.</div>';
-                }
-                body.innerHTML = h;
-            } catch(e) { body.innerHTML = '<div style="color:#F87171;font-size:12px;">Erro de conexão.</div>'; }
-        }
-
-        function _lancBenefToggleSel(idx, marcado) {
-            if (marcado) _lancBenefSelecionados[idx] = true; else delete _lancBenefSelecionados[idx];
-        }
-
-        async function _lancarValorIndividual(externalRef, idx, btn) {
-            var input = btn.previousElementSibling;
-            var valor = parseFloat(input.value) || 0;
-            if (valor <= 0) { showToast('Informe um valor maior que zero.'); return; }
-            btn.disabled = true; btn.textContent = '⏳';
-            try {
-                var r = await secureFetch('lancarValorBeneficio', { externalRef: externalRef, valor: valor });
- if (r && r.success) { showToast('' + r.message); carregarLancamentosBeneficio(); }
- else { showToast('' + (r && r.message || 'Erro')); btn.disabled = false; btn.textContent = ''; }
- } catch(e) { showToast('Erro de conexão'); btn.disabled = false; btn.textContent = ''; }
-        }
-
-        async function _lancarValorLote() {
-            var valor = parseFloat((document.getElementById('lancBenefValorLote')||{}).value) || 0;
-            var idxs = Object.keys(_lancBenefSelecionados).map(Number);
-            if (!idxs.length) { showToast('Selecione ao menos um check-in.'); return; }
-            if (valor <= 0) { showToast('Informe o valor a aplicar.'); return; }
-            var refs = idxs.map(function(i){ return _lancBenefPendentesCache[i] ? _lancBenefPendentesCache[i].externalRef : null; }).filter(Boolean);
-            try {
-                var r = await secureFetch('lancarValorBeneficioLote', { externalRefs: refs, valor: valor });
- showToast(r && r.success? ('' + r.message): ('' + (r && r.message || 'Erro')));
-                if (r && r.success) carregarLancamentosBeneficio();
-            } catch(e) { showToast('Erro de conexão'); }
-        }
-
-        async function _marcarTodosRecebidos(ids) {
-            if (!confirm((ids.length>1 ? ('Marcar ' + ids.length + ' lançamentos') : 'Marcar esse lançamento') + ' como recebido(s)?')) return;
-            try {
-                var r = await secureFetch('marcarBeneficioRecebido', { ids: ids });
- showToast(r && r.success? ('' + r.message): ('' + (r && r.message || 'Erro')));
-                if (r && r.success) carregarLancamentosBeneficio();
-            } catch(e) { showToast('Erro de conexão'); }
-        }
-
         // ══════════════════════════════════════════════════════════════════
         // AUDITORIA DE REDES DE BENEFÍCIO — cruza a rede que o aluno declarou
         // usar (cadastro) com os check-ins reais via essa rede (Wellhub/
         // TotalPass). Ver nota de limitação técnica no backend
         // (handleAuditoriaRedesBeneficio) — o cruzamento depende de CPF.
         // ══════════════════════════════════════════════════════════════════
-        async function loadWellnessConfig() {
-            // Popula select de CTs
-            var sel = document.getElementById('wellnessCT');
-            if (sel && allCTs && allCTs.length > 0) {
-                sel.innerHTML = allCTs.map(function(ct) {
-                    var n = typeof ct === 'string' ? ct : ct.name || ct.toString();
-                    return '<option value="' + escapeHtml(n) + '">' + escapeHtml(n) + '</option>';
-                }).join('');
-                _smartFilterSelect(sel, false); // 1 CT → esconde e auto-seleciona
-            }
-            // Mostra URL do webhook
-            var urlEl = document.getElementById('wellnessWebhookUrl');
-            if (urlEl) {
-                var base = window.location.href.split('?')[0];
-                urlEl.textContent = base;
-                urlEl.title = 'Clique para copiar';
-            }
-            // Carrega configs existentes
-            try {
-                var data = await secureFetch('getWellnessConfig', {});
-                if (!data.success) return;
-                _wellnessConfigs = data.configs || [];
-                renderWellnessConfigs(data.configs, data.webhookUrl);
-                loadWellnessReport();
-                loadWellnessCheckins();
-            } catch(e) { console.error('loadWellnessConfig:', e); }
-        }
-
-        function renderWellnessConfigs(configs) {
-            var el = document.getElementById('wellnessConfigsList');
-            if (!el || !configs.length) { if(el) el.innerHTML = ''; return; }
- var redeBadge = { wellhub: ' Wellhub', totalpass: ' TotalPass' };
-            var h = '<div style="font-size:10px;font-weight:700;color:var(--adm-text-3);margin-bottom:6px;">CONFIGURADAS</div>';
-            configs.forEach(function(c) {
-                h += '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:var(--adm-bg-elevated);border:1px solid var(--adm-border);border-radius:8px;margin-bottom:4px;">';
-                h += '<div><div style="font-size:12px;font-weight:700;color:var(--adm-text-1);">' + (redeBadge[c.rede] || c.rede) + '</div>';
-                h += '<div style="font-size:10px;color:var(--adm-text-3);">GymID: ' + escapeHtml(c.gymId) + (c.ct ? ' · CT: ' + escapeHtml(c.ct) : '') + '</div></div>';
- h += '<span style="font-size:10px;font-weight:700;color:' + (c.ativo? '#4ADE80': '#F87171') + ';">' + (c.ativo? ' Ativo': ' Inativo') + '</span>';
-                h += '</div>';
-            });
-            el.innerHTML = h;
-        }
-
-        async function salvarWellnessConfig() {
-            var rede          = document.getElementById('wellnessRede').value;
-            var ct            = document.getElementById('wellnessCT').value;
-            var gymId         = (document.getElementById('wellnessGymId').value || '').trim();
-            var clientId      = (document.getElementById('wellnessClientId').value || '').trim();
-            var clientSecret  = (document.getElementById('wellnessClientSecret').value || '').trim();
-            var webhookSecret = (document.getElementById('wellnessWebhookSecret').value || '').trim();
-            var msg           = document.getElementById('wellnessConfigMsg');
- if (!gymId) { msg.style.color='#F87171'; msg.textContent=' Gym ID obrigatório'; return; }
-            msg.style.color='var(--adm-text-3)'; msg.textContent='Salvando...';
-            try {
-                var data = await secureFetch('saveWellnessConfig', { rede, gymId, clientId, clientSecret, webhookSecret, ct, ativo: true });
-                if (data.success) {
- msg.style.color='#4ADE80'; msg.textContent='' + data.message;
-                    document.getElementById('wellnessGymId').value        = '';
-                    document.getElementById('wellnessClientId').value     = '';
-                    document.getElementById('wellnessClientSecret').value = '';
-                    document.getElementById('wellnessWebhookSecret').value= '';
-                    loadWellnessConfig();
- } else { msg.style.color='#F87171'; msg.textContent='' + data.message; }
- } catch(e) { msg.style.color='#F87171'; msg.textContent=' Erro de conexão'; }
-        }
-
-        async function loadWellnessReport() {
-            try {
-                var data = await secureFetch('getWellnessReport', {});
-                if (!data.success) return;
-                var kpiEl = document.getElementById('wellnessKPIs');
-                if (!kpiEl) return;
-                var h = '';
-                // Total mês
-                h += '<div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:10px;padding:10px;text-align:center;">';
-                h += '<div style="font-size:22px;font-weight:800;color:#4ADE80;">' + (data.totalMes || 0) + '</div>';
-                h += '<div style="font-size:10px;color:var(--adm-text-3);">Check-ins este mês</div></div>';
-                // Total geral
-                h += '<div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:10px;padding:10px;text-align:center;">';
-                h += '<div style="font-size:22px;font-weight:800;color:#60a5fa;">' + (data.totalGeral || 0) + '</div>';
-                h += '<div style="font-size:10px;color:var(--adm-text-3);">Total histórico</div></div>';
-                // Por rede
-                var redeKeys = Object.keys(data.byRede || {});
-                redeKeys.forEach(function(r) {
-                    var info = data.byRede[r];
-                    h += '<div style="background:var(--adm-bg-elevated);border:1px solid var(--adm-border);border-radius:10px;padding:10px;text-align:center;">';
-                    h += '<div style="font-size:16px;font-weight:800;color:var(--adm-text-1);">' + (info.mes || 0) + '</div>';
-                    h += '<div style="font-size:10px;color:var(--adm-text-3);">' + escapeHtml(r) + ' (mês)</div></div>';
-                });
-                kpiEl.innerHTML = h;
-            } catch(e) {}
-        }
-
         /* [NOVO 2026-08-06] Alunos por rede de beneficio - sob demanda.
            A consulta le a aba Presenca inteira cruzando com Alunos; e o dado
            mais caro do Painel. Como serve para fechamento de mes e nao para
            acompanhamento diario, so roda no clique. */
-        function _redeMesAnoPadrao() {
-            var d = new Date();
-            var m = document.getElementById('redeMes');
-            var a = document.getElementById('redeAno');
-            if (m && !m.dataset.init) { m.value = String(d.getMonth() + 1); m.dataset.init = '1'; }
-            if (a && !a.value) a.value = String(d.getFullYear());
-        }
-
-        async function gerarCheckinsPorRede() {
-            _redeMesAnoPadrao();
-            var box = document.getElementById('redeResultado');
-            var btn = document.getElementById('redeGerarBtn');
-            var mes = parseInt(document.getElementById('redeMes').value, 10);
-            var ano = parseInt(document.getElementById('redeAno').value, 10);
-            if (!box) return;
-
-            box.innerHTML = '<div class="admin-empty" style="font-size:12px;">Gerando...</div>';
-            if (btn) { btn.disabled = true; btn.style.opacity = '.6'; }
-
-            try {
-                var r = await secureFetch('getCheckinsPorRede', { mes: mes, ano: ano });
-                if (!r || !r.success) throw new Error((r && r.message) || 'Falha ao gerar');
-
-                var redes = r.redes || [];
-                if (!redes.length) {
-                    box.innerHTML = '<div class="admin-empty" style="font-size:12px;">'
-                        + 'Nenhum aluno com rede cadastrada treinou neste mês.</div>';
-                    return;
-                }
-
-                var h = '';
-                redes.forEach(function (x) {
-                    h += '<div style="background:var(--adm-bg-elevated);border:1px solid var(--adm-border);'
-                       + 'border-radius:9px;padding:10px;margin-bottom:8px;">'
-                       + '<div style="display:flex;align-items:center;gap:8px;">'
-                       + '<div style="flex:1;font-size:13px;font-weight:800;color:var(--adm-text-1);">'
-                       + escapeHtml(x.rede) + '</div>'
-                       + '<div style="font-size:20px;font-weight:800;color:var(--adm-gold,#FE5301);">' + x.alunos + '</div>'
-                       + '<div style="font-size:10px;color:var(--adm-text-3);">aluno(s)</div>'
-                       + '</div>'
-                       + '<div style="font-size:11px;color:var(--adm-text-3);margin-top:2px;">'
-                       + x.checkins + ' check-in(s) no período</div>';
-
-                    if (x.detalhe && x.detalhe.length) {
-                        h += '<details style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;'
-                           + 'color:var(--adm-primary);">ver alunos</summary>'
-                           + '<div style="margin-top:6px;font-size:11px;color:var(--adm-text-2);line-height:1.8;">';
-                        x.detalhe.forEach(function (a) {
-                            h += '• ' + escapeHtml(a.nome || a.email)
-                               + (a.ct ? ' <span style="color:var(--adm-text-3);">· ' + escapeHtml(a.ct) + '</span>' : '')
-                               + '<br>';
-                        });
-                        h += '</div></details>';
-                    }
-                    h += '</div>';
-                });
-
-                h += '<div style="font-size:11px;color:var(--adm-text-3);margin-top:8px;line-height:1.6;">'
-                   + '<b>' + r.totalAlunos + '</b> aluno(s) de rede · <b>' + r.totalCheckins + '</b> check-in(s)<br>'
-                   // Deixa explicito que o numero grande de fora nao e erro:
-                   // a maioria dos alunos nao usa rede de beneficio.
-                   + '<span style="opacity:.7;">' + (r.checkinsSemRede || 0)
-                   + ' check-in(s) de alunos sem rede cadastrada (não entram na contagem)</span></div>';
-
-                box.innerHTML = h;
-            } catch (e) {
-                console.error('[checkinsPorRede]', e);
-                box.innerHTML = '<div class="admin-empty" style="font-size:12px;">'
-                    + 'Não foi possível gerar. '
-                    + '<a href="#" onclick="gerarCheckinsPorRede();return false;" style="color:var(--adm-gold,#FE5301);">Tentar de novo</a></div>';
-            } finally {
-                if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
-            }
-        }
-
-        async function loadWellnessCheckins(forcar) {
-            // [PERF 2026-08-06] Consulta a planilha so na primeira visita.
-            // Voltar para esta aba reusa o que ja esta na tela; para buscar de
-            // novo o admin clica no botao de atualizar (loadWellnessCheckins(true)).
-            if (!forcar && _subAbaJaCarregou('wellness')) return;
-            var el = document.getElementById('wellnessCheckinsList');
-            if (!el) return;
-            var rede = (document.getElementById('wellnessFilterRede') || {}).value || '';
-            el.innerHTML = '<div style="text-align:center;padding:12px;color:var(--adm-text-3);font-size:12px;">⏳ Carregando...</div>';
-            try {
-                var data = await secureFetch('getWellnessCheckins', { rede: rede });
-                _marcarSubAba('wellness');
-                if (!data.success || !data.checkins.length) {
-                    el.innerHTML = '<div class="admin-empty">Nenhum check-in registrado ainda</div>';
-                    return;
-                }
-                var redeCor = { WELLHUB: '#4ADE80', TOTALPASS: '#60a5fa' };
-                var h = '';
-                data.checkins.slice(0, 50).forEach(function(c) {
-                    var cor = redeCor[c.rede] || '#94a3b8';
-                    h += '<div style="display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--adm-bg-elevated);border:1px solid var(--adm-border);border-radius:8px;margin-bottom:4px;">';
-                    h += '<div style="width:8px;height:8px;border-radius:50%;background:' + cor + ';flex-shrink:0;"></div>';
-                    h += '<div style="flex:1;min-width:0;">';
-                    h += '<div style="font-size:12px;font-weight:700;color:var(--adm-text-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(c.nome) + '</div>';
-                    h += '<div style="font-size:10px;color:var(--adm-text-3);">' + escapeHtml(c.rede) + (c.ct ? ' · ' + escapeHtml(c.ct) : '') + '</div>';
-                    h += '</div>';
-                    h += '<div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:var(--adm-text-2);">' + escapeHtml(c.data) + '</div>';
-                    h += '<div style="font-size:9px;color:#4ADE80;font-weight:700;">' + escapeHtml(c.status) + '</div></div>';
-                    h += '</div>';
-                });
-                el.innerHTML = h;
-            } catch(e) { el.innerHTML = '<div class="admin-empty">Erro ao carregar</div>'; }
-        }
-
-        function copiarWebhookUrl() {
-            var el  = document.getElementById('wellnessWebhookUrl');
-            var url = el ? el.textContent : '';
-            if (!url) return;
-            navigator.clipboard.writeText(url).then(function() {
-                el.style.color = '#4ADE80';
-                setTimeout(function() { el.style.color = '#38bdf8'; }, 1500);
-            }).catch(function() {});
-        }
-
-
         // ── PIX copy helper ──────────────────────────────────
         function copiarChavePixEl(el, msgId) {
             if (!el) return;
@@ -54752,47 +53486,7 @@ async function initPresencaList() {
         }
 
         // ═══ GERAÇÃO DE CERTIFICADO (canvas → PNG/PDF) ══════════════════════
-        async function gerarCertificado(emailAluno, profEmail, gradOverride, modId) {
-            var loading = document.createElement('div');
-            loading.id = 'certLoading';
-            loading.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10000;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;';
-            loading.textContent = 'Gerando certificado...';
-            document.body.appendChild(loading);
-            try {
-                var payload = { email: emailAluno || '', profEmail: profEmail || '' };
-                if (modId) payload.modId = modId;
-                if (gradOverride) {
-                    payload.faixaCert = gradOverride.faixa || '';
-                    payload.grauCert  = (gradOverride.grau !== undefined) ? gradOverride.grau : '';
-                    payload.dataCert  = gradOverride.data || '';
-                }
-                var res = await secureFetch('getDadosCertificado', payload);
-                if (!res || !res.success) { alert((res&&res.message)||'Erro ao gerar'); loading.remove(); return; }
-                await _desenharCertificado(res.aluno, res.assinantes || [], res.data, res.layout || {});
-                // se o aluno tem graduação em mais de uma modalidade, oferece trocar
-                _certModalidadeSwitcher(res.modalidadesDisponiveis || [], emailAluno, profEmail, gradOverride, (res.aluno && res.aluno.modId) || '');
-            } catch(e) { alert('Erro: ' + e.message); }
-            loading.remove();
-        }
-
         // Botões pra emitir o certificado de CADA modalidade graduada do aluno
-        function _certModalidadeSwitcher(mods, email, prof, grad, atualId) {
-            if (!mods || mods.length < 2) return;
-            var sheet = document.getElementById('certPreviewSheet');
-            if (!sheet) return;
-            var bar = document.createElement('div');
-            bar.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:10px 0;';
-            bar.innerHTML = '<div style="width:100%;text-align:center;font-size:11px;color:#aaa;margin-bottom:2px;">Emitir certificado por modalidade:</div>'
-                + mods.map(function(m){
-                    var on = (m.id === atualId);
-                    return '<button onclick="gerarCertificado(' + JSON.stringify(email) + ',' + JSON.stringify(prof||'') + ',' + JSON.stringify(grad||null) + ',' + JSON.stringify(m.id) + ')" '
-                        + 'style="padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid ' + (on?'#FE5301':'#767676') + ';background:' + (on?'rgba(238, 90, 27,0.18)':'#767676') + ';color:' + (on?'#FE5301':'#ddd') + ';">' + (m.nome || m.id) + '</button>';
-                }).join('');
-            // insere logo no topo do conteúdo do preview
-            var firstCard = sheet.querySelector('div');
-            if (firstCard) firstCard.insertBefore(bar, firstCard.firstChild); else sheet.appendChild(bar);
-        }
-
         // ── Certificados retroativos do aluno ────────────────────────────────
         var _meusCertsRetro = [];
         var _CERT_MODL = { bjj:'BJJ', bjj_kids:'BJJ Kids', muay_thai:'Muay Thai', muaythai:'Muay Thai', muaythai_fcme:'Muay Thai FCMTE', muaythai_trad:'Muay Thai Trad.', muay_thai_khan:'Muay Thai Khan', judo:'Judô', karate:'Karatê', karate_kyokushin:'Kyokushin', karate_gojuryu:'Goju-Ryu', boxe:'Boxe', mma:'MMA', wrestling:'Wrestling', kickboxing:'Kickboxing', taekwondo:'Taekwondo', capoeira:'Capoeira', wushu_sanda:'Wushu Sanda' };
@@ -55394,238 +54088,6 @@ async function initPresencaList() {
                 ctx.closePath(); ctx.fill();
             });
         }
-
-        async function _desenharCertificado(aluno, assinantes, data, cfg) {
-            cfg = cfg || {};
-            var cor   = cfg.cor || '#FE5301';
-            var corEsc = _darken(cor, 0.35);
-            var titulo = (cfg.titulo !== undefined && cfg.titulo !== '') ? cfg.titulo : 'CERTIFICADO';
-            var subt   = (cfg.subtitulo !== undefined) ? cfg.subtitulo : 'DE GRADUAÇÃO';
-
-            var W = 1414, H = 1000; // A4 paisagem em px (~120dpi)
-            var cv = document.createElement('canvas'); cv.width = W; cv.height = H;
-            var ctx = cv.getContext('2d');
-
-            // Fundo branco
-            ctx.fillStyle = '#fffdf8'; ctx.fillRect(0,0,W,H);
-            // Borda dupla com a cor de destaque
-            ctx.strokeStyle = cor;    ctx.lineWidth = 8; ctx.strokeRect(30,30,W-60,H-60);
-            ctx.strokeStyle = corEsc; ctx.lineWidth = 2; ctx.strokeRect(48,48,W-96,H-96);
-
-            try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch(e){}
-
-            // ── Marca d'água (texto ou imagem), centralizada e translúcida ──
-            var wmTipo = cfg.wmTipo || 'none';
-            var wmOpac = (cfg.wmOpac !== undefined ? parseFloat(cfg.wmOpac) : 8) / 100;
-            var wmTam  = (parseInt(cfg.wmTam) || 60) / 100; // % do menor lado
-            if (wmTipo === 'imagem' && cfg.wmImg) {
-                try {
-                    var wmI = await _carregarImg(cfg.wmImg);
-                    var wmMax = Math.min(W, H) * wmTam, wr = wmI.width / wmI.height;
-                    var ww = wmMax, wh = wmMax; if (wr > 1) wh = ww / wr; else ww = wh * wr;
-                    ctx.save(); ctx.globalAlpha = wmOpac;
-                    ctx.drawImage(wmI, W/2 - ww/2, H/2 - wh/2, ww, wh);
-                    ctx.restore();
-                } catch(e){}
-            } else if (wmTipo === 'texto' && cfg.wmTexto) {
-                ctx.save();
-                ctx.globalAlpha = wmOpac;
-                ctx.translate(W/2, H/2); ctx.rotate(-Math.PI/6);
-                ctx.fillStyle = cor; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-                ctx.font = '900 ' + Math.round(Math.min(W,H) * wmTam * 0.6) + 'px Cinzel, serif';
-                ctx.fillText((cfg.wmTexto||'').toUpperCase(), 0, 0);
-                ctx.restore();
-            }
-
-            // Logos da academia no topo (1 = centralizado · 2 = esquerda+direita)
-            var topY = 180;
-            var logo1 = cfg.logo  ? await _carregarImg(cfg.logo)  : null;
-            var logo2 = cfg.logo2 ? await _carregarImg(cfg.logo2) : null;
-            var tam1 = parseInt(cfg.logoTam1) || 150;
-            var tam2 = parseInt(cfg.logoTam2) || 150;
-            function _drawLogo(img, cx, topPx, box) {
-                var lw = box, lh = box, lr = img.width / img.height;
-                if (lr > 1) { lh = lw / lr; } else { lw = lh * lr; }
-                ctx.drawImage(img, cx - lw/2, topPx, lw, lh);
-            }
-            if (logo1 && logo2) {
-                // Dois logos: cantos superiores
-                _drawLogo(logo1, 230, 70, tam1);
-                _drawLogo(logo2, W - 230, 70, tam2);
-                topY = 290; // título desce pra baixo da linha de logos
-            } else if (logo1) {
-                // Só logo 1 → mantém à ESQUERDA (posição definida)
-                _drawLogo(logo1, 230, 70, tam1);
-                topY = 290;
-            } else if (logo2) {
-                // Só logo 2 → mantém à DIREITA (posição definida)
-                _drawLogo(logo2, W - 230, 70, tam2);
-                topY = 290;
-            }
-
-            ctx.textAlign = 'center';
-            // [CERT 2026-07] Tipografia serifada por padrão — é o que separa
-            // "documento oficial" de "print de app". 'sans' mantém o layout antigo.
-            var serif  = (cfg.fonte !== 'sans');
-            var fBody  = serif ? 'Georgia, "Times New Roman", serif' : 'Manrope, sans-serif';
-            var fTitle = 'Cinzel, Georgia, serif';
-            // Substitui {nome} {equipe} {filiacao} {nivel} {ct} {modalidade}
-            function _tpl(s) {
-                return (s || '').toString()
-                    .replace(/\{nome\}/g,       aluno.nome || '')
-                    .replace(/\{equipe\}/g,     cfg.equipe || aluno.ct || '')
-                    .replace(/\{filiacao\}/g,   cfg.filiacao || '')
-                    .replace(/\{nivel\}/g,      aluno.nivelTexto || aluno.faixa || '')
-                    .replace(/\{ct\}/g,         aluno.ct || '')
-                    .replace(/\{modalidade\}/g, aluno.modalidade || '');
-            }
-
-            // ── Título, com floreio dos dois lados ──
-            ctx.fillStyle = cor;
-            ctx.font = '900 64px ' + fTitle;
-            var _tTxt = (titulo || '').toUpperCase();
-            ctx.fillText(_tTxt, W/2, topY);
-            try { _ornamentoTitulo(ctx, W/2, topY - 20, ctx.measureText(_tTxt).width, cor); } catch(e){}
-            if (subt) {
-                ctx.fillStyle = corEsc;
-                ctx.font = '700 26px ' + fTitle;
-                ctx.fillText(subt.toUpperCase(), W/2, topY + 45);
-            }
-
-            var baseLine = topY + (subt ? 140 : 120);
-
-            // ── Abertura: frase corrida (não rótulo solto) ──
-            var _abertura = cfg.textoAbertura
-                ? _tpl(cfg.textoAbertura)
-                : (cfg.equipe
-                    ? ('A Equipe ' + cfg.equipe + (cfg.filiacao ? (', filiada à ' + cfg.filiacao) : '') + ', confere ao atleta')
-                    : 'Certificamos que');
-            ctx.fillStyle = '#444'; ctx.font = '400 24px ' + fBody;
-            ctx.fillText(_abertura, W/2, baseLine);
-
-            // ── Nome do aluno ──
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '800 56px ' + fTitle;
-            ctx.fillText((aluno.nome||'').toUpperCase(), W/2, baseLine + 72);
-
-            // ── "o título de" / texto da graduação ──
-            ctx.fillStyle = '#555'; ctx.font = '400 23px ' + fBody;
-            ctx.fillText(aluno.graduacaoTexto || 'o título de', W/2, baseLine + 118);
-
-            // ── (barra da faixa removida a pedido — 2026-07) ──
-            // A barra chapada na cor da faixa não representava bem a modalidade
-            // (ex.: faixa preta virava um retângulo preto sólido). Mantemos só o
-            // TEXTO do nível abaixo. _temFaixa=false compacta o espaçamento.
-            var _yFaixa = baseLine + 130;
-            var _temFaixa = false;
-
-            // ── Nome do nível/faixa ──
-            var nivelTxt = aluno.nivelTexto;
-            if (nivelTxt === undefined || nivelTxt === null || nivelTxt === '') {
-                var grauTxt = (aluno.grau && parseInt(aluno.grau) > 0) ? (' · ' + aluno.grau + 'º grau') : '';
-                nivelTxt = (aluno.faixa||'').toUpperCase() + grauTxt;
-            }
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '800 44px ' + fTitle;
-            ctx.fillText(nivelTxt, W/2, _yFaixa + (_temFaixa ? 62 : 30));
-
-            // ── Fecho + modalidade/CT ──
-            var _yFecho = _yFaixa + (_temFaixa ? 105 : 75);
-            var _fecho = cfg.textoFecho ? _tpl(cfg.textoFecho) : '';
-            if (!_fecho) {
-                var rodape = aluno.ct ? ('na ' + aluno.ct) : '';
-                if (aluno.modalidade) rodape = aluno.modalidade + (aluno.ct ? ' · ' + aluno.ct : '');
-                _fecho = rodape;
-            }
-            if (_fecho) {
-                ctx.fillStyle = '#555'; ctx.font = '400 22px ' + fBody;
-                _fecho.split('\n').slice(0,2).forEach(function(linha, li) {
-                    ctx.fillText(linha, W/2, _yFecho + li * 30);
-                });
-            }
-
-            // ── Cidade + data ("Rio de Janeiro, 05 de maio de 2026") ──
-            var _cidadeData = (cfg.cidade ? (cfg.cidade + ', ') : '') + (data || '');
-            if (_cidadeData.trim()) {
-                ctx.fillStyle = '#666'; ctx.font = '400 21px ' + fBody;
-                ctx.fillText(_cidadeData, W/2, _yFecho + 70);
-            }
-
-            // ── 3º logo (rodapé esquerdo — federação/filiação, como no modelo) ──
-            if (cfg.logo3) {
-                try {
-                    var _l3 = await _carregarImg(cfg.logo3);
-                    if (_l3) {
-                        var _t3 = parseInt(cfg.logoTam3) || 130;
-                        var _r3 = _l3.width / _l3.height;
-                        var _w3 = _t3, _h3 = _t3 / (_r3 || 1);
-                        if (_h3 > _t3) { _h3 = _t3; _w3 = _t3 * _r3; }
-                        ctx.drawImage(_l3, 130 - _w3/2, 880 - _h3/2, _w3, _h3);
-                    }
-                } catch(e){}
-            }
-
-            // ── Assinaturas (até 3) ──
-            // Estilo do modelo de referência: assinatura sobre o traço, nome e
-            // título em ITÁLICO SERIFADO abaixo. Ficam deslocadas p/ a direita
-            // quando há 3º logo no rodapé esquerdo, para não colidir.
-            var n = Math.min(assinantes.length, 3);
-            if (n > 0) {
-                var imgs = [];
-                for (var k = 0; k < n; k++) imgs.push(await _carregarImg(assinantes[k].assinatura));
-                // [2026-07] Ancorado ao rodapé com folga: a moldura interna
-                // termina em H-48; o título (última linha) fica em lineY+48.
-                // lineY=H-150 → título em H-102, bem dentro da borda.
-                var lineY = H - 150, baseY = lineY - 6;
-                var margemEsq = cfg.logo3 ? 260 : 100;
-                var slotW = (W - margemEsq - 100) / n;
-                for (var s = 0; s < n; s++) {
-                    var cx = margemEsq + slotW * s + slotW / 2;
-                    if (imgs[s]) {
-                        var iw = 190, ih = 66, ratio = imgs[s].width / imgs[s].height;
-                        if (ratio > iw/ih) { ih = iw / ratio; } else { iw = ih * ratio; }
-                        ctx.drawImage(imgs[s], cx - iw/2, baseY - ih, iw, ih);
-                    }
-                    // traço fino, mais discreto que o anterior
-                    ctx.strokeStyle = '#555'; ctx.lineWidth = 1;
-                    ctx.beginPath(); ctx.moveTo(cx - 125, lineY); ctx.lineTo(cx + 125, lineY); ctx.stroke();
-                    ctx.fillStyle = '#1a1a1a';
-                    ctx.font = 'italic 400 20px ' + fBody;
-                    ctx.fillText(assinantes[s].nome || '', cx, lineY + 26);
-                    if (assinantes[s].titulo) {
-                        ctx.fillStyle = '#555';
-                        ctx.font = 'italic 400 17px ' + fBody;
-                        ctx.fillText(assinantes[s].titulo, cx, lineY + 48);
-                    }
-                }
-            }
-
-            // ── Moldura por cima de tudo (PNG com miolo transparente) ──
-            // Deixa o cliente usar a arte dele sem a gente desenhar filigrana.
-            if (cfg.moldura) {
-                try {
-                    var _mold = await _carregarImg(cfg.moldura);
-                    if (_mold) ctx.drawImage(_mold, 0, 0, W, H);
-                } catch(e){}
-            }
-
-            _mostrarCertificadoPreview(cv, aluno.nome);
-        }
-
-        function _mostrarCertificadoPreview(cv, nomeAluno) {
-            var old = document.getElementById('certPreviewSheet'); if (old) old.remove();
-            var dataUrl = cv.toDataURL('image/png');
-            var sh = document.createElement('div'); sh.id = 'certPreviewSheet';
-            sh.innerHTML = '<div onclick="document.getElementById(\'certPreviewSheet\').remove()" style="position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:10000;"></div>'
-              + '<div onclick="event.stopPropagation()" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#1a1f2e;border-radius:16px;padding:18px;z-index:10001;width:92%;max-width:560px;max-height:88vh;overflow-y:auto;">'
- + '<div style="font-size:14px;font-weight:800;color:#fff;text-align:center;margin-bottom:12px;"> Certificado</div>'
-              + '<img src="' + dataUrl + '" style="width:100%;border-radius:8px;border:1px solid rgba(255, 255, 255, 0.132);">'
- + '<a href="' + dataUrl + '" download="certificado-' + (nomeAluno||'aluno').replace(/[^a-zA-Z0-9]/g,'_') + '.png" style="display:block;text-align:center;width:100%;padding:13px;background:var(--nexti-grad);color:#000;border:none;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;margin-top:14px;text-decoration:none;box-sizing:border-box;"> Baixar certificado (PNG)</a>'
-              + '<button onclick="document.getElementById(\'certPreviewSheet\').remove()" style="width:100%;padding:10px;background:transparent;border:none;color:rgba(255, 255, 255, 0.088);font-size:12px;cursor:pointer;margin-top:6px;">Fechar</button>'
-              + '</div>';
-            document.body.appendChild(sh);
-        }
-
         // ═══ ASSINATURA DO PROFESSOR (desenhar ou enviar) ═══════════════════
         // ═══════════════════════════════════════════════════════════════
         // ASSINATURAS DO CERTIFICADO — 3 abas, cada uma DESENHA ou ENVIA
@@ -56091,17 +54553,6 @@ async function initPresencaList() {
         }
 
         // Pré-visualiza com dados de exemplo aplicando o que está no formulário
-        async function previewCertificado() {
-            var cfg = _certFormConfig();
-            var exemplo = { nome: 'Nome do Aluno', faixa: 'Preta', grau: '1', ct: (window.CT_NOME || 'Sua Academia') };
-            // [CERT 2026-07] Se houver assinaturas avulsas preenchidas, usa elas no preview
-            var _av = _getSignatariosAvulsos().filter(function(s){ return s.assinatura || s.nome; });
-            var assEx = _av.length
-                ? _av.map(function(s){ return { nome: s.nome || 'Assinante', titulo: s.titulo || '', assinatura: s.assinatura || '' }; })
-                : [{ nome: 'Professor', titulo: 'Faixa Preta', assinatura: '' }];
-            await _desenharCertificado(exemplo, assEx, new Date().toLocaleDateString('pt-BR'), cfg);
-        }
-
         // ═══ ABA EVENTOS ════════════════════════════════════════════════════
         // ── Cobranças Avulsas (admin) ────────────────────────────────────────
         var _avulsasCache = [];
@@ -56240,19 +54691,6 @@ async function initPresencaList() {
         }
 
         // Cobra a avulsa no cartão salvo do aluno e mostra o RETORNO do pagamento
-        async function cobrarAvulsaCartaoAdmin(id) {
-            if (!confirm('Cobrar esta avulsa no cartão de crédito cadastrado do aluno?\nA cobrança é feita agora e o retorno (aprovado/recusado) aparece na hora.')) return;
-            var res;
-            try { res = await secureFetch('cobrarAvulsaCartao', { id: id }); }
-            catch (e) { alert('Erro de comunicação: ' + e.message); return; }
-            if (res && res.success) {
- alert(res.message || ' Pagamento aprovado no cartão!');
-                loadAvulsasAdmin();
-            } else {
- alert((res && res.message) || ' Não foi possível cobrar no cartão.');
-            }
-        }
-
         async function cancelarAvulsaAdmin(id) {
             if (!confirm('Cancelar esta cobrança avulsa?')) return;
             var res = await secureFetch('cancelarCobrancaAvulsa', { id: id });
@@ -56447,31 +54885,6 @@ async function initPresencaList() {
                 } catch(e2) { /* payload realmente grande demais pra localStorage — segue sem cache, sem travar a tela */ }
             }
         }
-
-        async function renderFaturamento() {
-            if (!_fatSub) _fatSub = 'executivo';
-            var box = document.getElementById('fatContent'); if (!box) return;
-            var ctSel = (document.getElementById('fatCTFilter')||{}).value || '';
-            var cacheKey = _fatCacheKey(ctSel, _fatMes.mes, _fatMes.ano);
-            var cached = _fatLerCache(cacheKey);
-
-            if (cached && cached.res) {
-                // Mostra o cache IMEDIATAMENTE — sem "Carregando..." — e atualiza
-                // em segundo plano. A idade do cache aparece discretamente.
-                _fatFluxo = cached.res;
-                _fatRenderShell(box, cached.res, ctSel, cached.ts);
-                _fatAtualizarEmSegundoPlano(cacheKey, ctSel);
-                return;
-            }
-
-            box.innerHTML = '<div style="text-align:center;padding:40px 0;color:rgba(255, 255, 255, 0.088);font-size:12px;">Carregando faturamento...</div>';
-            var res = await secureFetch('getFluxoCaixaCT', { mes: _fatMes.mes, ano: _fatMes.ano, ct: ctSel });
-            if (!res || !res.success) { box.innerHTML = '<div style="text-align:center;padding:40px 0;color:#F87171;font-size:12px;">Erro ao carregar faturamento' + ((res&&res.message)?(': '+escapeHtml(res.message)):'.') + '</div>'; return; }
-            _fatFluxo = res;
-            _fatSalvarCache(cacheKey, res);
-            _fatRenderShell(box, res, ctSel, Date.now());
-        }
-
         // Busca a versão fresca sem travar a tela; só redesenha se o dado
         // realmente mudou (evita "piscar" a tela à toa a cada poucos minutos).
         async function _fatAtualizarEmSegundoPlano(cacheKey, ctSel) {
@@ -56520,7 +54933,7 @@ async function initPresencaList() {
 
             // FILTRO DE CT
             html += '<div style="margin-bottom:10px;">'
-                 + '<select id="fatCTFilter" onchange="renderFaturamento()" style="width:100%;box-sizing:border-box;padding:8px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:8px;font-size:12px;">'
+                 + '<select id="fatCTFilter" data-removido="1" style="width:100%;box-sizing:border-box;padding:8px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:8px;font-size:12px;">'
                  + '<option value="">Todos os CTs</option>'
                  + (typeof allCTs !== 'undefined' && allCTs ? allCTs.map(function(c){ var nm = (typeof c === 'string') ? c : (c.name || c.nome || ''); return '<option value="'+escapeHtml(nm)+'"'+(ctSel===nm?' selected':'')+'>'+escapeHtml(nm)+'</option>'; }).join('') : '')
                  + '</select></div>';
@@ -56645,20 +55058,6 @@ async function initPresencaList() {
         // Sem plano/Nunca pagou). Essa tela é DIFERENTE de "Lançamentos" —
         // Cobranças mostra pendências, Lançamentos mostra pagamentos já
         // recebidos. Confundir as duas mandaria o gestor pro lugar errado.
-        function _abrirCobrancasFiltro(filtro) {
-            switchAdminTab('adm-financeiro', null);
-            setTimeout(function() {
-                if (typeof switchPagTab === 'function') switchPagTab(4);
-                var btnAlvo = null;
-                document.querySelectorAll('.cob-filter-btn').forEach(function(b) {
-                    var oc = b.getAttribute('onclick') || '';
-                    if (oc.indexOf("'" + filtro + "'") >= 0) btnAlvo = b;
-                });
-                if (typeof filtrarCobrancas === 'function') filtrarCobrancas(filtro, btnAlvo);
-                var sec = document.getElementById('pagamentosAdminSection');
-                if (sec) sec.scrollIntoView({ behavior:'smooth', block:'start' });
-            }, 300);
-        }
         // Abre Lançamentos (pagamentos JÁ recebidos) filtrado por hoje —
         // reaproveita a busca por texto que já existe, pré-preenchida com a
         // data de hoje no mesmo formato usado no restante do sistema.
@@ -57023,7 +55422,7 @@ async function initPresencaList() {
               + '</div>'
               + '<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:10px;">'
  + '<button onclick="_exportarRelProfessores()" style="flex:1;padding:8px 12px;background:#22c55e;border:none;border-radius:7px;color:#000;font-size:11px;font-weight:700;cursor:pointer;"> Exportar</button>'
- + '<button onclick="_lancarRemuneracaoDespesa()" style="flex:1;padding:8px 12px;background:rgba(238, 90, 27,0.15);border:1px solid rgba(238, 90, 27,0.35);border-radius:7px;color:var(--adm-primary);font-size:11px;font-weight:700;cursor:pointer;" title="Cria/atualiza uma despesa em Contas a Pagar para cada professor listado, com o valor deste relatório"> Lançar em Contas a Pagar</button>'
+ + ''
  + '<button onclick="_abrirLancarAulaModal()" style="flex:1;padding:8px 12px;background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.35);border-radius:7px;color:#60a5fa;font-size:11px;font-weight:700;cursor:pointer;" title="Registrar uma aula que o professor deu mas esqueceu de lançar no Cronograma"> Lançar aula esquecida</button>'
               + '</div>'
               + '<div id="profRelContainer" style="font-size:12px;color:var(--adm-text-3);">Clique em "Gerar" para ver o relatório do mês.</div>';
@@ -57263,122 +55662,6 @@ async function initPresencaList() {
         }
 
         // ── SUB-ABA: CONTAS A PAGAR (Despesas) ──
-        async function _fatRenderDespesas(box) {
-            box.innerHTML = '<div style="text-align:center;padding:20px 0;color:var(--adm-text-3);font-size:12px;">Carregando despesas...</div>';
-            var ctSel = (document.getElementById('fatCTFilter')||{}).value || '';
-            var res = await secureFetch('getDespesas', { ct: ctSel });
-            if (!res || !res.success) { box.innerHTML = '<div style="text-align:center;padding:20px 0;color:#F87171;font-size:12px;">Erro ao carregar despesas' + ((res&&res.message)?(': '+escapeHtml(res.message)):'.') + '</div>'; return; }
-            _fatDespesas = res.despesas || [];
-
-            var h = '<div style="display:flex;gap:8px;margin-bottom:10px;">'
-                 +  '<div style="flex:1;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.25);border-radius:9px;padding:8px;text-align:center;"><div style="font-size:9px;color:#F87171;">VENCIDO</div><div style="font-size:13px;font-weight:800;color:#F87171;">' + _fmtR$(res.totalVencido) + '</div></div>'
-                 +  '<div style="flex:1;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.25);border-radius:9px;padding:8px;text-align:center;"><div style="font-size:9px;color:#FBBF24;">A PAGAR</div><div style="font-size:13px;font-weight:800;color:#FBBF24;">' + _fmtR$(res.totalPendente) + '</div></div>'
-                 +  '<div style="flex:1;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);border-radius:9px;padding:8px;text-align:center;"><div style="font-size:9px;color:#4ADE80;">PAGO</div><div style="font-size:13px;font-weight:800;color:#4ADE80;">' + _fmtR$(res.totalPago) + '</div></div>'
-                 +  '</div>';
-            h += '<button onclick="_fatAbrirNovaDespesa()" style="width:100%;padding:10px;margin-bottom:12px;background:var(--nexti-grad);color:#000;border:none;border-radius:9px;font-size:12px;font-weight:800;cursor:pointer;">+ Nova despesa</button>';
-
-            if (!_fatDespesas.length) {
-                h += '<div style="text-align:center;padding:20px 0;color:var(--adm-text-3);font-size:12px;">Nenhuma despesa lançada ainda.</div>';
-            } else {
-                var hoje = new Date(); hoje.setHours(0,0,0,0);
-                _fatDespesas.forEach(function(d) {
-                    var partes = (d.vencimento||'').split('/');
-                    var vencDate = partes.length===3 ? new Date(parseInt(partes[2]),parseInt(partes[1])-1,parseInt(partes[0])) : null;
-                    var vencido = d.status==='PENDENTE' && vencDate && vencDate<hoje;
-                    var cor = d.status==='PAGO' ? '#4ADE80' : (vencido ? '#F87171' : '#fbbf24');
- var statusLabel = d.status==='PAGO'? (' Pago em '+d.dataPagamento): (vencido? ' Vencida': '⏳ Pendente');
-                    h += '<div style="display:flex;align-items:center;gap:8px;padding:10px;background:rgba(255, 255, 255, 0.033);border:1px solid rgba(255, 255, 255, 0.088);border-radius:10px;margin-bottom:6px;">'
-                       + '<div style="flex:1;min-width:0;">'
-                       + '<div style="font-size:12px;font-weight:700;color:var(--adm-text-1);">' + escapeHtml(d.descricao) + '</div>'
- + '<div style="font-size:9px;color:var(--adm-text-3);">' + escapeHtml(d.categoria) + ' · ' + escapeHtml(d.ct) + ' · vence ' + escapeHtml(d.vencimento) + (d.recorrente?' · recorrente':'') + '</div>'
-                       + '<div style="font-size:10px;color:' + cor + ';font-weight:700;margin-top:2px;">' + statusLabel + '</div>'
-                       + '</div>'
-                       + '<div style="text-align:right;">'
-                       + '<div style="font-size:14px;font-weight:900;color:var(--adm-text-1);margin-bottom:5px;">' + _fmtR$(d.valor) + '</div>'
-                       + (d.status==='PAGO'
-                          ? '<button onclick="_fatMarcarDespesa(\''+d.id+'\',true)" style="padding:4px 8px;background:transparent;border:1px solid var(--adm-border);border-radius:6px;color:var(--adm-text-3);font-size:9px;cursor:pointer;">desfazer</button>'
-                          : '<button onclick="_fatMarcarDespesa(\''+d.id+'\',false)" style="padding:4px 8px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:6px;color:#4ADE80;font-size:9px;font-weight:700;cursor:pointer;">marcar pago</button>')
-                       + ' <button onclick="_fatExcluirDespesa(\''+d.id+'\')" style="padding:4px 8px;background:transparent;border:1px solid rgba(248,113,113,0.3);border-radius:6px;color:#F87171;font-size:9px;cursor:pointer;">excluir</button>'
-                       + '</div></div>';
-                });
-            }
-            box.innerHTML = h;
-        }
-
-        async function _fatMarcarDespesa(id, desfazer) {
-            var res = await secureFetch('marcarDespesaPaga', { id: id, desfazer: !!desfazer });
- if (res && res.success) { showToast(desfazer?'Despesa marcada como pendente.':' Despesa paga!'); renderFaturamento(); }
-            else showToast((res&&res.message)||'Erro ao atualizar despesa.', 'error');
-        }
-
-        async function _fatExcluirDespesa(id) {
-            if (!confirm('Excluir esta despesa? Essa ação não pode ser desfeita.')) return;
-            var res = await secureFetch('deleteDespesa', { id: id });
-            if (res && res.success) { showToast('Despesa excluída.'); renderFaturamento(); }
-            else showToast((res&&res.message)||'Erro ao excluir despesa.', 'error');
-        }
-
-        function _fatAbrirNovaDespesa(idEdit) {
-            var d = idEdit && _fatDespesas ? _fatDespesas.filter(function(x){return x.id===idEdit;})[0] : null;
-            var cats = ['Aluguel','Água/Luz/Internet','Salários','Comissão/Remuneração Professor','Material/Equipamento','Marketing','Manutenção','Limpeza','Impostos/Taxas','Software/Assinaturas','Outros'];
-            var ctOpts = (typeof allCTs !== 'undefined' && allCTs ? allCTs.map(function(c){ var nm=(typeof c==='string')?c:(c.name||c.nome||''); return '<option value="'+escapeHtml(nm)+'"'+((d&&d.ct===nm)?' selected':'')+'>'+escapeHtml(nm)+'</option>'; }).join('') : '');
-            var catOpts = cats.map(function(c){ return '<option value="'+c+'"'+((d&&d.categoria===c)?' selected':'')+'>'+c+'</option>'; }).join('');
-            var html = '<div style="padding:4px;">'
- + '<div style="font-size:14px;font-weight:800;color:var(--adm-text-1);margin-bottom:12px;">' + (d?' Editar despesa':'+ Nova despesa (Conta a Pagar)') + '</div>'
-                 + '<label style="font-size:10px;color:var(--adm-text-3);">CT</label>'
-                 + '<select id="despCT" style="width:100%;box-sizing:border-box;padding:8px;margin-bottom:8px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:7px;font-size:12px;">' + ctOpts + '</select>'
-                 + '<label style="font-size:10px;color:var(--adm-text-3);">Categoria</label>'
-                 + '<select id="despCategoria" style="width:100%;box-sizing:border-box;padding:8px;margin-bottom:8px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:7px;font-size:12px;">' + catOpts + '</select>'
-                 + '<label style="font-size:10px;color:var(--adm-text-3);">Descrição</label>'
-                 + '<input type="text" id="despDescricao" value="' + (d?escapeHtml(d.descricao):'') + '" placeholder="Ex.: Aluguel do salão - Julho" style="width:100%;box-sizing:border-box;padding:8px;margin-bottom:8px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:7px;font-size:12px;">'
-                 + '<div style="display:flex;gap:8px;">'
-                 + '<div style="flex:1;"><label style="font-size:10px;color:var(--adm-text-3);">Valor (R$)</label><input type="number" step="0.01" id="despValor" value="' + (d?d.valor:'') + '" style="width:100%;box-sizing:border-box;padding:8px;margin-bottom:8px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:7px;font-size:12px;"></div>'
-                 + '<div style="flex:1;"><label style="font-size:10px;color:var(--adm-text-3);">Vencimento</label><input type="date" id="despVencimento" style="width:100%;box-sizing:border-box;padding:8px;margin-bottom:8px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:7px;font-size:12px;"></div>'
-                 + '</div>'
- + '<label style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--adm-text-2);margin-bottom:12px;cursor:pointer;"><input type="checkbox" id="despRecorrente"' + (d&&d.recorrente?' checked':'') + '> Despesa recorrente (mensal)</label>'
- + '<button id="btnSalvarDespesa" onclick="_fatSalvarDespesa(\'' + (idEdit||'') + '\')" style="width:100%;padding:11px;background:var(--nexti-grad);color:#000;border:none;border-radius:9px;font-size:13px;font-weight:800;cursor:pointer;"> Salvar</button>'
-                 + '</div>';
-            var old = document.getElementById('novaDespesaSheet'); if (old) old.remove();
-            var sh = document.createElement('div'); sh.id = 'novaDespesaSheet';
-            sh.innerHTML = '<div onclick="document.getElementById(\'novaDespesaSheet\').remove()" style="position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9998;"></div>'
-              + '<div onclick="event.stopPropagation()" style="position:fixed;bottom:0;left:0;right:0;background:#1a1f2e;border-radius:20px 20px 0 0;padding:24px 20px 36px;z-index:9999;max-height:90vh;overflow-y:auto;">'
-              + '<div style="width:40px;height:4px;background:rgba(255, 255, 255, 0.088);border-radius:2px;margin:0 auto 20px;"></div>'
-              + html
-              + '</div>';
-            document.body.appendChild(sh);
-        }
-
-        async function _fatSalvarDespesa(idEdit) {
-            var btnSalvar = document.getElementById('btnSalvarDespesa');
-            var _btnTextoOrig = btnSalvar ? btnSalvar.textContent : '';
-            if (btnSalvar) { btnSalvar.disabled = true; btnSalvar.textContent = '⏳ Salvando...'; }
-            var payload = {
-                ct: (document.getElementById('despCT')||{}).value,
-                categoria: (document.getElementById('despCategoria')||{}).value,
-                descricao: (document.getElementById('despDescricao')||{}).value,
-                valor: (document.getElementById('despValor')||{}).value,
-                vencimento: (document.getElementById('despVencimento')||{}).value,
-                recorrente: (document.getElementById('despRecorrente')||{}).checked
-            };
-            if (idEdit) payload.id = idEdit;
-            var res;
-            try {
-                res = await secureFetch('saveDespesa', payload);
-            } catch(e) {
-                if (btnSalvar) { btnSalvar.disabled = false; btnSalvar.textContent = _btnTextoOrig; }
-                showToast('Erro de conexão.', 'error');
-                return;
-            }
-            if (res && res.success) {
- showToast(' Despesa salva!');
-                var sheet = document.getElementById('novaDespesaSheet'); if (sheet) sheet.remove();
-                renderFaturamento();
-            } else {
-                if (btnSalvar) { btnSalvar.disabled = false; btnSalvar.textContent = _btnTextoOrig; }
-                showToast((res&&res.message)||'Erro ao salvar despesa.', 'error');
-            }
-        }
-
         // ── SUB-ABA: RELATÓRIOS CUSTOMIZADOS ──
         function _fatRenderRelatorios(box) {
             var ctOpts = (typeof allCTs !== 'undefined' && allCTs ? allCTs.map(function(c){ var nm = (typeof c === 'string') ? c : (c.name || c.nome || ''); return '<option value="'+escapeHtml(nm)+'">'+escapeHtml(nm)+'</option>'; }).join('') : '');
