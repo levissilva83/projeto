@@ -10657,7 +10657,7 @@ tr:hover td{background:#FFF9F6!important}
                     <div class="admin-section" style="padding:0;overflow:hidden;">
 
                         <!-- Tab Bar -->
-                        <div style="display:grid;grid-template-columns:repeat(6,1fr);background:rgba(255, 255, 255, 0.033);border-bottom:1px solid var(--adm-border);" id="gradPainelTabBar">
+                        <div style="display:grid;grid-template-columns:repeat(5,1fr);background:rgba(255, 255, 255, 0.033);border-bottom:1px solid var(--adm-border);" id="gradPainelTabBar">
                             <button class="adm-painel-tab-btn active" id="gradPainelTabBtn1" onclick="switchGradPainelTab(1)"
                                 style="padding:9px 4px 7px;border:none;border-bottom:2px solid var(--adm-primary);background:rgba(238, 90, 27,0.08);color:var(--adm-primary);font-size:9px;font-weight:800;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;">
  <span style="font-size:15px;"></span><span>Solicitações <span class="admin-badge" id="adminGradBadge" style="display:none;">0</span></span>
@@ -10678,10 +10678,7 @@ tr:hover td{background:#FFF9F6!important}
                                 style="padding:9px 4px 7px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--adm-text-3);font-size:9px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;">
  <span style="font-size:15px;"></span><span>Em progresso <span class="admin-badge blue" id="gradTabAllBadge" style="display:none;">0</span></span>
                             </button>
-                            <button class="adm-painel-tab-btn" id="gradPainelTabBtn5" onclick="switchGradPainelTab(5)"
-                                style="padding:9px 4px 7px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--adm-text-3);font-size:9px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;">
- <span style="font-size:15px;"></span><span>Exame</span>
-                            </button>
+                            
                         </div>
 
                         <!-- ── Tab 1: Solicitações ── -->
@@ -11318,7 +11315,7 @@ tr:hover td{background:#FFF9F6!important}
                     <div class="admin-section" style="padding:0;overflow:hidden;">
 
                         <!-- Tab Bar -->
-                        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--adm-border);" id="admPainelTabBar">
+                        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--adm-border);" id="admPainelTabBar">
                             <button class="adm-painel-tab-btn active" id="admPainelTabBtn1" onclick="switchAdmPainelTab(1)"
                                 style="padding:8px 4px 6px;border:none;border-bottom:2px solid var(--adm-primary);background:rgba(238, 90, 27,0.08);color:var(--adm-primary);font-size:9px;font-weight:800;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;">
                                 <span style="font-size:15px;">🆕</span><span>Novos <span class="admin-badge" id="adminAccBadge" style="display:none;">0</span></span>
@@ -11335,23 +11332,13 @@ tr:hover td{background:#FFF9F6!important}
                                 style="padding:8px 4px 6px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--adm-text-3);font-size:9px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;">
  <span style="font-size:15px;"></span><span>Inativos <span class="admin-badge" id="adminInativoBadge" style="display:none;">0</span></span>
                             </button>
-                            <button class="adm-painel-tab-btn" id="admPainelTabBtn5" onclick="switchAdmPainelTab(5)"
-                                style="padding:8px 4px 6px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--adm-text-3);font-size:9px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;">
- <span style="font-size:15px;"></span><span>Check-ins</span>
-                            </button>
+                            
                             <!-- [REMOVIDO 2026-06-20] Botão "Foto" — a tecnologia de
                                  reconhecimento por IA foi migrada para o Quiosque
                                  (Sistema → Quiosque Facial), que agora reconhece o
                                  aluno automaticamente pela câmera em vez de depender
                                  de upload manual de foto de grupo aqui no Painel. -->
-                            <!-- [2026-08-03] Aba Congelados. Antes o unico acesso era
-                                 clicar no card KPI "CONGELAM." — que passou a sumir
-                                 quando zerado, deixando a tela inacessivel. Usa o
-                                 indice 6, livre desde a remocao da aba "Foto". -->
-                            <button class="adm-painel-tab-btn" id="admPainelTabBtn8" onclick="switchAdmPainelTab(8)"
-                                style="padding:8px 4px 6px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--adm-text-3);font-size:9px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;">
- <span style="font-size:15px;"></span>
-                            </button>
+                            
                             <button class="adm-painel-tab-btn" id="admPainelTabBtn7" onclick="switchAdmPainelTab(7);loadFrequenciaMensal();"
                                 style="padding:8px 4px 6px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--adm-text-3);font-size:9px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;">
  <span style="font-size:15px;"></span><span>Frequência</span>
@@ -11467,144 +11454,9 @@ tr:hover td{background:#FFF9F6!important}
                             <div id="freqMensalContainer" style="font-size:12px;color:var(--adm-text-3);">Clique em Atualizar para ver a frequência do mês atual.</div>
                         </div>
 
-                        <!-- ── Tab 5: Check-ins Recentes ─────────────────── -->
                         
 
-                        <!-- ── Tab 6: Checkin por Foto ─────────────────── -->
-                        <!-- ── Tab 6: Checkin por Foto ─────────────────── -->
-                        <div id="admPainelTab6" class="adm-painel-tab-panel" style="display:none;padding:12px;">
-
-                            <!-- FASE 0: upload da foto -->
-                            <div id="fotoFase0">
-                                <div style="font-size:11px;color:var(--adm-text-3);margin-bottom:10px;line-height:1.5;">
-                                    Tire ou envie uma foto do grupo no treino. A IA vai reconhecer os alunos e registrar as presenças automaticamente.
-                                </div>
-                                <div class="foto-checkin-upload-area" id="fotoDropArea"
-                                    onclick="document.getElementById('fotoInputGaleria').click()"
-                                    ondragover="event.preventDefault();this.classList.add('drag-over')"
-                                    ondragleave="this.classList.remove('drag-over')"
-                                    ondrop="fotoHandleDrop(event)">
- <div style="font-size:40px;margin-bottom:8px;"></div>
-                                    <div style="font-size:14px;font-weight:700;color:var(--adm-text-1);margin-bottom:4px;">Toque para escolher foto</div>
-                                    <div style="font-size:11px;color:var(--adm-text-3);">ou arraste aqui</div>
-                                </div>
-                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-                                    <button onclick="fotoAbrirCamera()"
-                                        style="padding:11px;border-radius:10px;border:1px solid var(--adm-border);background:var(--adm-bg-elevated);color:var(--adm-text-1);font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
- Câmera
-                                    </button>
-                                    <button onclick="document.getElementById('fotoInputGaleria').click()"
-                                        style="padding:11px;border-radius:10px;border:1px solid var(--adm-border);background:var(--adm-bg-elevated);color:var(--adm-text-1);font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
- Galeria
-                                    </button>
-                                </div>
-                                <input type="file" id="fotoInputCamera"  accept="image/*" style="display:none" onchange="fotoHandleFile(this)">
-                                <input type="file" id="fotoInputGaleria" accept="image/*" style="display:none" onchange="fotoHandleFile(this)">
-                            </div>
-
-                            <!-- FASE 1: preview + botão analisar -->
-                            <div id="fotoFase1" style="display:none;">
-                                <div class="foto-checkin-preview-wrap" id="fotoPreviewWrap">
-                                    <img id="fotoPreviewImg" class="foto-checkin-preview-img" src="" alt="Foto do treino"
-                                         onmousedown="fotoDragStart(event)" onmousemove="fotoDragMove(event)"
-                                         onmouseup="fotoDragEnd()" onmouseleave="fotoDragEnd()"
-                                         ontouchstart="fotoDragStart(event)" ontouchmove="fotoDragMove(event)"
-                                         ontouchend="fotoDragEnd()">
-                                    <div class="foto-zoom-controls">
-                                        <button class="foto-zoom-btn" onclick="fotoZoom(0.2)" title="Aumentar">+</button>
-                                        <button class="foto-zoom-btn" onclick="fotoZoom(-0.2)" title="Diminuir">−</button>
-                                        <button class="foto-zoom-btn" onclick="fotoZoomReset()" title="Centralizar" style="font-size:13px;">⟲</button>
-                                    </div>
-                                    <div class="foto-zoom-info" id="fotoZoomInfo">100%</div>
-                                </div>
-                                <div id="fotoErroMsg" style="display:none;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:12px;color:#F87171;"></div>
-
-                                <!-- Seletor de Centro de Treinamento -->
-                                <div style="margin-bottom:10px;">
- <label style="font-size:11px;font-weight:700;color:var(--adm-text-3);text-transform:uppercase;letter-spacing:0.6px;display:block;margin-bottom:5px;"> Filtrar por Centro</label>
-                                    <select id="fotoCtFiltro" style="width:100%;padding:10px 12px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;outline:none;">
-                                        <option value="">— Selecione o CT —</option>
-                                    </select>
-                                    <div style="font-size:10px;color:var(--adm-text-3);margin-top:4px;line-height:1.4;">A busca será restrita aos alunos deste CT (mais rápido e preciso).</div>
-                                </div>
-
-                                <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(0,0,0,0.15);border-radius:8px;margin-bottom:8px;">
- <span style="font-size:10px;font-weight:700;color:var(--adm-text-3);"> MOTOR DE ANÁLISE</span>
-                                    <div style="display:flex;gap:10px;">
-                                        <label style="display:flex;align-items:center;gap:4px;cursor:pointer;font-size:11px;color:var(--adm-text-2);">
-                                            <input type="radio" name="motorFoto" value="claude" checked style="accent-color:var(--adm-primary);"> Claude AI
-                                        </label>
-                                        <label style="display:flex;align-items:center;gap:4px;cursor:pointer;font-size:11px;color:#f59e0b;font-weight:700;">
- <input type="radio" id="motorRekognition" name="motorFoto" value="rekognition" style="accent-color:#f59e0b;"> Rekognition
-                                        </label>
-                                    </div>
-                                </div>
-                                <button onclick="fotoAnalisar()" 
-                                    style="width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#FE5301,#FE5301);color:#000;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:8px;">
- Confirmar Presença
-                                </button>
-                                <button onclick="fotoReiniciar()"
-                                    style="width:100%;padding:11px;border-radius:12px;border:1px solid var(--adm-border);background:transparent;color:var(--adm-text-3);font-size:12px;font-weight:600;cursor:pointer;">
-                                    ↩ Trocar foto
-                                </button>
-                            </div>
-
-                            <!-- FASE 2: analisando (spinner) -->
-                            <div id="fotoFase2" style="display:none;text-align:center;padding:36px 0;">
-                                <div class="foto-spinner"></div>
-                                <div id="fotoProgressoTxt" style="margin-top:16px;font-size:13px;font-weight:600;color:var(--adm-primary);">Analisando foto...</div>
-                                <div id="fotoProgressoSub" style="margin-top:4px;font-size:11px;color:var(--adm-text-3);">Aguarde enquanto a IA identifica os alunos</div>
-                            </div>
-
-                            <!-- FASE 3: resultado -->
-                            <div id="fotoFase3" style="display:none;">
-                                <img id="fotoResultImg" class="foto-checkin-preview-img" src="" alt="">
-
-                                <!-- Aviso precisão -->
-                                <div id="fotoAvisoFotos" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:11px;color:#F59E0B;line-height:1.5;display:none;"></div>
-
-                                <!-- Reconhecidos pela IA -->
-                                <div id="fotoSecReconhecidos" style="display:none;">
- <div style="font-size:10px;font-weight:800;color:#22C55E;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;"> Identificados pela IA</div>
-                                    <div id="fotoListaReconhecidos" style="display:flex;flex-wrap:wrap;gap:0;flex-direction:column;"></div>
-                                </div>
-
-                                <!-- Marcar manualmente -->
-                                <div id="fotoSecManuais" style="margin-top:12px;">
-                                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
- <div style="font-size:10px;font-weight:800;color:var(--adm-text-3);text-transform:uppercase;letter-spacing:0.5px;"> Confirmar / Adicionar</div>
-                                        <div style="display:flex;gap:6px;">
-                                            <button onclick="fotoSelecionarTodos(true)"  style="padding:3px 8px;border-radius:5px;border:1px solid var(--adm-border);background:transparent;color:var(--adm-text-3);font-size:10px;cursor:pointer;">Todos</button>
-                                            <button onclick="fotoSelecionarTodos(false)" style="padding:3px 8px;border-radius:5px;border:1px solid var(--adm-border);background:transparent;color:var(--adm-text-3);font-size:10px;cursor:pointer;">Nenhum</button>
-                                        </div>
-                                    </div>
-                                    <div id="fotoListaManuais" style="display:flex;flex-wrap:wrap;gap:0;flex-direction:column;max-height:280px;overflow-y:auto;"></div>
-                                </div>
-
-                                <div id="fotoObservacoes" style="display:none;background:rgba(255,255,255,0.03);border-radius:8px;padding:10px;margin-top:10px;font-size:11px;color:var(--adm-text-3);line-height:1.5;"></div>
-
-                                <button id="fotoBtnConfirmar" onclick="fotoConfirmarCheckins()"
-                                    style="width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#FE5301,#FE5301);color:#000;font-size:14px;font-weight:800;cursor:pointer;margin-top:14px;">
- Confirmar 0 Check-in(s)
-                                </button>
-                                <button onclick="fotoReiniciar()"
-                                    style="width:100%;padding:11px;border-radius:12px;border:1px solid var(--adm-border);background:transparent;color:var(--adm-text-3);font-size:12px;font-weight:600;cursor:pointer;margin-top:8px;">
-                                    ↩ Nova foto
-                                </button>
-                            </div>
-
-                            <!-- FASE 4: sucesso -->
-                            <div id="fotoFase4" style="display:none;text-align:center;padding:32px 16px;">
- <div style="width:72px;height:72px;border-radius:50%;background:rgba(34,197,94,0.1);border:2px solid rgba(34,197,94,0.35);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 16px;"></div>
-                                <div style="font-size:20px;font-weight:800;margin-bottom:6px;">Presença Registrada!</div>
-                                <div id="fotoSucessoCount" style="font-size:13px;color:var(--adm-text-3);margin-bottom:24px;"></div>
-                                <button onclick="fotoReiniciar()"
-                                    style="width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#FE5301,#FE5301);color:#000;font-size:14px;font-weight:800;cursor:pointer;">
- Nova Foto de Treino
-                                </button>
-                            </div>
-
-                        </div>
+                        
                         <!-- ── FIM Tab 6 ── -->
 
                     </div>
@@ -12197,28 +12049,7 @@ tr:hover td{background:#FFF9F6!important}
 
                     <!-- Graduation Config per CT -->
                     <!-- Treinos Customizados -->
-                    <div class="admin-section" id="modulosTreinoSection">
-                        <div class="admin-section-header">
- <div class="admin-section-title"> Módulos de Treino <span style="font-size:10px;font-weight:400;color:var(--adm-text-3);">personalizáveis</span></div>
-                            <button class="admin-refresh-btn" onclick="loadAdminTreinos()">↻ Atualizar</button>
-                        </div>
-                        <div id="adminTreinosList" style="margin-bottom:12px;"><div class="admin-empty">Carregando...</div></div>
-                        <!-- Form novo treino -->
-                        <div style="padding:12px;background:var(--adm-bg-elevated);border:1px solid var(--adm-border);border-radius:10px;">
-                            <div style="font-size:11px;font-weight:700;color:var(--adm-text-2);margin-bottom:4px;">+ Novo Módulo de Treino</div>
-                            <div style="font-size:10px;color:var(--adm-text-3);margin-bottom:8px;">Crie qualquer tipo: Funcional, Condicionamento, Flexibilidade, etc.</div>
-                            <input type="text" id="adminTreinoNome" placeholder="Nome do treino (ex: Condicionamento)" style="width:100%;box-sizing:border-box;padding:8px;background:var(--adm-bg-card);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:6px;font-size:12px;margin-bottom:6px;">
-                            <input type="text" id="adminTreinoDesc" placeholder="Descrição (ex: Condicionamento físico)" style="width:100%;box-sizing:border-box;padding:8px;background:var(--adm-bg-card);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:6px;font-size:12px;margin-bottom:6px;">
-                            <div style="font-size:10px;color:var(--adm-text-3);margin-bottom:4px;">Exercícios (um por linha — formato: Nome | Séries):</div>
-                            <textarea id="adminTreinoExs" placeholder="Burpee | 3x15&#10;Prancha | 3x60s&#10;Agachamento com Salto | 4x12" rows="4" style="width:100%;box-sizing:border-box;padding:8px;background:var(--adm-bg-card);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:6px;font-size:11px;resize:vertical;font-family:inherit;"></textarea>
-                            <div style="display:flex;gap:6px;margin-top:6px;align-items:center;">
-                                <label style="font-size:10px;color:var(--adm-text-3);">Cor:</label>
-                                <input type="color" id="adminTreinoCor" value="#3b82f6" style="width:36px;height:28px;border:none;border-radius:4px;cursor:pointer;background:transparent;">
- <button onclick="adminSalvarTreino()" style="flex:1;padding:8px;background:var(--adm-primary);color:#000;border:none;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;"> Criar Treino</button>
-                            </div>
-                            <div id="adminTreinoMsg" style="font-size:11px;margin-top:6px;"></div>
-                        </div>
-                    </div>
+                    
 
                     <!-- Modal de edição de treino -->
                     <div id="adminTreinoEditModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(255, 255, 255, 0.70);align-items:flex-end;justify-content:center;">
@@ -14567,7 +14398,6 @@ tr:hover td{background:#FFF9F6!important}
  _lockByPlan('cobBatchBtn', ' Cobrar em lote', 'profissional');
             }
             if (_planLimits.fotoCheckin === false) {
- _lockByPlan('admPainelTab6', ' Checkin por Foto', 'profissional');
             }
             // Filiais: só quem tem mais de 1 CT no teto pode criar filial
             // (filiais = total de CTs incluindo a matriz → 1 = só matriz)
@@ -25142,10 +24972,6 @@ tr:hover td{background:#FFF9F6!important}
                     
                     checkAptStatus();
 
-                    // [2026-08-01] Resultados de exame do aluno (seção "Meus exames").
-                    // Sem await pra não atrasar o resto da tela.
-                    if (typeof carregarMeusExames === 'function') carregarMeusExames();
-
                     // Re-renderiza o roadmap accordion com o histórico real (apenas BJJ)
                     var _rMod = activeModality || (userModalidades && userModalidades[0]) || 'bjj';
                     if (typeof ModalidadeGuard !== 'undefined' && ModalidadeGuard.hasFaixa(_rMod) && currentUser) {
@@ -30241,7 +30067,6 @@ var _ADM_TAB_KEY = 'admUltimaTab';
  { id:'qrCodeSection', titulo:'QR Code de Check-in', icon:'', route:'adm-sistema', section:SYS_SECTION.SYSTEM, domain:SYS_DOMAIN.OPERACAO, group:SYS_GROUP.TOOLS, owner:'admin', frequency:'rara', permissions:[], keywords:['qr','check-in','entrada','acesso'] },
  { id:'sysAdminLicSection', titulo:'Licenças dos CTs', icon:'', route:'adm-sistema', section:SYS_SECTION.SYSTEM, domain:SYS_DOMAIN.ADMINISTRACAO, group:SYS_GROUP.CT, owner:'admin', frequency:'rara', permissions:['admin'], keywords:['assinatura do sistema','plano','licença','pagamento do ctm'] },
  { id:'adminModulosSection', titulo:'Módulos do Aluno', icon:'', route:'adm-sistema', section:SYS_SECTION.SYSTEM, domain:SYS_DOMAIN.ADMINISTRACAO, group:SYS_GROUP.CT, owner:'admin', frequency:'rara', permissions:['admin'], keywords:['app do aluno','funcionalidades visíveis'] },
- { id:'modulosTreinoSection', titulo:'Módulos de Treino', icon:'', route:'adm-sistema', section:SYS_SECTION.SYSTEM, domain:SYS_DOMAIN.ADMINISTRACAO, group:SYS_GROUP.CT, owner:'admin', frequency:'rara', permissions:['admin'], keywords:['treino','personalização','aba de treino'] },
  { id:'infoCTSection', titulo:'Informações do CT', icon:'', route:'adm-sistema', section:SYS_SECTION.SYSTEM, domain:SYS_DOMAIN.ADMINISTRACAO, group:SYS_GROUP.ACCOUNT, owner:'admin', frequency:'rara', permissions:['admin'], keywords:['endereço','telefone','instagram','mapa','contato','academia','cadastro','whatsapp'] },
  { id:'meuPerfilSection', titulo:'Meu Perfil', icon:'', route:'adm-sistema', section:SYS_SECTION.SYSTEM, domain:SYS_DOMAIN.ADMINISTRACAO, group:SYS_GROUP.ACCOUNT, owner:'usuario', frequency:'rara', permissions:[], keywords:['dados pessoais','foto','conta'] },
  { id:'alterarSenhaSection', titulo:'Alterar Senha', icon:'', route:'adm-sistema', section:SYS_SECTION.SYSTEM, domain:SYS_DOMAIN.ADMINISTRACAO, group:SYS_GROUP.ACCOUNT, owner:'usuario', frequency:'rara', permissions:[], keywords:['senha','segurança','login'] }
@@ -31324,7 +31149,7 @@ var _ADM_TAB_KEY = 'admUltimaTab';
             // Esconde o painel de Congelamentos (standalone) para não "vazar" em outras abas
             var _cong = document.getElementById('admCongelamentosPanel');
             if (_cong) _cong.style.display = 'none';
-            [1,2,3,4,5,6,7,8].forEach(function(i) {
+            [1,2,3,4,7].forEach(function(i) {
                 var panel = document.getElementById('admPainelTab' + i);
                 var btn   = document.getElementById('admPainelTabBtn' + i);
                 if (panel) panel.style.display = (i === n) ? 'block' : 'none';
@@ -31340,7 +31165,6 @@ var _ADM_TAB_KEY = 'admUltimaTab';
             if (n === 2) loadPendingResets();
             if (n === 3) loadPendingCheckins();
             if (n === 4) loadInactiveStudents();
-            if (n === 6) fotoTabAberta();
         }
         // --- ADMIN EXAM SCHEDULE ---
         // [PERF 2026-08-02] Carrega a aba Graduações do admin.
@@ -31549,15 +31373,6 @@ var _ADM_TAB_KEY = 'admUltimaTab';
         var _mexCriterios = [];
 
         function _exEsc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-        function _exameOverlay(html){
-            var ov = document.createElement('div');
-            ov.className = '_exameOverlay';
-            ov.style.cssText = 'position:fixed;inset:0;background:rgba(255, 255, 255, 0.70);z-index:99999;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;';
-            ov.innerHTML = '<div style="background:#1a1f2e;border:1px solid var(--border);border-radius:16px;max-width:560px;width:100%;padding:18px;margin:auto;">' + html + '</div>';
-            ov.addEventListener('click', function(e){ if(e.target===ov) ov.remove(); });
-            document.body.appendChild(ov);
-            return ov;
-        }
         // [PERF 2026-08-02] Aceita dados JA carregados (do getGraduacoesTab).
         // Se vier `pronto`, nao faz chamada nenhuma - so renderiza.
         // Modelo pré-definido de Jiu-Jitsu (editável): semeia as 20 técnicas.
@@ -34810,50 +34625,7 @@ var _ADM_TAB_KEY = 'admUltimaTab';
         var _examModalidadeSel = '';
 
         // Modalidades do aluno (com grad) para o seletor do exame.
-        function _examModalidadesDoAluno() {
-          var out = [];
-          try {
-            var raw = (currentUser && currentUser.modalidades) ? currentUser.modalidades.toString() : '';
-            var ids = raw.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
-            // fallback: modalidade principal
-            if (!ids.length && currentUser && currentUser.modalidadePrincipal) ids = [currentUser.modalidadePrincipal];
-            var vistos = {};
-            ids.forEach(function(id){
-              var key = id.toLowerCase();
-              if (vistos[key]) return; vistos[key] = true;
-              // label amigável: primeira letra maiúscula (o backend resolve tudo pelo id)
-              var nome = id.charAt(0).toUpperCase() + id.slice(1);
-              out.push({ id: id, nome: nome, icon: '' });
-            });
-          } catch(e) {}
-          return out;
-        }
-
         // Ao trocar a modalidade: busca a graduação-alvo e o valor no backend.
-        async function _examOnModalidadeChange() {
-          var sel = document.getElementById('examModalSelect');
-          if (sel) _examModalidadeSel = sel.value;
-          var box = document.getElementById('examGradInfo');
-          if (box) box.innerHTML = '<div style="text-align:center;color:var(--text-3);font-size:11px;padding:8px;">Calculando...</div>';
-          try {
-            var data = await secureFetch('getExameGraduacaoInfo', { modId: _examModalidadeSel, tentativa: (_examInfo ? _examInfo.tentativa : 1) });
-            if (!data.success) { if (box) box.innerHTML = ''; return; }
-            _examInfo = _examInfo || {};
-            if (data.valor != null) _examInfo.valor = data.valor;
-            var alvo = data.proxFaixa ? (escapeHtml(data.faixaAtual || '') + ' → <strong>' + escapeHtml(data.proxFaixa) + '</strong>')
-                                       : escapeHtml(data.label || 'Graduação');
-            var h = '<div style="padding:12px;background:rgba(238, 90, 27,0.06);border:1px solid rgba(238, 90, 27,0.12);border-radius:10px;text-align:center;">'
-              + '<div style="font-size:11px;color:var(--text-3);margin-bottom:3px;">Sua graduação</div>'
-              + '<div style="font-size:14px;color:var(--text-1);font-weight:700;margin-bottom:8px;">' + alvo + '</div>'
-              + '<div style="font-size:10px;color:var(--text-3);">Taxa do exame</div>'
-              + '<div style="font-size:22px;font-weight:800;color:#4ADE80;">R$ ' + (data.valor != null ? data.valor : (_examInfo.valor||150)) + ',00</div>'
-              + ((_examInfo && _examInfo.tentativa > 1) ? '<div style="font-size:10px;color:var(--accent);">' + _examInfo.tentativa + 'ª tentativa (valor reduzido)</div>' : '')
-              + '</div>';
-            if (box) box.innerHTML = h;
-            var btn = document.getElementById('examConfirmBtn');
-            if (btn && !btn.disabled) btn.textContent = 'Solicitar exame — R$ ' + (data.valor != null ? data.valor : (_examInfo.valor||150)) + ',00';
-          } catch(e) { if (box) box.innerHTML = ''; }
-        }
         function updateSealsUI(grau, faixa) {
             var examLink = document.getElementById('evoExamLink');
             if (!examLink) return;
@@ -36739,7 +36511,7 @@ var _ADM_TAB_KEY = 'admUltimaTab';
                 h += '<div style="text-align:center;padding:32px 16px;color:var(--text-3);">';
  h += '<div style="font-size:32px;margin-bottom:10px;"></div>';
                 h += '<div style="font-size:13px;font-weight:700;color:var(--text-2);margin-bottom:6px;">Nenhum treino cadastrado</div>';
-                h += '<div style="font-size:11px;line-height:1.6;">O professor ainda não criou módulos de treino.<br>Acesse o painel admin → <strong>Módulos de Treino</strong> para criar.</div>';
+                h += '<div style="font-size:11px;line-height:1.6;">Nenhum treino disponível no momento.</div>';
                 h += '</div>';
                 return h;
             }
@@ -44739,7 +44511,7 @@ async function initPresencaList() {
 
         function switchGradPainelTab(n) {
             _gradPainelTabAtual = n;
-            [1,2,3,4,5,6].forEach(function(i) {
+            [1,2,3,4,6].forEach(function(i) {
                 var panel = document.getElementById('gradPainelTab' + i);
                 var btn   = document.getElementById('gradPainelTabBtn' + i);
                 if (panel) panel.style.display = (i === n) ? 'block' : 'none';
@@ -44756,12 +44528,6 @@ async function initPresencaList() {
             if (n === 2) loadGradTab();
             if (n === 3) loadGradTab();  // nearList é populado por loadGradTab
             if (n === 4) loadGradTab();  // allList  é populado por loadGradTab
-            if (n === 5) {
-                loadModelosExame();          // rubricas/modelos
-                try { loadAdminExamSchedule(); } catch(e) {}   // vagas + solicitações + técnicas
-                try { carregarTaxaExame(); } catch(e) {}       // taxa do exame
-                try { carregarTaxasGraduacao(); } catch(e) {}   // valores por faixa
-            }
         }
         // ─────────────────────────────────────────────────────────────────────
 
@@ -48183,75 +47949,6 @@ async function initPresencaList() {
 
         // ── VALORES POR GRADUAÇÃO (por faixa, por modalidade) ────────────
         var _taxasGradData = null;
-        async function carregarTaxasGraduacao() {
-            var box = document.getElementById('taxasGradList');
-            if (!box) return;
-            _carregandoSuave(box);
-            try {
-                var data = await secureFetch('getTaxasGraduacao', {});
-                if (!data.success) { box.innerHTML = '<div class="admin-empty">Erro ao carregar</div>'; return; }
-                _taxasGradData = data.modalidades || [];
-                var geral = data.taxaGeral || {};
-                if (!_taxasGradData.length) { box.innerHTML = '<div class="admin-empty">Nenhuma faixa configurada nas modalidades.</div>'; return; }
-                var h = '';
-                // [2026-08-01] Deixa explícito qual valor está valendo. A regra do
-                // backend é: valor da faixa (se preenchido) SOBRESCREVE a taxa geral;
-                // vazio = usa a taxa geral. Antes o admin só via um placeholder
-                // cinza e não sabia se precisava preencher ou não — parecia conflito.
-                var _tgGeral = (geral.primeira != null ? geral.primeira : 150);
-                var _tgReinc = (geral.reincidencia != null ? geral.reincidencia : _tgGeral);
-                h += '<div style="font-size:10.5px;color:var(--adm-text-3);background:var(--adm-bg-elevated);border:1px solid var(--adm-border);border-radius:8px;padding:8px 10px;margin-bottom:10px;line-height:1.6;">'
-                   + 'Em branco = <strong style="color:var(--adm-text-1);">R$ ' + _tgGeral + '</strong> (padrão)'
-                   + ' · reincidência <strong style="color:var(--adm-text-1);">R$ ' + _tgReinc + '</strong>'
-                   + '</div>';
-                _taxasGradData.forEach(function(mo, _moIdx) {
-                    // [2026-08-01] Sanfona por modalidade. Só o BJJ tem ~20 faixas
-                    // (kids + adulto), o que deixava a lista gigante e empurrava as
-                    // seções seguintes pra fora da tela. Fechada por padrão: na
-                    // maioria das vezes o admin usa só a taxa geral e nem precisa
-                    // abrir. Os inputs continuam no DOM mesmo fechados, então o
-                    // "Salvar" segue coletando tudo (querySelectorAll não depende
-                    // de estar visível).
-                    var _paneId = 'tgPane_' + _moIdx;
-                    var _arrowId = 'tgArrow_' + _moIdx;
-                    var _comValor = mo.faixas.filter(function(f){ return f.valor !== '' && f.valor != null; }).length;
-
-                    h += '<div style="margin-bottom:8px;border:1px solid var(--adm-border);border-radius:9px;overflow:hidden;">';
-                    // Cabeçalho clicável
-                    h += '<div onclick="_toggleTaxaGradPane(\'' + _paneId + '\',\'' + _arrowId + '\')" '
-                       +      'style="display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;background:var(--adm-bg-elevated);user-select:none;">'
-                       +   '<span id="' + _arrowId + '" style="font-size:10px;color:var(--adm-text-3);transition:transform .18s;display:inline-block;">▶</span>'
-                       +   '<span style="flex:1;min-width:0;font-size:12px;font-weight:800;color:var(--adm-text-1);">'
-                       +      (mo.modIcon ? escapeHtml(mo.modIcon) + ' ' : '') + escapeHtml(mo.modNome)
-                       +   '</span>'
-                       +   '<span style="font-size:9.5px;color:var(--adm-text-3);">' + mo.faixas.length + ' faixas</span>'
-                       + (_comValor > 0
-                            ? '<span style="font-size:9.5px;font-weight:800;color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 7px;border-radius:999px;">' + _comValor + ' c/ valor</span>'
-                            : '')
-                       + '</div>';
-                    // Conteúdo (fechado por padrão)
-                    h += '<div id="' + _paneId + '" style="display:none;padding:10px 12px;">';
-                    mo.faixas.forEach(function(fx) {
-                        var key = mo.modId + '::' + fx.faixa;
-                        var _temValor = (fx.valor !== '' && fx.valor != null);
-                        h += '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">';
-                        h += '<div style="flex:1;min-width:0;font-size:11.5px;color:var(--adm-text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'
-                           + (fx.emoji ? escapeHtml(fx.emoji) + ' ' : '') + escapeHtml(fx.label)
-                           + (_temValor
-                               ? ' <span style="font-size:9.5px;font-weight:800;color:#22c55e;">próprio</span>'
-                               : ' <span style="font-size:9.5px;color:var(--adm-text-3);">padrão</span>')
-                           + '</div>';
-                        h += '<input type="number" min="0" step="0.01" placeholder="' + _tgGeral + '" value="' + (fx.valor !== '' ? fx.valor : '') + '" data-tgkey="' + escapeHtml(key) + '" data-tgfield="valor" style="width:78px;padding:6px;background:var(--adm-bg-elevated);color:var(--adm-text-1);border:1px solid var(--adm-border);border-radius:6px;font-size:11.5px;text-align:right;">';
-                        h += '<input type="number" min="0" step="0.01" placeholder="reinc." value="' + (fx.reincidencia !== '' ? fx.reincidencia : '') + '" data-tgkey="' + escapeHtml(key) + '" data-tgfield="reinc" style="width:64px;padding:6px;background:var(--adm-bg-elevated);color:var(--adm-text-3);border:1px solid var(--adm-border);border-radius:6px;font-size:11px;text-align:right;">';
-                        h += '</div>';
-                    });
-                    h += '</div>';  // fim pane
-                    h += '</div>';  // fim card da modalidade
-                });
-                box.innerHTML = h;
-            } catch(e) { box.innerHTML = '<div class="admin-empty">Erro de conexão</div>'; }
-        }
-
         // [2026-08-01] Abre/fecha uma modalidade na seção "Valores por graduação".
         // Não remove nada do DOM — só esconde — para o salvarTaxasGraduacao()
         // continuar coletando os inputs das modalidades fechadas.
@@ -48657,107 +48354,7 @@ async function initPresencaList() {
         ];
 
         // ── Renderiza lista de treinos no painel ──────────────────────
-        async function loadAdminTreinos() {
-            var el = document.getElementById('adminTreinosList');
-            if (!el) return;
-            try {
-                var data = await secureFetch('getTreinosCustom', {});
-                var customTreinos = (data.success && data.treinos) ? data.treinos : [];
-                var removedIds = customTreinos
-                    .filter(function(t){ return t.id && t.id.endsWith('_removed'); })
-                    .map(function(t){ return t.id.replace('_removed',''); });
-                var userTreinos = customTreinos
-                    .filter(function(t){ return t.id && !t.id.endsWith('_removed'); });
-                var h = '';
-
-                // Padrão do sistema
-                h += '<div style="font-size:9px;font-weight:800;color:var(--adm-text-3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Padrão do sistema</div>';
-                _TREINOS_PADRAO.forEach(function(t) {
-                    var removed = removedIds.indexOf(t.id) !== -1;
-                    h += '<div style="display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;margin-bottom:4px;background:var(--adm-bg-card);border:1px solid var(--adm-border);' + (removed ? 'opacity:.4;' : '') + '">';
-                    h += '<div style="width:12px;height:12px;border-radius:50%;background:' + t.cor + ';flex-shrink:0;"></div>';
-                    h += '<div style="flex:1;min-width:0;">';
-                    h += '<div style="font-size:12px;font-weight:700;color:var(--adm-text-1);">' + escapeHtml(t.nome) + (removed ? ' <span style="font-size:9px;color:#F87171;">(oculto)</span>' : '') + '</div>';
-                    h += '<div style="font-size:10px;color:var(--adm-text-3);">' + t.exercicios.length + ' exercícios · ' + escapeHtml(t.descricao) + '</div>';
-                    h += '</div>';
-                    if (removed) {
-                        h += '<button id="btn_rest_' + t.id + '" style="padding:4px 8px;background:rgba(74,222,128,0.1);color:#4ADE80;border:1px solid rgba(74,222,128,0.2);border-radius:5px;font-size:10px;cursor:pointer;white-space:nowrap;">↺ Mostrar</button>';
-                    } else {
- h += '<button id="btn_edit_pad_' + t.id + '" style="padding:4px 8px;background:rgba(238, 90, 27,0.1);color:var(--adm-primary);border:1px solid rgba(238, 90, 27,0.2);border-radius:5px;font-size:10px;cursor:pointer;margin-right:4px;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
- h += '<button id="btn_rem_' + t.id + '" style="padding:4px 8px;background:rgba(248,113,113,0.1);color:#F87171;border:1px solid rgba(248,113,113,0.2);border-radius:5px;font-size:10px;cursor:pointer;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
-                    }
-                    h += '</div>';
-                });
-
-                // Criados pelo professor
-                if (userTreinos.length > 0) {
-                    h += '<div style="font-size:9px;font-weight:800;color:var(--adm-text-3);text-transform:uppercase;letter-spacing:.5px;margin:10px 0 6px;">Criados por você</div>';
-                    userTreinos.forEach(function(t) {
-                        h += '<div style="display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;margin-bottom:4px;background:var(--adm-bg-card);border:1px solid var(--adm-border);">';
-                        h += '<div style="width:12px;height:12px;border-radius:50%;background:' + escapeHtml(t.cor) + ';flex-shrink:0;"></div>';
-                        h += '<div style="flex:1;min-width:0;">';
-                        h += '<div style="font-size:12px;font-weight:700;color:var(--adm-text-1);">' + escapeHtml(t.nome) + '</div>';
-                        h += '<div style="font-size:10px;color:var(--adm-text-3);">' + t.exercicios.length + ' exercícios' + (t.descricao ? ' · ' + escapeHtml(t.descricao) : '') + '</div>';
-                        h += '</div>';
- h += '<button id="btn_edit_' + escapeHtml(t.id) + '" style="padding:4px 8px;background:rgba(238, 90, 27,0.1);color:var(--adm-primary);border:1px solid rgba(238, 90, 27,0.2);border-radius:5px;font-size:10px;cursor:pointer;margin-right:4px;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
- h += '<button id="btn_del_' + escapeHtml(t.id) + '" style="padding:4px 8px;background:rgba(248,113,113,0.1);color:#F87171;border:1px solid rgba(248,113,113,0.2);border-radius:5px;font-size:10px;cursor:pointer;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
-                        h += '</div>';
-                    });
-                }
-
-                h += '<button id="btnRestTodos" style="width:100%;margin-top:10px;padding:7px;background:transparent;color:var(--adm-text-3);border:1px dashed var(--adm-border);border-radius:8px;font-size:10px;cursor:pointer;">↺ Restaurar todos os treinos padrão</button>';
-                el.innerHTML = h;
-
-                // Wire buttons — padrão
-                _TREINOS_PADRAO.forEach(function(t) {
-                    var removed = removedIds.indexOf(t.id) !== -1;
-                    if (removed) {
-                        var btnR = document.getElementById('btn_rest_' + t.id);
-                        if (btnR) btnR.onclick = function(){ adminRestaurarTreino(t.id); };
-                    } else {
-                        var btnE = document.getElementById('btn_edit_pad_' + t.id);
-                        if (btnE) btnE.onclick = (function(tr){ return function(){ adminAbrirEditorTreino(tr, true); }; })(t);
-                        var btnRem = document.getElementById('btn_rem_' + t.id);
-                        if (btnRem) btnRem.onclick = function(){ adminRemoverTreinoPadrao(t.id); };
-                    }
-                });
-                // Wire buttons — customizados
-                userTreinos.forEach(function(t) {
-                    var btnE = document.getElementById('btn_edit_' + t.id);
-                    if (btnE) btnE.onclick = (function(tr){ return function(){ adminAbrirEditorTreino(tr, false); }; })(t);
-                    var btnD = document.getElementById('btn_del_' + t.id);
-                    if (btnD) btnD.onclick = function(){ adminExcluirTreino(t.id); };
-                });
-                var btnRest = document.getElementById('btnRestTodos');
-                if (btnRest) btnRest.onclick = adminRestaurarTodosOsPadroes;
-
-            } catch(e) {
-                el.innerHTML = '<div class="admin-empty">Erro: ' + e.message + '</div>';
-            }
-        }
-
         // ── Abrir modal de edição ─────────────────────────────────────
-        function adminAbrirEditorTreino(treino, isPadrao) {
-            document.getElementById('adminEditTreinoId').value    = treino.id || '';
-            document.getElementById('adminEditTreinoPadrao').value = isPadrao ? '1' : '';
-            document.getElementById('adminEditNome').value = treino.nome || '';
-            document.getElementById('adminEditDesc').value = treino.descricao || treino.sub || '';
-            document.getElementById('adminEditCor').value  = treino.cor || '#3b82f6';
-            document.getElementById('adminEditMsg').textContent = '';
-            // Renderizar lista de exercícios editável
-            var exs = treino.exercicios || [];
-            if (typeof exs === 'string') { try { exs = JSON.parse(exs); } catch(e) { exs = []; } }
-            _adminRenderExsList(exs);
-            var modal = document.getElementById('adminTreinoEditModal');
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function adminFecharEditorTreino() {
-            document.getElementById('adminTreinoEditModal').style.display = 'none';
-            document.body.style.overflow = '';
-        }
-
         // ── Renderiza linhas de exercícios no modal ───────────────────
         function _adminRenderExsList(exs) {
             var container = document.getElementById('adminEditExsList');
@@ -48812,94 +48409,8 @@ async function initPresencaList() {
         }
 
         // ── Salvar edição ─────────────────────────────────────────────
-        async function adminSalvarEdicaoTreino() {
-            var id       = document.getElementById('adminEditTreinoId').value;
-            var isPadrao = document.getElementById('adminEditTreinoPadrao').value === '1';
-            var nome     = (document.getElementById('adminEditNome').value || '').trim();
-            var desc     = (document.getElementById('adminEditDesc').value || '').trim();
-            var cor      = document.getElementById('adminEditCor').value || '#3b82f6';
-            var msg      = document.getElementById('adminEditMsg');
-            var exs      = _adminColetarExercicios();
- if (!nome) { msg.style.color='#F87171'; msg.textContent=' Nome obrigatório.'; return; }
-            msg.style.color = 'var(--adm-text-3)'; msg.textContent = 'Salvando...';
-            try {
-                var res;
-                if (isPadrao) {
-                    // Salva como treino custom com mesmo id, sobrescrevendo o padrão visualmente
-                    res = await secureFetch('saveTreinoCustom', {
-                        id: id + '_edit', nome: nome, descricao: desc,
-                        exercicios: JSON.stringify(exs), cor: cor
-                    });
-                    // Também oculta o original padrão se o professor editou
-                    if (res && res.success) {
-                        try { await secureFetch('saveTreinoCustom', { nome:'_removed', id: id+'_removed', descricao:'_removed', exercicios:'[]', cor:'#000' }); } catch(e2){}
-                    }
-                } else {
-                    res = await secureFetch('saveTreinoCustom', {
-                        id: id, nome: nome, descricao: desc,
-                        exercicios: JSON.stringify(exs), cor: cor
-                    });
-                }
-                if (res && res.success) {
- msg.style.color = '#4ADE80'; msg.textContent = ' Salvo!';
-                    setTimeout(function(){ adminFecharEditorTreino(); loadAdminTreinos(); loadTreinosCustom(); }, 700);
-                } else {
- msg.style.color = '#F87171'; msg.textContent = '' + ((res && res.message) || 'Erro');
-                }
- } catch(e) { msg.style.color='#F87171'; msg.textContent='' + e.message; }
-        }
-
         // ── Criar novo treino (formulário rápido) ─────────────────────
-        async function adminSalvarTreino() {
-            var nome   = (document.getElementById('adminTreinoNome').value || '').trim();
-            var desc   = (document.getElementById('adminTreinoDesc').value || '').trim();
-            var exsRaw = (document.getElementById('adminTreinoExs').value  || '').trim();
-            var cor    = document.getElementById('adminTreinoCor').value || '#3b82f6';
-            var msg    = document.getElementById('adminTreinoMsg');
- if (!nome) { if (msg) { msg.style.color='#F87171'; msg.textContent=' Nome obrigatório.'; } return; }
-            var exercicios = exsRaw.split('\n').map(function(l) {
-                l = l.trim(); if (!l) return null;
-                var parts = l.split('|');
-                return { nome: (parts[0]||'').trim(), sets: (parts[1]||'').trim() };
-            }).filter(Boolean);
-            if (msg) { msg.style.color='var(--adm-text-3)'; msg.textContent='Salvando...'; }
-            try {
-                var res = await secureFetch('saveTreinoCustom', {
-                    nome: nome, descricao: desc,
-                    exercicios: JSON.stringify(exercicios), cor: cor
-                });
-                if (res && res.success) {
- if (msg) { msg.style.color='#4ADE80'; msg.textContent=' Treino criado!'; }
-                    document.getElementById('adminTreinoNome').value = '';
-                    document.getElementById('adminTreinoDesc').value = '';
-                    document.getElementById('adminTreinoExs').value  = '';
-                    document.getElementById('adminTreinoCor').value  = '#3b82f6';
-                    loadAdminTreinos();
-                    loadTreinosCustom();
-                    setTimeout(function(){ if(msg) msg.textContent=''; }, 3000);
-                } else {
- if (msg) { msg.style.color='#F87171'; msg.textContent='' + ((res&&res.message)||'Erro'); }
-                }
- } catch(e) { if (msg) { msg.style.color='#F87171'; msg.textContent='' + e.message; } }
-        }
-
         // ── Remover / Restaurar / Excluir ─────────────────────────────
-        async function adminRemoverTreinoPadrao(id) {
-            if (!confirm('Ocultar este treino para os alunos?')) return;
-            try { await secureFetch('saveTreinoCustom', { nome: '_removed', id: id+'_removed', descricao:'_removed', exercicios:'[]', cor:'#000' }); loadAdminTreinos(); loadTreinosCustom(); }
-            catch(e) { alert('Erro: ' + e.message); }
-        }
-
-        async function adminRestaurarTreino(id) {
-            try {
-                await secureFetch('deleteTreinoCustom', { id: id+'_removed' });
-                // Remove versão editada também se existir
-                try { await secureFetch('deleteTreinoCustom', { id: id+'_edit' }); } catch(e2){}
-                loadAdminTreinos(); loadTreinosCustom();
-            }
-            catch(e) { alert('Erro: ' + e.message); }
-        }
-
         async function adminRestaurarTodosOsPadroes() {
             if (!confirm('Restaurar todos os treinos padrão e remover edições?')) return;
             try {
@@ -48910,16 +48421,6 @@ async function initPresencaList() {
                 loadAdminTreinos(); loadTreinosCustom();
             } catch(e) { alert('Erro: ' + e.message); }
         }
-
-        async function adminExcluirTreino(id) {
-            if (!confirm('Excluir este treino? Os alunos não poderão mais acessá-lo.')) return;
-            try {
-                await secureFetch('deleteTreinoCustom', { id: id });
-                loadAdminTreinos();
-                loadTreinosCustom();
-            } catch(e) { alert('Erro: ' + e.message); }
-        }
-
         // ===== ADMIN: IBJJF UPDATES =====
 
 
